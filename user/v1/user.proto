@@ -119,7 +119,7 @@ message UpdateProfileRequest {
 }
 
 message UpdateProfileResponse {
-    User user = 1;
+   bool success = 1;
 }
 
 message GetProfileByIdRequest {

@@ -1015,7 +1015,7 @@ func (x *UpdateProfileRequest) GetLearningSkills() []*LearningSkillUpdate {
 
 type UpdateProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1050,11 +1050,11 @@ func (*UpdateProfileResponse) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *UpdateProfileResponse) GetUser() *User {
+func (x *UpdateProfileResponse) GetSuccess() bool {
 	if x != nil {
-		return x.User
+		return x.Success
 	}
-	return nil
+	return false
 }
 
 type GetProfileByIdRequest struct {
@@ -1564,9 +1564,9 @@ const file_user_proto_rawDesc = "" +
 	"\x06_emailB\r\n" +
 	"\v_avatar_urlB\x0e\n" +
 	"\f_mentor_dataB\x0f\n" +
-	"\r_student_data\":\n" +
-	"\x15UpdateProfileResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\"0\n" +
+	"\r_student_data\"1\n" +
+	"\x15UpdateProfileResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"0\n" +
 	"\x15GetProfileByIdRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xa0\x02\n" +
 	"\x16GetProfileByIdResponse\x12!\n" +
@@ -1651,33 +1651,32 @@ var file_user_proto_depIdxs = []int32{
 	6,  // 3: user.v1.UpdateProfileRequest.student_data:type_name -> user.v1.StudentUpdate
 	7,  // 4: user.v1.UpdateProfileRequest.teaching_skills:type_name -> user.v1.TeachingSkillUpdate
 	8,  // 5: user.v1.UpdateProfileRequest.learning_skills:type_name -> user.v1.LearningSkillUpdate
-	0,  // 6: user.v1.UpdateProfileResponse.user:type_name -> user.v1.User
-	0,  // 7: user.v1.GetProfileByIdResponse.user:type_name -> user.v1.User
-	1,  // 8: user.v1.GetProfileByIdResponse.mentor:type_name -> user.v1.MentorProfile
-	2,  // 9: user.v1.GetProfileByIdResponse.student:type_name -> user.v1.StudentProfile
-	3,  // 10: user.v1.GetProfileByIdResponse.teaching_skills:type_name -> user.v1.TeachingSkill
-	4,  // 11: user.v1.GetProfileByIdResponse.learning_skills:type_name -> user.v1.LearningSkill
-	9,  // 12: user.v1.UserService.CreateUser:input_type -> user.v1.CreateUserRequest
-	11, // 13: user.v1.UserService.GetUserById:input_type -> user.v1.GetUserByIdRequest
-	13, // 14: user.v1.UserService.GetUserByEmail:input_type -> user.v1.GetUserByEmailRequest
-	19, // 15: user.v1.UserService.DeleteUser:input_type -> user.v1.DeleteUserRequest
-	17, // 16: user.v1.UserService.GetProfileById:input_type -> user.v1.GetProfileByIdRequest
-	15, // 17: user.v1.UserService.UpdateProfile:input_type -> user.v1.UpdateProfileRequest
-	21, // 18: user.v1.UserService.UploadAvatar:input_type -> user.v1.UploadAvatarRequest
-	23, // 19: user.v1.UserService.DeleteAvatar:input_type -> user.v1.DeleteAvatarRequest
-	10, // 20: user.v1.UserService.CreateUser:output_type -> user.v1.CreateUserResponse
-	12, // 21: user.v1.UserService.GetUserById:output_type -> user.v1.GetUserByIdResponse
-	14, // 22: user.v1.UserService.GetUserByEmail:output_type -> user.v1.GetUserByEmailResponse
-	20, // 23: user.v1.UserService.DeleteUser:output_type -> user.v1.DeleteUserResponse
-	18, // 24: user.v1.UserService.GetProfileById:output_type -> user.v1.GetProfileByIdResponse
-	16, // 25: user.v1.UserService.UpdateProfile:output_type -> user.v1.UpdateProfileResponse
-	22, // 26: user.v1.UserService.UploadAvatar:output_type -> user.v1.UploadAvatarResponse
-	24, // 27: user.v1.UserService.DeleteAvatar:output_type -> user.v1.DeleteAvatarResponse
-	20, // [20:28] is the sub-list for method output_type
-	12, // [12:20] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	0,  // 6: user.v1.GetProfileByIdResponse.user:type_name -> user.v1.User
+	1,  // 7: user.v1.GetProfileByIdResponse.mentor:type_name -> user.v1.MentorProfile
+	2,  // 8: user.v1.GetProfileByIdResponse.student:type_name -> user.v1.StudentProfile
+	3,  // 9: user.v1.GetProfileByIdResponse.teaching_skills:type_name -> user.v1.TeachingSkill
+	4,  // 10: user.v1.GetProfileByIdResponse.learning_skills:type_name -> user.v1.LearningSkill
+	9,  // 11: user.v1.UserService.CreateUser:input_type -> user.v1.CreateUserRequest
+	11, // 12: user.v1.UserService.GetUserById:input_type -> user.v1.GetUserByIdRequest
+	13, // 13: user.v1.UserService.GetUserByEmail:input_type -> user.v1.GetUserByEmailRequest
+	19, // 14: user.v1.UserService.DeleteUser:input_type -> user.v1.DeleteUserRequest
+	17, // 15: user.v1.UserService.GetProfileById:input_type -> user.v1.GetProfileByIdRequest
+	15, // 16: user.v1.UserService.UpdateProfile:input_type -> user.v1.UpdateProfileRequest
+	21, // 17: user.v1.UserService.UploadAvatar:input_type -> user.v1.UploadAvatarRequest
+	23, // 18: user.v1.UserService.DeleteAvatar:input_type -> user.v1.DeleteAvatarRequest
+	10, // 19: user.v1.UserService.CreateUser:output_type -> user.v1.CreateUserResponse
+	12, // 20: user.v1.UserService.GetUserById:output_type -> user.v1.GetUserByIdResponse
+	14, // 21: user.v1.UserService.GetUserByEmail:output_type -> user.v1.GetUserByEmailResponse
+	20, // 22: user.v1.UserService.DeleteUser:output_type -> user.v1.DeleteUserResponse
+	18, // 23: user.v1.UserService.GetProfileById:output_type -> user.v1.GetProfileByIdResponse
+	16, // 24: user.v1.UserService.UpdateProfile:output_type -> user.v1.UpdateProfileResponse
+	22, // 25: user.v1.UserService.UploadAvatar:output_type -> user.v1.UploadAvatarResponse
+	24, // 26: user.v1.UserService.DeleteAvatar:output_type -> user.v1.DeleteAvatarResponse
+	19, // [19:27] is the sub-list for method output_type
+	11, // [11:19] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
