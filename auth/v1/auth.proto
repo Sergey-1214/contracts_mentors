@@ -40,6 +40,7 @@ message RefreshRequest {
 message RefreshResponse {
     string refresh_token = 1;
     string access_token = 2;
+    int64 expires_in = 3;
 }
 
 message LogoutRequest {
