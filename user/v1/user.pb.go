@@ -108,9 +108,9 @@ func (x *User) GetCreatedAt() string {
 type MentorProfile struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	UserId            string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	WithdrawalAddress string                 `protobuf:"bytes,2,opt,name=withdrawal_address,json=withdrawalAddress,proto3" json:"withdrawal_address,omitempty"`
+	WithdrawalAddress *string                `protobuf:"bytes,2,opt,name=withdrawal_address,json=withdrawalAddress,proto3,oneof" json:"withdrawal_address,omitempty"`
 	Rating            float64                `protobuf:"fixed64,3,opt,name=rating,proto3" json:"rating,omitempty"`
-	Description       string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Description       *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	CreatedAt         string                 `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
@@ -154,8 +154,8 @@ func (x *MentorProfile) GetUserId() string {
 }
 
 func (x *MentorProfile) GetWithdrawalAddress() string {
-	if x != nil {
-		return x.WithdrawalAddress
+	if x != nil && x.WithdrawalAddress != nil {
+		return *x.WithdrawalAddress
 	}
 	return ""
 }
@@ -168,8 +168,8 @@ func (x *MentorProfile) GetRating() float64 {
 }
 
 func (x *MentorProfile) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -184,8 +184,8 @@ func (x *MentorProfile) GetCreatedAt() string {
 type StudentProfile struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	UserId                 string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	LearningGoals          string                 `protobuf:"bytes,2,opt,name=learning_goals,json=learningGoals,proto3" json:"learning_goals,omitempty"`
-	PreferredLearningStyle string                 `protobuf:"bytes,3,opt,name=preferred_learning_style,json=preferredLearningStyle,proto3" json:"preferred_learning_style,omitempty"`
+	LearningGoals          *string                `protobuf:"bytes,2,opt,name=learning_goals,json=learningGoals,proto3,oneof" json:"learning_goals,omitempty"`
+	PreferredLearningStyle *string                `protobuf:"bytes,3,opt,name=preferred_learning_style,json=preferredLearningStyle,proto3,oneof" json:"preferred_learning_style,omitempty"`
 	CreatedAt              string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
@@ -229,15 +229,15 @@ func (x *StudentProfile) GetUserId() string {
 }
 
 func (x *StudentProfile) GetLearningGoals() string {
-	if x != nil {
-		return x.LearningGoals
+	if x != nil && x.LearningGoals != nil {
+		return *x.LearningGoals
 	}
 	return ""
 }
 
 func (x *StudentProfile) GetPreferredLearningStyle() string {
-	if x != nil {
-		return x.PreferredLearningStyle
+	if x != nil && x.PreferredLearningStyle != nil {
+		return *x.PreferredLearningStyle
 	}
 	return ""
 }
@@ -1481,20 +1481,24 @@ const file_user_proto_rawDesc = "" +
 	"avatar_url\x18\x05 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\tR\tcreatedAtB\r\n" +
-	"\v_avatar_url\"\xb0\x01\n" +
+	"\v_avatar_url\"\xe1\x01\n" +
 	"\rMentorProfile\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12-\n" +
-	"\x12withdrawal_address\x18\x02 \x01(\tR\x11withdrawalAddress\x12\x16\n" +
-	"\x06rating\x18\x03 \x01(\x01R\x06rating\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1d\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x122\n" +
+	"\x12withdrawal_address\x18\x02 \x01(\tH\x00R\x11withdrawalAddress\x88\x01\x01\x12\x16\n" +
+	"\x06rating\x18\x03 \x01(\x01R\x06rating\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\tR\tcreatedAt\"\xa9\x01\n" +
+	"created_at\x18\x05 \x01(\tR\tcreatedAtB\x15\n" +
+	"\x13_withdrawal_addressB\x0e\n" +
+	"\f_description\"\xe3\x01\n" +
 	"\x0eStudentProfile\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12%\n" +
-	"\x0elearning_goals\x18\x02 \x01(\tR\rlearningGoals\x128\n" +
-	"\x18preferred_learning_style\x18\x03 \x01(\tR\x16preferredLearningStyle\x12\x1d\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12*\n" +
+	"\x0elearning_goals\x18\x02 \x01(\tH\x00R\rlearningGoals\x88\x01\x01\x12=\n" +
+	"\x18preferred_learning_style\x18\x03 \x01(\tH\x01R\x16preferredLearningStyle\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\tR\tcreatedAt\"\xde\x01\n" +
+	"created_at\x18\x04 \x01(\tR\tcreatedAtB\x11\n" +
+	"\x0f_learning_goalsB\x1b\n" +
+	"\x19_preferred_learning_style\"\xde\x01\n" +
 	"\rTeachingSkill\x12\x19\n" +
 	"\bskill_id\x18\x01 \x01(\tR\askillId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -1686,6 +1690,8 @@ func file_user_proto_init() {
 		return
 	}
 	file_user_proto_msgTypes[0].OneofWrappers = []any{}
+	file_user_proto_msgTypes[1].OneofWrappers = []any{}
+	file_user_proto_msgTypes[2].OneofWrappers = []any{}
 	file_user_proto_msgTypes[5].OneofWrappers = []any{}
 	file_user_proto_msgTypes[6].OneofWrappers = []any{}
 	file_user_proto_msgTypes[15].OneofWrappers = []any{}

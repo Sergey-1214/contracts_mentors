@@ -26,16 +26,16 @@ message User {
 
 message MentorProfile {
     string user_id = 1;
-    string withdrawal_address = 2;
+    optional string withdrawal_address = 2;
     double rating = 3;
-    string description = 4;
+    optional string description = 4;
     string created_at = 5;
 }
 
 message StudentProfile {
     string user_id = 1;
-    string learning_goals = 2;
-    string preferred_learning_style = 3;
+    optional string learning_goals = 2;
+    optional string preferred_learning_style = 3;
     string created_at = 4;
 }
 
