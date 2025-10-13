@@ -17,6 +17,7 @@ message RegisterRequest {
     string email = 3;
     string password = 4;
 }
+
 message RegisterResponse {
     string id = 1;
 }
@@ -29,6 +30,7 @@ message LoginRequest {
 message LoginResponse {
     string access_token = 1;
     string refresh_token = 2;
+    int64 expires_in = 3;
 }
 
 message RefreshRequest {
