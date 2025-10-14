@@ -103,6 +103,14 @@ message GetUserByEmailResponse {
     User user = 1;
 }
 
+message TeachingSkillsUpdate {
+    repeated TeachingSkillUpdate teaching_skills = 1;
+}
+
+message LearningSkillsUpdate {
+    repeated LearningSkillUpdate learning_skills = 1;
+}
+
 message UpdateProfileRequest {
     string user_id = 1;
     optional string first_name = 2;
@@ -114,8 +122,8 @@ message UpdateProfileRequest {
     
     optional StudentUpdate student_data = 7;
     
-    repeated TeachingSkillUpdate teaching_skills = 8;
-    repeated LearningSkillUpdate learning_skills = 9;
+    optional TeachingSkillsUpdate teaching_skills = 8;
+    optional LearningSkillsUpdate learning_skills = 9;
 }
 
 message UpdateProfileResponse {
