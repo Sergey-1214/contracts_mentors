@@ -5,13 +5,13 @@ package chatv1;
 option go_package = "github.com/Sergey-1214/contracts_mentors/chat/v1;chatv1";
 
 service ChatService {
-  rpc ChatStream(stream ClientEvent) returns (stream ServerEvent) {}
+  rpc ChatStream(stream ClientEvent) returns (stream ServerEvent);
   
-  rpc CreateChat(CreateChatRequest) returns (CreateChatResponse) {}
-  rpc GetUserChats(GetUserChatsRequest) returns (GetUserChatsResponse) {}
-  rpc GetChatMessages(GetChatMessagesRequest) returns (GetChatMessagesResponse) {}
-  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
-  rpc MarkMessagesRead(MarkMessagesReadRequest) returns (MarkMessagesReadResponse) {}
+  rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
+  rpc GetUserChats(GetUserChatsRequest) returns (GetUserChatsResponse);
+  rpc GetChatMessages(GetChatMessagesRequest) returns (GetChatMessagesResponse);
+
+  rpc MarkMessagesRead(MarkMessagesReadRequest) returns (MarkMessagesReadResponse);
 }
 
 message ClientEvent {
@@ -108,17 +108,6 @@ message GetChatMessagesRequest {
 message GetChatMessagesResponse {
   repeated Message messages = 1;
   bool has_more = 2;
-}
-
-message SendMessageRequest {
-  string chat_id = 1;
-  string sender_id = 2;
-  string content = 3;
-  repeated Attachment attachments = 4;
-}
-
-message SendMessageResponse {
-  Message message = 1;
 }
 
 message MarkMessagesReadRequest {
