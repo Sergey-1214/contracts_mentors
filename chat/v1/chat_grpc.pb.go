@@ -23,7 +23,6 @@ const (
 	ChatService_CreateChat_FullMethodName       = "/chatv1.ChatService/CreateChat"
 	ChatService_GetUserChats_FullMethodName     = "/chatv1.ChatService/GetUserChats"
 	ChatService_GetChatMessages_FullMethodName  = "/chatv1.ChatService/GetChatMessages"
-	ChatService_SendMessage_FullMethodName      = "/chatv1.ChatService/SendMessage"
 	ChatService_MarkMessagesRead_FullMethodName = "/chatv1.ChatService/MarkMessagesRead"
 )
 
@@ -35,7 +34,6 @@ type ChatServiceClient interface {
 	CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error)
 	GetUserChats(ctx context.Context, in *GetUserChatsRequest, opts ...grpc.CallOption) (*GetUserChatsResponse, error)
 	GetChatMessages(ctx context.Context, in *GetChatMessagesRequest, opts ...grpc.CallOption) (*GetChatMessagesResponse, error)
-	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
 	MarkMessagesRead(ctx context.Context, in *MarkMessagesReadRequest, opts ...grpc.CallOption) (*MarkMessagesReadResponse, error)
 }
 
@@ -90,16 +88,6 @@ func (c *chatServiceClient) GetChatMessages(ctx context.Context, in *GetChatMess
 	return out, nil
 }
 
-func (c *chatServiceClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendMessageResponse)
-	err := c.cc.Invoke(ctx, ChatService_SendMessage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *chatServiceClient) MarkMessagesRead(ctx context.Context, in *MarkMessagesReadRequest, opts ...grpc.CallOption) (*MarkMessagesReadResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MarkMessagesReadResponse)
@@ -118,7 +106,6 @@ type ChatServiceServer interface {
 	CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error)
 	GetUserChats(context.Context, *GetUserChatsRequest) (*GetUserChatsResponse, error)
 	GetChatMessages(context.Context, *GetChatMessagesRequest) (*GetChatMessagesResponse, error)
-	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
 	MarkMessagesRead(context.Context, *MarkMessagesReadRequest) (*MarkMessagesReadResponse, error)
 	mustEmbedUnimplementedChatServiceServer()
 }
@@ -141,9 +128,6 @@ func (UnimplementedChatServiceServer) GetUserChats(context.Context, *GetUserChat
 }
 func (UnimplementedChatServiceServer) GetChatMessages(context.Context, *GetChatMessagesRequest) (*GetChatMessagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChatMessages not implemented")
-}
-func (UnimplementedChatServiceServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendMessage not implemented")
 }
 func (UnimplementedChatServiceServer) MarkMessagesRead(context.Context, *MarkMessagesReadRequest) (*MarkMessagesReadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkMessagesRead not implemented")
@@ -230,24 +214,6 @@ func _ChatService_GetChatMessages_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChatService_SendMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ChatServiceServer).SendMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ChatService_SendMessage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChatServiceServer).SendMessage(ctx, req.(*SendMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ChatService_MarkMessagesRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MarkMessagesReadRequest)
 	if err := dec(in); err != nil {
@@ -284,10 +250,6 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetChatMessages",
 			Handler:    _ChatService_GetChatMessages_Handler,
-		},
-		{
-			MethodName: "SendMessage",
-			Handler:    _ChatService_SendMessage_Handler,
 		},
 		{
 			MethodName: "MarkMessagesRead",
