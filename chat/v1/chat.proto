@@ -9,8 +9,8 @@ service ChatService {
   
   rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
   rpc GetUserChats(GetUserChatsRequest) returns (GetUserChatsResponse);
+  rpc GetChatById(GetChatByIdRequest) returns (GetChatByIdResponse);
   rpc GetChatMessages(GetChatMessagesRequest) returns (GetChatMessagesResponse);
-
   rpc MarkMessagesRead(MarkMessagesReadRequest) returns (MarkMessagesReadResponse);
 }
 
@@ -101,6 +101,14 @@ message GetUserChatsRequest {
 
 message GetUserChatsResponse {
   repeated Chat chats = 1;
+}
+
+message GetChatByIdRequest {
+  string id = 1;
+}
+
+message GetChatByIdResponse {
+  Chat chat = 1;
 }
 
 message GetChatMessagesRequest {

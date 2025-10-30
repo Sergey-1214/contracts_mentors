@@ -22,6 +22,7 @@ const (
 	ChatService_ChatStream_FullMethodName       = "/chatv1.ChatService/ChatStream"
 	ChatService_CreateChat_FullMethodName       = "/chatv1.ChatService/CreateChat"
 	ChatService_GetUserChats_FullMethodName     = "/chatv1.ChatService/GetUserChats"
+	ChatService_GetChatById_FullMethodName      = "/chatv1.ChatService/GetChatById"
 	ChatService_GetChatMessages_FullMethodName  = "/chatv1.ChatService/GetChatMessages"
 	ChatService_MarkMessagesRead_FullMethodName = "/chatv1.ChatService/MarkMessagesRead"
 )
@@ -33,6 +34,7 @@ type ChatServiceClient interface {
 	ChatStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ClientEvent, ServerEvent], error)
 	CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error)
 	GetUserChats(ctx context.Context, in *GetUserChatsRequest, opts ...grpc.CallOption) (*GetUserChatsResponse, error)
+	GetChatById(ctx context.Context, in *GetChatByIdRequest, opts ...grpc.CallOption) (*GetChatByIdResponse, error)
 	GetChatMessages(ctx context.Context, in *GetChatMessagesRequest, opts ...grpc.CallOption) (*GetChatMessagesResponse, error)
 	MarkMessagesRead(ctx context.Context, in *MarkMessagesReadRequest, opts ...grpc.CallOption) (*MarkMessagesReadResponse, error)
 }
@@ -78,6 +80,16 @@ func (c *chatServiceClient) GetUserChats(ctx context.Context, in *GetUserChatsRe
 	return out, nil
 }
 
+func (c *chatServiceClient) GetChatById(ctx context.Context, in *GetChatByIdRequest, opts ...grpc.CallOption) (*GetChatByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChatByIdResponse)
+	err := c.cc.Invoke(ctx, ChatService_GetChatById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *chatServiceClient) GetChatMessages(ctx context.Context, in *GetChatMessagesRequest, opts ...grpc.CallOption) (*GetChatMessagesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetChatMessagesResponse)
@@ -105,6 +117,7 @@ type ChatServiceServer interface {
 	ChatStream(grpc.BidiStreamingServer[ClientEvent, ServerEvent]) error
 	CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error)
 	GetUserChats(context.Context, *GetUserChatsRequest) (*GetUserChatsResponse, error)
+	GetChatById(context.Context, *GetChatByIdRequest) (*GetChatByIdResponse, error)
 	GetChatMessages(context.Context, *GetChatMessagesRequest) (*GetChatMessagesResponse, error)
 	MarkMessagesRead(context.Context, *MarkMessagesReadRequest) (*MarkMessagesReadResponse, error)
 	mustEmbedUnimplementedChatServiceServer()
@@ -125,6 +138,9 @@ func (UnimplementedChatServiceServer) CreateChat(context.Context, *CreateChatReq
 }
 func (UnimplementedChatServiceServer) GetUserChats(context.Context, *GetUserChatsRequest) (*GetUserChatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserChats not implemented")
+}
+func (UnimplementedChatServiceServer) GetChatById(context.Context, *GetChatByIdRequest) (*GetChatByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChatById not implemented")
 }
 func (UnimplementedChatServiceServer) GetChatMessages(context.Context, *GetChatMessagesRequest) (*GetChatMessagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChatMessages not implemented")
@@ -196,6 +212,24 @@ func _ChatService_GetUserChats_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ChatService_GetChatById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChatByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChatServiceServer).GetChatById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChatService_GetChatById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChatServiceServer).GetChatById(ctx, req.(*GetChatByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ChatService_GetChatMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetChatMessagesRequest)
 	if err := dec(in); err != nil {
@@ -246,6 +280,10 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserChats",
 			Handler:    _ChatService_GetUserChats_Handler,
+		},
+		{
+			MethodName: "GetChatById",
+			Handler:    _ChatService_GetChatById_Handler,
 		},
 		{
 			MethodName: "GetChatMessages",
