@@ -19,7 +19,6 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChatService_ChatStream_FullMethodName       = "/chatv1.ChatService/ChatStream"
 	ChatService_CreateChat_FullMethodName       = "/chatv1.ChatService/CreateChat"
 	ChatService_GetUserChats_FullMethodName     = "/chatv1.ChatService/GetUserChats"
 	ChatService_GetChatById_FullMethodName      = "/chatv1.ChatService/GetChatById"
@@ -31,7 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChatServiceClient interface {
-	ChatStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ClientEvent, ServerEvent], error)
 	CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error)
 	GetUserChats(ctx context.Context, in *GetUserChatsRequest, opts ...grpc.CallOption) (*GetUserChatsResponse, error)
 	GetChatById(ctx context.Context, in *GetChatByIdRequest, opts ...grpc.CallOption) (*GetChatByIdResponse, error)
@@ -46,19 +44,6 @@ type chatServiceClient struct {
 func NewChatServiceClient(cc grpc.ClientConnInterface) ChatServiceClient {
 	return &chatServiceClient{cc}
 }
-
-func (c *chatServiceClient) ChatStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ClientEvent, ServerEvent], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ChatService_ServiceDesc.Streams[0], ChatService_ChatStream_FullMethodName, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &grpc.GenericClientStream[ClientEvent, ServerEvent]{ClientStream: stream}
-	return x, nil
-}
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ChatService_ChatStreamClient = grpc.BidiStreamingClient[ClientEvent, ServerEvent]
 
 func (c *chatServiceClient) CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -114,7 +99,6 @@ func (c *chatServiceClient) MarkMessagesRead(ctx context.Context, in *MarkMessag
 // All implementations must embed UnimplementedChatServiceServer
 // for forward compatibility.
 type ChatServiceServer interface {
-	ChatStream(grpc.BidiStreamingServer[ClientEvent, ServerEvent]) error
 	CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error)
 	GetUserChats(context.Context, *GetUserChatsRequest) (*GetUserChatsResponse, error)
 	GetChatById(context.Context, *GetChatByIdRequest) (*GetChatByIdResponse, error)
@@ -130,9 +114,6 @@ type ChatServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedChatServiceServer struct{}
 
-func (UnimplementedChatServiceServer) ChatStream(grpc.BidiStreamingServer[ClientEvent, ServerEvent]) error {
-	return status.Errorf(codes.Unimplemented, "method ChatStream not implemented")
-}
 func (UnimplementedChatServiceServer) CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChat not implemented")
 }
@@ -168,13 +149,6 @@ func RegisterChatServiceServer(s grpc.ServiceRegistrar, srv ChatServiceServer) {
 	}
 	s.RegisterService(&ChatService_ServiceDesc, srv)
 }
-
-func _ChatService_ChatStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ChatServiceServer).ChatStream(&grpc.GenericServerStream[ClientEvent, ServerEvent]{ServerStream: stream})
-}
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ChatService_ChatStreamServer = grpc.BidiStreamingServer[ClientEvent, ServerEvent]
 
 func _ChatService_CreateChat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateChatRequest)
@@ -294,13 +268,6 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ChatService_MarkMessagesRead_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "ChatStream",
-			Handler:       _ChatService_ChatStream_Handler,
-			ServerStreams: true,
-			ClientStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "chat.proto",
 }

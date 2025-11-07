@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package chatv1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/Sergey-1214/contracts_mentors/chat/v1;chatv1";
 
 service ChatService {
-  rpc ChatStream(stream ClientEvent) returns (stream ServerEvent);
-  
   rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
   rpc GetUserChats(GetUserChatsRequest) returns (GetUserChatsResponse);
   rpc GetChatById(GetChatByIdRequest) returns (GetChatByIdResponse);
@@ -16,71 +16,7 @@ service ChatService {
 
 message Cursor {
   string id = 1;
-  int64 created_at = 2;
-}
-
-message ClientEvent {
-  string event_id = 1;  
-  string user_id = 2; 
-  oneof event {
-    SendMessageEvent send_message = 3;
-    ReadReceiptEvent read_receipt = 4;
-    PingEvent ping = 5;
-  }
-}
-
-message ServerEvent {
-  string event_id = 1;
-  oneof event {
-    NewMessageEvent new_message = 2;
-    MessagesReadEvent messages_read = 3;
-    UserStatusEvent user_status = 4;
-    ErrorEvent error = 5;
-    PongEvent pong = 6;
-  }
-}
-
-message SendMessageEvent {
-  string chat_id = 1;
-  string content = 2;
-  repeated Attachment attachments = 3;
-  string reply_to = 4;  
-}
-
-message ReadReceiptEvent {
-  string chat_id = 1;
-  repeated string message_ids = 2; 
-}
-
-message PingEvent {
-  int64 timestamp = 1;
-}
-
-message NewMessageEvent {
-  Message message = 1;
-}
-
-message MessagesReadEvent {
-  string user_id = 1;     
-  string chat_id = 2;
-  repeated string message_ids = 3;
-  int64 read_at = 4;
-}
-
-message UserStatusEvent {
-  string user_id = 1;
-  bool online = 2;
-  int64 last_seen = 3; 
-}
-
-message ErrorEvent {
-  string code = 1;
-  string message = 2;
-  string details = 3;
-}
-
-message PongEvent {
-  int64 timestamp = 1;
+  google.protobuf.Timestamp created_at = 2;
 }
 
 message CreateChatRequest {
@@ -137,8 +73,8 @@ message Chat {
   string id = 1;
   string user1_id = 2;
   string user2_id = 3;
-  int64 created_at = 4;
-  int64 updated_at = 5;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
   Message last_message = 6;
   int32 unread_count = 7;
 }
@@ -151,11 +87,11 @@ message Message {
   string message_type = 5;  
   repeated Attachment attachments = 6;
   string reply_to = 7;
-  int64 created_at = 8;
-  int64 updated_at = 9;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
   bool is_edited = 10;
   bool is_read = 11;
-  int64 read_at = 12;
+  google.protobuf.Timestamp read_at = 12;
 }
 
 message Attachment {
