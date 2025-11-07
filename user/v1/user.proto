@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package user.v1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/Sergey-1214/contracts_mentors/user/v1;userv1";
 
 service UserService {
@@ -21,7 +23,7 @@ message User {
     string last_name = 3;
     string email = 4;
     optional string avatar_url = 5; 
-    string created_at = 6; 
+    google.protobuf.Timestamp created_at = 6; 
 }
 
 message MentorProfile {
@@ -29,14 +31,14 @@ message MentorProfile {
     optional string withdrawal_address = 2;
     double rating = 3;
     optional string description = 4;
-    string created_at = 5;
+    google.protobuf.Timestamp created_at = 5;
 }
 
 message StudentProfile {
     string user_id = 1;
     optional string learning_goals = 2;
     optional string preferred_learning_style = 3;
-    string created_at = 4;
+    google.protobuf.Timestamp created_at = 4;
 }
 
 message TeachingSkill {
@@ -45,7 +47,7 @@ message TeachingSkill {
     string skill_name = 3;
     string proficiency_level = 4;
     int32 years_of_experience = 5;
-    string created_at = 6;
+    google.protobuf.Timestamp created_at = 6;
 }
 
 message LearningSkill {
@@ -53,7 +55,7 @@ message LearningSkill {
     string user_id = 2;
     string skill_name = 3;
     string proficiency_level = 4;
-    string created_at = 5;
+    google.protobuf.Timestamp created_at = 5;
 }
 
 message MentorUpdate {
@@ -152,9 +154,9 @@ message DeleteUserResponse {
 
 message UploadAvatarRequest {
     string user_id = 1;
-    bytes image_data = 2;           // бинарные данные изображения
+    bytes image_data = 2;          
     string file_name = 3;  
-    string content_type = 4;        // "image/jpeg", "image/png", и другие
+    string content_type = 4;       
 }
 
 message UploadAvatarResponse {
