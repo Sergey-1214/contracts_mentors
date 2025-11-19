@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChatService_CreateChat_FullMethodName       = "/chatv1.ChatService/CreateChat"
-	ChatService_GetUserChats_FullMethodName     = "/chatv1.ChatService/GetUserChats"
-	ChatService_GetChatById_FullMethodName      = "/chatv1.ChatService/GetChatById"
-	ChatService_GetChatMessages_FullMethodName  = "/chatv1.ChatService/GetChatMessages"
-	ChatService_MarkMessagesRead_FullMethodName = "/chatv1.ChatService/MarkMessagesRead"
+	ChatService_CreateChat_FullMethodName            = "/chatv1.ChatService/CreateChat"
+	ChatService_GetUserChats_FullMethodName          = "/chatv1.ChatService/GetUserChats"
+	ChatService_GetChatById_FullMethodName           = "/chatv1.ChatService/GetChatById"
+	ChatService_GetChatMessages_FullMethodName       = "/chatv1.ChatService/GetChatMessages"
+	ChatService_MarkMessagesRead_FullMethodName      = "/chatv1.ChatService/MarkMessagesRead"
+	ChatService_CheckUserAccessToChat_FullMethodName = "/chatv1.ChatService/CheckUserAccessToChat"
 )
 
 // ChatServiceClient is the client API for ChatService service.
@@ -35,6 +36,7 @@ type ChatServiceClient interface {
 	GetChatById(ctx context.Context, in *GetChatByIdRequest, opts ...grpc.CallOption) (*GetChatByIdResponse, error)
 	GetChatMessages(ctx context.Context, in *GetChatMessagesRequest, opts ...grpc.CallOption) (*GetChatMessagesResponse, error)
 	MarkMessagesRead(ctx context.Context, in *MarkMessagesReadRequest, opts ...grpc.CallOption) (*MarkMessagesReadResponse, error)
+	CheckUserAccessToChat(ctx context.Context, in *CheckUserAccessToChatRequest, opts ...grpc.CallOption) (*CheckUserAccessToChatResponse, error)
 }
 
 type chatServiceClient struct {
@@ -95,6 +97,16 @@ func (c *chatServiceClient) MarkMessagesRead(ctx context.Context, in *MarkMessag
 	return out, nil
 }
 
+func (c *chatServiceClient) CheckUserAccessToChat(ctx context.Context, in *CheckUserAccessToChatRequest, opts ...grpc.CallOption) (*CheckUserAccessToChatResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckUserAccessToChatResponse)
+	err := c.cc.Invoke(ctx, ChatService_CheckUserAccessToChat_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ChatServiceServer is the server API for ChatService service.
 // All implementations must embed UnimplementedChatServiceServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type ChatServiceServer interface {
 	GetChatById(context.Context, *GetChatByIdRequest) (*GetChatByIdResponse, error)
 	GetChatMessages(context.Context, *GetChatMessagesRequest) (*GetChatMessagesResponse, error)
 	MarkMessagesRead(context.Context, *MarkMessagesReadRequest) (*MarkMessagesReadResponse, error)
+	CheckUserAccessToChat(context.Context, *CheckUserAccessToChatRequest) (*CheckUserAccessToChatResponse, error)
 	mustEmbedUnimplementedChatServiceServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedChatServiceServer) GetChatMessages(context.Context, *GetChatM
 }
 func (UnimplementedChatServiceServer) MarkMessagesRead(context.Context, *MarkMessagesReadRequest) (*MarkMessagesReadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkMessagesRead not implemented")
+}
+func (UnimplementedChatServiceServer) CheckUserAccessToChat(context.Context, *CheckUserAccessToChatRequest) (*CheckUserAccessToChatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckUserAccessToChat not implemented")
 }
 func (UnimplementedChatServiceServer) mustEmbedUnimplementedChatServiceServer() {}
 func (UnimplementedChatServiceServer) testEmbeddedByValue()                     {}
@@ -240,6 +256,24 @@ func _ChatService_MarkMessagesRead_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ChatService_CheckUserAccessToChat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckUserAccessToChatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChatServiceServer).CheckUserAccessToChat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChatService_CheckUserAccessToChat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChatServiceServer).CheckUserAccessToChat(ctx, req.(*CheckUserAccessToChatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ChatService_ServiceDesc is the grpc.ServiceDesc for ChatService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkMessagesRead",
 			Handler:    _ChatService_MarkMessagesRead_Handler,
+		},
+		{
+			MethodName: "CheckUserAccessToChat",
+			Handler:    _ChatService_CheckUserAccessToChat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
