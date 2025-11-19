@@ -12,6 +12,7 @@ service ChatService {
   rpc GetChatById(GetChatByIdRequest) returns (GetChatByIdResponse);
   rpc GetChatMessages(GetChatMessagesRequest) returns (GetChatMessagesResponse);
   rpc MarkMessagesRead(MarkMessagesReadRequest) returns (MarkMessagesReadResponse);
+  rpc CheckUserAccessToChat(CheckUserAccessToChatRequest) returns (CheckUserAccessToChatResponse);
 }
 
 message Cursor {
@@ -67,6 +68,15 @@ message MarkMessagesReadRequest {
 
 message MarkMessagesReadResponse {
   bool success = 1;
+}
+
+message CheckUserAccessToChatRequest {
+  string chat_id = 1;
+  string user_id = 2;
+}
+
+message CheckUserAccessToChatResponse {
+  bool has_access = 1;
 }
 
 message Chat {
