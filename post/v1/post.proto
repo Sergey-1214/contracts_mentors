@@ -109,7 +109,7 @@ message ListPostsRequest {
   string page_token = 2;                 // токен для пагинации
   string author_id = 3;                  // фильтр по автору
   PostStatus status = 4;                 // фильтр по статусу
-  repeated string tags = 5;              // фильтр по тегам (нужно определить логику AND/OR)
+  repeated string tags = 5;              // фильтр по тегам 
   SortField sort_field = 6;              // сортировка
   SortOrder sort_order = 7;              // порядок сортировки
   string search_query = 8;               // поиск по содержанию/заголовку
