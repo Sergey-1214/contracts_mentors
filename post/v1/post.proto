@@ -2,10 +2,12 @@ syntax = "proto3";
 
 package posts.v1;
 
-option go_package = "github.com/yourorg/yourrepo/gen/posts/v1;postsv1";
-
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+
+option go_package = "github.com/Sergey-1214/contracts_mentors/post/v1;postsv1";
 
 // -----------------------------------------------------------------------------
 // ENUMS
@@ -13,10 +15,9 @@ import "google/protobuf/field_mask.proto";
 
 // Статус публикации
 enum PostStatus {
-  POST_STATUS_UNSPECIFIED = 0;
-  DRAFT = 1;
-  PUBLISHED = 2;
-  ARCHIVED = 3;
+  DRAFT = 0;
+  PUBLISHED = 1;
+  ARCHIVED = 2;
 }
 
 // Порядок сортировки при запросе списка
@@ -47,6 +48,9 @@ message Post {
   PostStatus status = 6;                 // Статус поста
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
+
+  double average_rating = 9;             // Средняя оценка (0, если нет оценок)
+  int32 ratings_count = 10;              // Кол-во оценок
 }
 
 // -----------------------------------------------------------------------------
@@ -58,7 +62,8 @@ message CreatePostRequest {
   string title = 2;
   string content = 3;
   repeated string tags = 4;
-  PostStatus status = 5; // можно сразу задать статус (по умолчанию DRAFT)
+  // Если не указан, на уровне сервиса трактуем как DRAFT.
+  PostStatus status = 5;
 }
 
 message CreatePostResponse {
@@ -73,9 +78,8 @@ message GetPostResponse {
   Post post = 1;
 }
 
-// Используем FieldMask для частичных обновлений
 message UpdatePostRequest {
-  string id_field = 1; // обязательно содержит id
+  Post post = 1;
   google.protobuf.FieldMask update_mask = 2;
 }
 
@@ -83,30 +87,29 @@ message UpdatePostResponse {
   Post post = 1;
 }
 
+// Оценка поста пользователем
 message RatePostRequest {
-  Post post = 1;
-  int32 rate = 2;
-  optional string comment = 3; 
+  string post_id = 1;                    // ID поста
+  string user_id = 2;                    // ID пользователя, который оценивает
+  int32 rate = 3;                        // Например, 1–5
+  string comment = 4;                    // Необязательный текстовый отзыв
 }
 
 message RatePostResponse {
-  Post post = 1;
+  Post post = 1;                         // Пост с обновлёнными average_rating / ratings_count
 }
 
 message DeletePostRequest {
   string id = 1;
 }
 
-message DeletePostResponse {
-  bool success = 1;
-}
-
+// Параметры листинга постов
 message ListPostsRequest {
   int32 page_size = 1;                   // количество записей на странице
   string page_token = 2;                 // токен для пагинации
   string author_id = 3;                  // фильтр по автору
   PostStatus status = 4;                 // фильтр по статусу
-  repeated string tags = 5;              // фильтр по тегам
+  repeated string tags = 5;              // фильтр по тегам (нужно определить логику AND/OR)
   SortField sort_field = 6;              // сортировка
   SortOrder sort_order = 7;              // порядок сортировки
   string search_query = 8;               // поиск по содержанию/заголовку
@@ -115,19 +118,19 @@ message ListPostsRequest {
 message ListPostsResponse {
   repeated Post posts = 1;
   string next_page_token = 2;
-  int32 total_count = 3; // общее число (опционально, может быть 0)
+  int32 total_count = 3;                 // общее число (может быть 0, если не считаем)
 }
 
 // -----------------------------------------------------------------------------
 // SERVICE
 // -----------------------------------------------------------------------------
 
-service Posts {
+service PostService {
   // CRUD
   rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
   rpc GetPost(GetPostRequest) returns (GetPostResponse);
   rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse);
-  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
+  rpc DeletePost(DeletePostRequest) returns (google.protobuf.Empty);
   rpc RatePost(RatePostRequest) returns (RatePostResponse);
 
   // Listing
