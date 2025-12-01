@@ -67,13 +67,13 @@ message GetSlotResponse {
 
 message UpdateSlotRequest {
     string slot_id = 1;
-    string title = 2;
-    string description = 3;
-    google.protobuf.Timestamp start_time = 4; 
-    int32 duration_minutes = 5;
-    int64 price = 6; 
-    string currency = 7;
-    SlotStatus status = 8;
+    optional title = 2;
+    optional string description = 3;
+    optional google.protobuf.Timestamp start_time = 4; 
+    optional int32 duration_minutes = 5;
+    optional int64 price = 6; 
+    optional string currency = 7;
+    optional SlotStatus status = 8;
 }
 
 message UpdateSlotResponse {
@@ -117,9 +117,9 @@ message GetSessionResponse {
 
 message UpdateSessionRequest {
     string session_id = 1;
-    PaymentStatus payment_status = 2;
-    int32 rating = 3;
-    string review = 4;
+    optional PaymentStatus payment_status = 2;
+    optional int32 rating = 3;
+    optional string review = 4;
 }
 
 message UpdateSessionResponse {
