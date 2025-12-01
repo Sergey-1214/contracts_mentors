@@ -427,13 +427,13 @@ func (x *GetSlotResponse) GetStatus() SlotStatus {
 type UpdateSlotRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	SlotId          string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
-	Title           string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Description     string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	StartTime       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
-	DurationMinutes int32                  `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
-	Price           int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
-	Currency        string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
-	Status          SlotStatus             `protobuf:"varint,8,opt,name=status,proto3,enum=SlotStatus" json:"status,omitempty"`
+	Title           *string                `protobuf:"bytes,2,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Description     *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	StartTime       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_time,json=startTime,proto3,oneof" json:"start_time,omitempty"`
+	DurationMinutes *int32                 `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
+	Price           *int64                 `protobuf:"varint,6,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Currency        *string                `protobuf:"bytes,7,opt,name=currency,proto3,oneof" json:"currency,omitempty"`
+	Status          *SlotStatus            `protobuf:"varint,8,opt,name=status,proto3,enum=SlotStatus,oneof" json:"status,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -476,15 +476,15 @@ func (x *UpdateSlotRequest) GetSlotId() string {
 }
 
 func (x *UpdateSlotRequest) GetTitle() string {
-	if x != nil {
-		return x.Title
+	if x != nil && x.Title != nil {
+		return *x.Title
 	}
 	return ""
 }
 
 func (x *UpdateSlotRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -497,29 +497,29 @@ func (x *UpdateSlotRequest) GetStartTime() *timestamppb.Timestamp {
 }
 
 func (x *UpdateSlotRequest) GetDurationMinutes() int32 {
-	if x != nil {
-		return x.DurationMinutes
+	if x != nil && x.DurationMinutes != nil {
+		return *x.DurationMinutes
 	}
 	return 0
 }
 
 func (x *UpdateSlotRequest) GetPrice() int64 {
-	if x != nil {
-		return x.Price
+	if x != nil && x.Price != nil {
+		return *x.Price
 	}
 	return 0
 }
 
 func (x *UpdateSlotRequest) GetCurrency() string {
-	if x != nil {
-		return x.Currency
+	if x != nil && x.Currency != nil {
+		return *x.Currency
 	}
 	return ""
 }
 
 func (x *UpdateSlotRequest) GetStatus() SlotStatus {
-	if x != nil {
-		return x.Status
+	if x != nil && x.Status != nil {
+		return *x.Status
 	}
 	return SlotStatus_AVAILABLE
 }
@@ -923,9 +923,9 @@ func (x *GetSessionResponse) GetUpdatedAt() *timestamppb.Timestamp {
 type UpdateSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	PaymentStatus PaymentStatus          `protobuf:"varint,2,opt,name=payment_status,json=paymentStatus,proto3,enum=PaymentStatus" json:"payment_status,omitempty"`
-	Rating        int32                  `protobuf:"varint,3,opt,name=rating,proto3" json:"rating,omitempty"`
-	Review        string                 `protobuf:"bytes,4,opt,name=review,proto3" json:"review,omitempty"`
+	PaymentStatus *PaymentStatus         `protobuf:"varint,2,opt,name=payment_status,json=paymentStatus,proto3,enum=PaymentStatus,oneof" json:"payment_status,omitempty"`
+	Rating        *int32                 `protobuf:"varint,3,opt,name=rating,proto3,oneof" json:"rating,omitempty"`
+	Review        *string                `protobuf:"bytes,4,opt,name=review,proto3,oneof" json:"review,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -968,22 +968,22 @@ func (x *UpdateSessionRequest) GetSessionId() string {
 }
 
 func (x *UpdateSessionRequest) GetPaymentStatus() PaymentStatus {
-	if x != nil {
-		return x.PaymentStatus
+	if x != nil && x.PaymentStatus != nil {
+		return *x.PaymentStatus
 	}
 	return PaymentStatus_PENDING
 }
 
 func (x *UpdateSessionRequest) GetRating() int32 {
-	if x != nil {
-		return x.Rating
+	if x != nil && x.Rating != nil {
+		return *x.Rating
 	}
 	return 0
 }
 
 func (x *UpdateSessionRequest) GetReview() string {
-	if x != nil {
-		return x.Review
+	if x != nil && x.Review != nil {
+		return *x.Review
 	}
 	return ""
 }
@@ -1626,17 +1626,24 @@ const file_session_proto_rawDesc = "" +
 	"\x10duration_minutes\x18\x06 \x01(\x05R\x0fdurationMinutes\x12\x14\n" +
 	"\x05price\x18\a \x01(\x03R\x05price\x12\x1a\n" +
 	"\bcurrency\x18\b \x01(\tR\bcurrency\x12#\n" +
-	"\x06status\x18\t \x01(\x0e2\v.SlotStatusR\x06status\"\xa1\x02\n" +
+	"\x06status\x18\t \x01(\x0e2\v.SlotStatusR\x06status\"\xa4\x03\n" +
 	"\x11UpdateSlotRequest\x12\x17\n" +
-	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x129\n" +
+	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x19\n" +
+	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12>\n" +
 	"\n" +
-	"start_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x12)\n" +
-	"\x10duration_minutes\x18\x05 \x01(\x05R\x0fdurationMinutes\x12\x14\n" +
-	"\x05price\x18\x06 \x01(\x03R\x05price\x12\x1a\n" +
-	"\bcurrency\x18\a \x01(\tR\bcurrency\x12#\n" +
-	"\x06status\x18\b \x01(\x0e2\v.SlotStatusR\x06status\".\n" +
+	"start_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\tstartTime\x88\x01\x01\x12.\n" +
+	"\x10duration_minutes\x18\x05 \x01(\x05H\x03R\x0fdurationMinutes\x88\x01\x01\x12\x19\n" +
+	"\x05price\x18\x06 \x01(\x03H\x04R\x05price\x88\x01\x01\x12\x1f\n" +
+	"\bcurrency\x18\a \x01(\tH\x05R\bcurrency\x88\x01\x01\x12(\n" +
+	"\x06status\x18\b \x01(\x0e2\v.SlotStatusH\x06R\x06status\x88\x01\x01B\b\n" +
+	"\x06_titleB\x0e\n" +
+	"\f_descriptionB\r\n" +
+	"\v_start_timeB\x13\n" +
+	"\x11_duration_minutesB\b\n" +
+	"\x06_priceB\v\n" +
+	"\t_currencyB\t\n" +
+	"\a_status\".\n" +
 	"\x12UpdateSlotResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\",\n" +
 	"\x11DeleteSlotRequest\x12\x17\n" +
@@ -1670,13 +1677,16 @@ const file_session_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x9c\x01\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xd4\x01\n" +
 	"\x14UpdateSessionRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x125\n" +
-	"\x0epayment_status\x18\x02 \x01(\x0e2\x0e.PaymentStatusR\rpaymentStatus\x12\x16\n" +
-	"\x06rating\x18\x03 \x01(\x05R\x06rating\x12\x16\n" +
-	"\x06review\x18\x04 \x01(\tR\x06review\"1\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12:\n" +
+	"\x0epayment_status\x18\x02 \x01(\x0e2\x0e.PaymentStatusH\x00R\rpaymentStatus\x88\x01\x01\x12\x1b\n" +
+	"\x06rating\x18\x03 \x01(\x05H\x01R\x06rating\x88\x01\x01\x12\x1b\n" +
+	"\x06review\x18\x04 \x01(\tH\x02R\x06review\x88\x01\x01B\x11\n" +
+	"\x0f_payment_statusB\t\n" +
+	"\a_ratingB\t\n" +
+	"\a_review\"1\n" +
 	"\x15UpdateSessionResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"5\n" +
 	"\x14DeleteSessionRequest\x12\x1d\n" +
@@ -1849,6 +1859,8 @@ func file_session_proto_init() {
 	if File_session_proto != nil {
 		return
 	}
+	file_session_proto_msgTypes[4].OneofWrappers = []any{}
+	file_session_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

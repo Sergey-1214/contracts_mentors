@@ -67,7 +67,7 @@ message GetSlotResponse {
 
 message UpdateSlotRequest {
     string slot_id = 1;
-    optional title = 2;
+    optional string title = 2;
     optional string description = 3;
     optional google.protobuf.Timestamp start_time = 4; 
     optional int32 duration_minutes = 5;
