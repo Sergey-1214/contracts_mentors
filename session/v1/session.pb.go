@@ -25,22 +25,25 @@ const (
 type SlotStatus int32
 
 const (
-	SlotStatus_AVAILABLE SlotStatus = 0
-	SlotStatus_BOOKED    SlotStatus = 1
-	SlotStatus_CLOSED    SlotStatus = 2
+	SlotStatus_SLOT_STATUS_AVAILABLE   SlotStatus = 0
+	SlotStatus_SLOT_STATUS_BOOKED      SlotStatus = 1
+	SlotStatus_SLOT_STATUS_CLOSED      SlotStatus = 2
+	SlotStatus_SLOT_STATUS_UNSPECIFIED SlotStatus = 3
 )
 
 // Enum value maps for SlotStatus.
 var (
 	SlotStatus_name = map[int32]string{
-		0: "AVAILABLE",
-		1: "BOOKED",
-		2: "CLOSED",
+		0: "SLOT_STATUS_AVAILABLE",
+		1: "SLOT_STATUS_BOOKED",
+		2: "SLOT_STATUS_CLOSED",
+		3: "SLOT_STATUS_UNSPECIFIED",
 	}
 	SlotStatus_value = map[string]int32{
-		"AVAILABLE": 0,
-		"BOOKED":    1,
-		"CLOSED":    2,
+		"SLOT_STATUS_AVAILABLE":   0,
+		"SLOT_STATUS_BOOKED":      1,
+		"SLOT_STATUS_CLOSED":      2,
+		"SLOT_STATUS_UNSPECIFIED": 3,
 	}
 )
 
@@ -74,22 +77,25 @@ func (SlotStatus) EnumDescriptor() ([]byte, []int) {
 type PaymentStatus int32
 
 const (
-	PaymentStatus_PENDING   PaymentStatus = 0
-	PaymentStatus_COMPLETED PaymentStatus = 1
-	PaymentStatus_FAILED    PaymentStatus = 2
+	PaymentStatus_PAYMENT_STATUS_PENDING     PaymentStatus = 0
+	PaymentStatus_PAYMENT_STATUS_COMPLETED   PaymentStatus = 1
+	PaymentStatus_PAYMENT_STATUS_FAILED      PaymentStatus = 2
+	PaymentStatus_PAYMENT_STATUS_UNSPECIFIED PaymentStatus = 3
 )
 
 // Enum value maps for PaymentStatus.
 var (
 	PaymentStatus_name = map[int32]string{
-		0: "PENDING",
-		1: "COMPLETED",
-		2: "FAILED",
+		0: "PAYMENT_STATUS_PENDING",
+		1: "PAYMENT_STATUS_COMPLETED",
+		2: "PAYMENT_STATUS_FAILED",
+		3: "PAYMENT_STATUS_UNSPECIFIED",
 	}
 	PaymentStatus_value = map[string]int32{
-		"PENDING":   0,
-		"COMPLETED": 1,
-		"FAILED":    2,
+		"PAYMENT_STATUS_PENDING":     0,
+		"PAYMENT_STATUS_COMPLETED":   1,
+		"PAYMENT_STATUS_FAILED":      2,
+		"PAYMENT_STATUS_UNSPECIFIED": 3,
 	}
 )
 
@@ -217,7 +223,7 @@ func (x *CreateSlotRequest) GetStatus() SlotStatus {
 	if x != nil {
 		return x.Status
 	}
-	return SlotStatus_AVAILABLE
+	return SlotStatus_SLOT_STATUS_AVAILABLE
 }
 
 type CreateSlotResponse struct {
@@ -421,7 +427,7 @@ func (x *GetSlotResponse) GetStatus() SlotStatus {
 	if x != nil {
 		return x.Status
 	}
-	return SlotStatus_AVAILABLE
+	return SlotStatus_SLOT_STATUS_AVAILABLE
 }
 
 type UpdateSlotRequest struct {
@@ -521,7 +527,7 @@ func (x *UpdateSlotRequest) GetStatus() SlotStatus {
 	if x != nil && x.Status != nil {
 		return *x.Status
 	}
-	return SlotStatus_AVAILABLE
+	return SlotStatus_SLOT_STATUS_AVAILABLE
 }
 
 type UpdateSlotResponse struct {
@@ -661,8 +667,8 @@ type CreateSessionRequest struct {
 	SlotId        string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
 	StudentId     string                 `protobuf:"bytes,2,opt,name=student_id,json=studentId,proto3" json:"student_id,omitempty"`
 	PaymentStatus PaymentStatus          `protobuf:"varint,3,opt,name=payment_status,json=paymentStatus,proto3,enum=PaymentStatus" json:"payment_status,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Rating        int32                  `protobuf:"varint,4,opt,name=rating,proto3" json:"rating,omitempty"`
+	Review        string                 `protobuf:"bytes,5,opt,name=review,proto3" json:"review,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -715,21 +721,21 @@ func (x *CreateSessionRequest) GetPaymentStatus() PaymentStatus {
 	if x != nil {
 		return x.PaymentStatus
 	}
-	return PaymentStatus_PENDING
+	return PaymentStatus_PAYMENT_STATUS_PENDING
 }
 
-func (x *CreateSessionRequest) GetCreatedAt() *timestamppb.Timestamp {
+func (x *CreateSessionRequest) GetRating() int32 {
 	if x != nil {
-		return x.CreatedAt
+		return x.Rating
 	}
-	return nil
+	return 0
 }
 
-func (x *CreateSessionRequest) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *CreateSessionRequest) GetReview() string {
 	if x != nil {
-		return x.UpdatedAt
+		return x.Review
 	}
-	return nil
+	return ""
 }
 
 type CreateSessionResponse struct {
@@ -889,7 +895,7 @@ func (x *GetSessionResponse) GetPaymentStatus() PaymentStatus {
 	if x != nil {
 		return x.PaymentStatus
 	}
-	return PaymentStatus_PENDING
+	return PaymentStatus_PAYMENT_STATUS_PENDING
 }
 
 func (x *GetSessionResponse) GetRating() int32 {
@@ -971,7 +977,7 @@ func (x *UpdateSessionRequest) GetPaymentStatus() PaymentStatus {
 	if x != nil && x.PaymentStatus != nil {
 		return *x.PaymentStatus
 	}
-	return PaymentStatus_PENDING
+	return PaymentStatus_PAYMENT_STATUS_PENDING
 }
 
 func (x *UpdateSessionRequest) GetRating() int32 {
@@ -1277,7 +1283,7 @@ func (x *Session) GetPaymentStatus() PaymentStatus {
 	if x != nil {
 		return x.PaymentStatus
 	}
-	return PaymentStatus_PENDING
+	return PaymentStatus_PAYMENT_STATUS_PENDING
 }
 
 func (x *Session) GetRating() int32 {
@@ -1445,7 +1451,7 @@ func (x *UpdateSlotStatusRequest) GetStatus() SlotStatus {
 	if x != nil {
 		return x.Status
 	}
-	return SlotStatus_AVAILABLE
+	return SlotStatus_SLOT_STATUS_AVAILABLE
 }
 
 type UpdateSlotStatusResponse struct {
@@ -1649,16 +1655,14 @@ const file_session_proto_rawDesc = "" +
 	"\x11DeleteSlotRequest\x12\x17\n" +
 	"\aslot_id\x18\x01 \x01(\tR\x06slotId\".\n" +
 	"\x12DeleteSlotResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xfb\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xb5\x01\n" +
 	"\x14CreateSessionRequest\x12\x17\n" +
 	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x1d\n" +
 	"\n" +
 	"student_id\x18\x02 \x01(\tR\tstudentId\x125\n" +
-	"\x0epayment_status\x18\x03 \x01(\x0e2\x0e.PaymentStatusR\rpaymentStatus\x129\n" +
-	"\n" +
-	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
-	"\n" +
-	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"6\n" +
+	"\x0epayment_status\x18\x03 \x01(\x0e2\x0e.PaymentStatusR\rpaymentStatus\x12\x16\n" +
+	"\x06rating\x18\x04 \x01(\x05R\x06rating\x12\x16\n" +
+	"\x06review\x18\x05 \x01(\tR\x06review\"6\n" +
 	"\x15CreateSessionResponse\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"2\n" +
@@ -1728,19 +1732,18 @@ const file_session_proto_rawDesc = "" +
 	"\x06rating\x18\x02 \x01(\x05R\x06rating\x12\x16\n" +
 	"\x06review\x18\x03 \x01(\tR\x06review\"/\n" +
 	"\x13RateSessionResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess*3\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess*t\n" +
 	"\n" +
-	"SlotStatus\x12\r\n" +
-	"\tAVAILABLE\x10\x00\x12\n" +
-	"\n" +
-	"\x06BOOKED\x10\x01\x12\n" +
-	"\n" +
-	"\x06CLOSED\x10\x02*7\n" +
-	"\rPaymentStatus\x12\v\n" +
-	"\aPENDING\x10\x00\x12\r\n" +
-	"\tCOMPLETED\x10\x01\x12\n" +
-	"\n" +
-	"\x06FAILED\x10\x022\xfc\x05\n" +
+	"SlotStatus\x12\x19\n" +
+	"\x15SLOT_STATUS_AVAILABLE\x10\x00\x12\x16\n" +
+	"\x12SLOT_STATUS_BOOKED\x10\x01\x12\x16\n" +
+	"\x12SLOT_STATUS_CLOSED\x10\x02\x12\x1b\n" +
+	"\x17SLOT_STATUS_UNSPECIFIED\x10\x03*\x84\x01\n" +
+	"\rPaymentStatus\x12\x1a\n" +
+	"\x16PAYMENT_STATUS_PENDING\x10\x00\x12\x1c\n" +
+	"\x18PAYMENT_STATUS_COMPLETED\x10\x01\x12\x19\n" +
+	"\x15PAYMENT_STATUS_FAILED\x10\x02\x12\x1e\n" +
+	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x032\xfc\x05\n" +
 	"\x11MentorshipService\x125\n" +
 	"\n" +
 	"CreateSlot\x12\x12.CreateSlotRequest\x1a\x13.CreateSlotResponse\x12,\n" +
@@ -1811,47 +1814,45 @@ var file_session_proto_depIdxs = []int32{
 	27, // 4: UpdateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
 	0,  // 5: UpdateSlotRequest.status:type_name -> SlotStatus
 	1,  // 6: CreateSessionRequest.payment_status:type_name -> PaymentStatus
-	27, // 7: CreateSessionRequest.created_at:type_name -> google.protobuf.Timestamp
-	27, // 8: CreateSessionRequest.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 9: GetSessionResponse.payment_status:type_name -> PaymentStatus
-	27, // 10: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
-	27, // 11: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 12: UpdateSessionRequest.payment_status:type_name -> PaymentStatus
-	20, // 13: ListSessionsResponse.sessions:type_name -> Session
-	1,  // 14: Session.payment_status:type_name -> PaymentStatus
-	27, // 15: Session.created_at:type_name -> google.protobuf.Timestamp
-	27, // 16: Session.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 17: ListSessionsByStudentResponse.sessions:type_name -> Session
-	0,  // 18: UpdateSlotStatusRequest.status:type_name -> SlotStatus
-	2,  // 19: MentorshipService.CreateSlot:input_type -> CreateSlotRequest
-	4,  // 20: MentorshipService.GetSlot:input_type -> GetSlotRequest
-	6,  // 21: MentorshipService.UpdateSlot:input_type -> UpdateSlotRequest
-	8,  // 22: MentorshipService.DeleteSlot:input_type -> DeleteSlotRequest
-	10, // 23: MentorshipService.CreateSession:input_type -> CreateSessionRequest
-	12, // 24: MentorshipService.GetSession:input_type -> GetSessionRequest
-	14, // 25: MentorshipService.UpdateSession:input_type -> UpdateSessionRequest
-	16, // 26: MentorshipService.DeleteSession:input_type -> DeleteSessionRequest
-	18, // 27: MentorshipService.ListSessionsByMentor:input_type -> ListSessionsByMentorRequest
-	21, // 28: MentorshipService.ListSessionsByStudent:input_type -> ListSessionsByStudentRequest
-	23, // 29: MentorshipService.UpdateSlotStatus:input_type -> UpdateSlotStatusRequest
-	25, // 30: MentorshipService.RateSession:input_type -> RateSessionRequest
-	3,  // 31: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
-	5,  // 32: MentorshipService.GetSlot:output_type -> GetSlotResponse
-	7,  // 33: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
-	9,  // 34: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
-	11, // 35: MentorshipService.CreateSession:output_type -> CreateSessionResponse
-	13, // 36: MentorshipService.GetSession:output_type -> GetSessionResponse
-	15, // 37: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
-	17, // 38: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
-	19, // 39: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
-	19, // 40: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
-	24, // 41: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
-	26, // 42: MentorshipService.RateSession:output_type -> RateSessionResponse
-	31, // [31:43] is the sub-list for method output_type
-	19, // [19:31] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	1,  // 7: GetSessionResponse.payment_status:type_name -> PaymentStatus
+	27, // 8: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
+	27, // 9: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 10: UpdateSessionRequest.payment_status:type_name -> PaymentStatus
+	20, // 11: ListSessionsResponse.sessions:type_name -> Session
+	1,  // 12: Session.payment_status:type_name -> PaymentStatus
+	27, // 13: Session.created_at:type_name -> google.protobuf.Timestamp
+	27, // 14: Session.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 15: ListSessionsByStudentResponse.sessions:type_name -> Session
+	0,  // 16: UpdateSlotStatusRequest.status:type_name -> SlotStatus
+	2,  // 17: MentorshipService.CreateSlot:input_type -> CreateSlotRequest
+	4,  // 18: MentorshipService.GetSlot:input_type -> GetSlotRequest
+	6,  // 19: MentorshipService.UpdateSlot:input_type -> UpdateSlotRequest
+	8,  // 20: MentorshipService.DeleteSlot:input_type -> DeleteSlotRequest
+	10, // 21: MentorshipService.CreateSession:input_type -> CreateSessionRequest
+	12, // 22: MentorshipService.GetSession:input_type -> GetSessionRequest
+	14, // 23: MentorshipService.UpdateSession:input_type -> UpdateSessionRequest
+	16, // 24: MentorshipService.DeleteSession:input_type -> DeleteSessionRequest
+	18, // 25: MentorshipService.ListSessionsByMentor:input_type -> ListSessionsByMentorRequest
+	21, // 26: MentorshipService.ListSessionsByStudent:input_type -> ListSessionsByStudentRequest
+	23, // 27: MentorshipService.UpdateSlotStatus:input_type -> UpdateSlotStatusRequest
+	25, // 28: MentorshipService.RateSession:input_type -> RateSessionRequest
+	3,  // 29: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
+	5,  // 30: MentorshipService.GetSlot:output_type -> GetSlotResponse
+	7,  // 31: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
+	9,  // 32: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
+	11, // 33: MentorshipService.CreateSession:output_type -> CreateSessionResponse
+	13, // 34: MentorshipService.GetSession:output_type -> GetSessionResponse
+	15, // 35: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
+	17, // 36: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
+	19, // 37: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
+	19, // 38: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
+	24, // 39: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
+	26, // 40: MentorshipService.RateSession:output_type -> RateSessionResponse
+	29, // [29:41] is the sub-list for method output_type
+	17, // [17:29] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_session_proto_init() }

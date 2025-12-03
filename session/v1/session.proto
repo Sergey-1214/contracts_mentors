@@ -22,15 +22,17 @@ service MentorshipService {
 }
 
 enum SlotStatus {
-    AVAILABLE = 0;  
-    BOOKED = 1;     
-    CLOSED = 2;     
+    SLOT_STATUS_AVAILABLE = 0;  
+    SLOT_STATUS_BOOKED = 1;     
+    SLOT_STATUS_CLOSED = 2; 
+    SLOT_STATUS_UNSPECIFIED = 3;    
 }
 
 enum PaymentStatus {
-    PENDING = 0;
-    COMPLETED = 1;
-    FAILED = 2;
+    PAYMENT_STATUS_PENDING = 0;
+    PAYMENT_STATUS_COMPLETED = 1;
+    PAYMENT_STATUS_FAILED = 2;
+    PAYMENT_STATUS_UNSPECIFIED = 3;
 }
 
 message CreateSlotRequest {
@@ -92,8 +94,8 @@ message CreateSessionRequest {
     string slot_id = 1;
     string student_id = 2;
     PaymentStatus payment_status = 3;
-    google.protobuf.Timestamp created_at = 4;  
-    google.protobuf.Timestamp updated_at = 5; 
+    int32 rating = 4;
+    string review = 5;
 }
 
 message CreateSessionResponse {
