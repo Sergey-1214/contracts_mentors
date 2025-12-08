@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+option go_package = "github.com/Sergey-1214/contracts_mentors/session/v1;sessionv1";
+
+import "google/protobuf/timestamp.proto";
+
+service MentorshipService {
+    rpc CreateSlot(CreateSlotRequest) returns (CreateSlotResponse);
+    rpc GetSlot(GetSlotRequest) returns (GetSlotResponse);
+    rpc UpdateSlot(UpdateSlotRequest) returns (UpdateSlotResponse);
+    rpc DeleteSlot(DeleteSlotRequest) returns (DeleteSlotResponse);
+
+    rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+    rpc GetSession(GetSessionRequest) returns (GetSessionResponse);
+    rpc UpdateSession(UpdateSessionRequest) returns (UpdateSessionResponse);
+    rpc DeleteSession(DeleteSessionRequest) returns (DeleteSessionResponse);
+
+    rpc ListSessionsByMentor(ListSessionsByMentorRequest) returns (ListSessionsResponse);
+    rpc ListSessionsByStudent(ListSessionsByStudentRequest) returns (ListSessionsResponse);
+    rpc UpdateSlotStatus(UpdateSlotStatusRequest) returns (UpdateSlotStatusResponse);
+    rpc RateSession(RateSessionRequest) returns (RateSessionResponse);
+}
+
+enum SlotStatus {
+    SLOT_STATUS_AVAILABLE = 0;  
+    SLOT_STATUS_BOOKED = 1;     
+    SLOT_STATUS_CLOSED = 2; 
+    SLOT_STATUS_UNSPECIFIED = 3;    
+}
+
+enum PaymentStatus {
+    PAYMENT_STATUS_PENDING = 0;
+    PAYMENT_STATUS_COMPLETED = 1;
+    PAYMENT_STATUS_FAILED = 2;
+    PAYMENT_STATUS_UNSPECIFIED = 3;
+}
+
+message CreateSlotRequest {
+    string mentor_id = 1;
+    string title = 2;
+    string description = 3;
+    google.protobuf.Timestamp start_time = 4;  
+    int32 duration_minutes = 5;
+    int64 price = 6;  
+    string currency = 7;
+    SlotStatus status = 8;
+}
+
+message CreateSlotResponse {
+    string slot_id = 1;
+    bool success = 2;
+}
+
+message GetSlotRequest {
+    string slot_id = 1;
+}
+
+message GetSlotResponse {
+    string slot_id = 1;
+    string mentor_id = 2;
+    string title = 3;
+    string description = 4;
+    google.protobuf.Timestamp start_time = 5;  
+    int32 duration_minutes = 6;
+    int64 price = 7; 
+    string currency = 8;
+    SlotStatus status = 9;
+}
+
+message UpdateSlotRequest {
+    string slot_id = 1;
+    optional string title = 2;
+    optional string description = 3;
+    optional google.protobuf.Timestamp start_time = 4; 
+    optional int32 duration_minutes = 5;
+    optional int64 price = 6; 
+    optional string currency = 7;
+    optional SlotStatus status = 8;
+}
+
+message UpdateSlotResponse {
+    bool success = 1;
+}
+
+message DeleteSlotRequest {
+    string slot_id = 1;
+}
+
+message DeleteSlotResponse {
+    bool success = 1;
+}
+
+message CreateSessionRequest {
+    string slot_id = 1;
+    string student_id = 2;
+    PaymentStatus payment_status = 3;
+    int32 rating = 4;
+    string review = 5;
+}
+
+message CreateSessionResponse {
+    string session_id = 1;
+}
+
+message GetSessionRequest {
+    string session_id = 1;
+}
+
+message GetSessionResponse {
+    string session_id = 1;
+    string slot_id = 2;
+    string student_id = 3;
+    PaymentStatus payment_status = 4;
+    int32 rating = 5;
+    string review = 6;
+    google.protobuf.Timestamp created_at = 7; 
+    google.protobuf.Timestamp updated_at = 8;
+}
+
+message UpdateSessionRequest {
+    string session_id = 1;
+    optional PaymentStatus payment_status = 2;
+    optional int32 rating = 3;
+    optional string review = 4;
+}
+
+message UpdateSessionResponse {
+    bool success = 1;
+}
+
+message DeleteSessionRequest {
+    string session_id = 1;
+}
+
+message DeleteSessionResponse {
+    bool success = 1;
+}
+
+message ListSessionsByMentorRequest {
+    string mentor_id = 1;
+}
+
+message ListSessionsResponse {
+    repeated Session sessions = 1;
+}
+
+message Session {
+    string session_id = 1;
+    string slot_id = 2;
+    string student_id = 3;
+    PaymentStatus payment_status = 4;
+    int32 rating = 5;
+    string review = 6;
+    google.protobuf.Timestamp created_at = 7; 
+    google.protobuf.Timestamp updated_at = 8; 
+}
+
+message ListSessionsByStudentRequest {
+    string student_id = 1;
+}
+
+message ListSessionsByStudentResponse {
+    repeated Session sessions = 1;
+}
+
+message UpdateSlotStatusRequest {
+    string session_id = 1;
+    SlotStatus status = 2;
+}
+
+message UpdateSlotStatusResponse {
+    bool success = 1;
+}
+
+message RateSessionRequest {
+    string session_id = 1;
+    int32 rating = 2; 
+    string review = 3; 
+}
+
+message RateSessionResponse {
+    bool success = 1;
+}
