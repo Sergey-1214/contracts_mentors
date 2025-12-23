@@ -9,7 +9,6 @@ package postsv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
@@ -755,6 +754,42 @@ func (x *DeletePostRequest) GetId() string {
 	return ""
 }
 
+type DeletePostResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeletePostResponse) Reset() {
+	*x = DeletePostResponse{}
+	mi := &file_post_v1_post_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeletePostResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeletePostResponse) ProtoMessage() {}
+
+func (x *DeletePostResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_v1_post_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeletePostResponse.ProtoReflect.Descriptor instead.
+func (*DeletePostResponse) Descriptor() ([]byte, []int) {
+	return file_post_v1_post_proto_rawDescGZIP(), []int{10}
+}
+
 // Параметры листинга постов
 type ListPostsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -762,7 +797,7 @@ type ListPostsRequest struct {
 	PageToken     string                 `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`                          // токен для пагинации
 	AuthorId      string                 `protobuf:"bytes,3,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`                             // фильтр по автору
 	Status        PostStatus             `protobuf:"varint,4,opt,name=status,proto3,enum=posts.v1.PostStatus" json:"status,omitempty"`                       // фильтр по статусу
-	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`                                                     // фильтр по тегам (нужно определить логику AND/OR)
+	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`                                                     // фильтр по тегам
 	SortField     SortField              `protobuf:"varint,6,opt,name=sort_field,json=sortField,proto3,enum=posts.v1.SortField" json:"sort_field,omitempty"` // сортировка
 	SortOrder     SortOrder              `protobuf:"varint,7,opt,name=sort_order,json=sortOrder,proto3,enum=posts.v1.SortOrder" json:"sort_order,omitempty"` // порядок сортировки
 	SearchQuery   string                 `protobuf:"bytes,8,opt,name=search_query,json=searchQuery,proto3" json:"search_query,omitempty"`                    // поиск по содержанию/заголовку
@@ -772,7 +807,7 @@ type ListPostsRequest struct {
 
 func (x *ListPostsRequest) Reset() {
 	*x = ListPostsRequest{}
-	mi := &file_post_v1_post_proto_msgTypes[10]
+	mi := &file_post_v1_post_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +819,7 @@ func (x *ListPostsRequest) String() string {
 func (*ListPostsRequest) ProtoMessage() {}
 
 func (x *ListPostsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_post_v1_post_proto_msgTypes[10]
+	mi := &file_post_v1_post_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +832,7 @@ func (x *ListPostsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPostsRequest.ProtoReflect.Descriptor instead.
 func (*ListPostsRequest) Descriptor() ([]byte, []int) {
-	return file_post_v1_post_proto_rawDescGZIP(), []int{10}
+	return file_post_v1_post_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListPostsRequest) GetPageSize() int32 {
@@ -867,7 +902,7 @@ type ListPostsResponse struct {
 
 func (x *ListPostsResponse) Reset() {
 	*x = ListPostsResponse{}
-	mi := &file_post_v1_post_proto_msgTypes[11]
+	mi := &file_post_v1_post_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -879,7 +914,7 @@ func (x *ListPostsResponse) String() string {
 func (*ListPostsResponse) ProtoMessage() {}
 
 func (x *ListPostsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_post_v1_post_proto_msgTypes[11]
+	mi := &file_post_v1_post_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -892,7 +927,7 @@ func (x *ListPostsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPostsResponse.ProtoReflect.Descriptor instead.
 func (*ListPostsResponse) Descriptor() ([]byte, []int) {
-	return file_post_v1_post_proto_rawDescGZIP(), []int{11}
+	return file_post_v1_post_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListPostsResponse) GetPosts() []*Post {
@@ -920,7 +955,7 @@ var File_post_v1_post_proto protoreflect.FileDescriptor
 
 const file_post_v1_post_proto_rawDesc = "" +
 	"\n" +
-	"\x12post/v1/post.proto\x12\bposts.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xe7\x02\n" +
+	"\x12post/v1/post.proto\x12\bposts.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xe7\x02\n" +
 	"\x04Post\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tauthor_id\x18\x02 \x01(\tR\bauthorId\x12\x14\n" +
@@ -961,7 +996,8 @@ const file_post_v1_post_proto_rawDesc = "" +
 	"\x10RatePostResponse\x12\"\n" +
 	"\x04post\x18\x01 \x01(\v2\x0e.posts.v1.PostR\x04post\"#\n" +
 	"\x11DeletePostRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xb8\x02\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
+	"\x12DeletePostResponse\"\xb8\x02\n" +
 	"\x10ListPostsRequest\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
 	"\n" +
@@ -994,15 +1030,15 @@ const file_post_v1_post_proto_rawDesc = "" +
 	"CREATED_AT\x10\x01\x12\x0e\n" +
 	"\n" +
 	"UPDATED_AT\x10\x02\x12\t\n" +
-	"\x05TITLE\x10\x032\xab\x03\n" +
+	"\x05TITLE\x10\x032\xb1\x03\n" +
 	"\vPostService\x12G\n" +
 	"\n" +
 	"CreatePost\x12\x1b.posts.v1.CreatePostRequest\x1a\x1c.posts.v1.CreatePostResponse\x12>\n" +
 	"\aGetPost\x12\x18.posts.v1.GetPostRequest\x1a\x19.posts.v1.GetPostResponse\x12G\n" +
 	"\n" +
-	"UpdatePost\x12\x1b.posts.v1.UpdatePostRequest\x1a\x1c.posts.v1.UpdatePostResponse\x12A\n" +
+	"UpdatePost\x12\x1b.posts.v1.UpdatePostRequest\x1a\x1c.posts.v1.UpdatePostResponse\x12G\n" +
 	"\n" +
-	"DeletePost\x12\x1b.posts.v1.DeletePostRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
+	"DeletePost\x12\x1b.posts.v1.DeletePostRequest\x1a\x1c.posts.v1.DeletePostResponse\x12A\n" +
 	"\bRatePost\x12\x19.posts.v1.RatePostRequest\x1a\x1a.posts.v1.RatePostResponse\x12D\n" +
 	"\tListPosts\x12\x1a.posts.v1.ListPostsRequest\x1a\x1b.posts.v1.ListPostsResponseB:Z8github.com/Sergey-1214/contracts_mentors/post/v1;postsv1b\x06proto3"
 
@@ -1019,7 +1055,7 @@ func file_post_v1_post_proto_rawDescGZIP() []byte {
 }
 
 var file_post_v1_post_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_post_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_post_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_post_v1_post_proto_goTypes = []any{
 	(PostStatus)(0),               // 0: posts.v1.PostStatus
 	(SortOrder)(0),                // 1: posts.v1.SortOrder
@@ -1034,21 +1070,21 @@ var file_post_v1_post_proto_goTypes = []any{
 	(*RatePostRequest)(nil),       // 10: posts.v1.RatePostRequest
 	(*RatePostResponse)(nil),      // 11: posts.v1.RatePostResponse
 	(*DeletePostRequest)(nil),     // 12: posts.v1.DeletePostRequest
-	(*ListPostsRequest)(nil),      // 13: posts.v1.ListPostsRequest
-	(*ListPostsResponse)(nil),     // 14: posts.v1.ListPostsResponse
-	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil), // 16: google.protobuf.FieldMask
-	(*emptypb.Empty)(nil),         // 17: google.protobuf.Empty
+	(*DeletePostResponse)(nil),    // 13: posts.v1.DeletePostResponse
+	(*ListPostsRequest)(nil),      // 14: posts.v1.ListPostsRequest
+	(*ListPostsResponse)(nil),     // 15: posts.v1.ListPostsResponse
+	(*timestamppb.Timestamp)(nil), // 16: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil), // 17: google.protobuf.FieldMask
 }
 var file_post_v1_post_proto_depIdxs = []int32{
 	0,  // 0: posts.v1.Post.status:type_name -> posts.v1.PostStatus
-	15, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
-	15, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
+	16, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	16, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: posts.v1.CreatePostRequest.status:type_name -> posts.v1.PostStatus
 	3,  // 4: posts.v1.CreatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 5: posts.v1.GetPostResponse.post:type_name -> posts.v1.Post
 	3,  // 6: posts.v1.UpdatePostRequest.post:type_name -> posts.v1.Post
-	16, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
+	17, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
 	3,  // 8: posts.v1.UpdatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 9: posts.v1.RatePostResponse.post:type_name -> posts.v1.Post
 	0,  // 10: posts.v1.ListPostsRequest.status:type_name -> posts.v1.PostStatus
@@ -1060,13 +1096,13 @@ var file_post_v1_post_proto_depIdxs = []int32{
 	8,  // 16: posts.v1.PostService.UpdatePost:input_type -> posts.v1.UpdatePostRequest
 	12, // 17: posts.v1.PostService.DeletePost:input_type -> posts.v1.DeletePostRequest
 	10, // 18: posts.v1.PostService.RatePost:input_type -> posts.v1.RatePostRequest
-	13, // 19: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
+	14, // 19: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
 	5,  // 20: posts.v1.PostService.CreatePost:output_type -> posts.v1.CreatePostResponse
 	7,  // 21: posts.v1.PostService.GetPost:output_type -> posts.v1.GetPostResponse
 	9,  // 22: posts.v1.PostService.UpdatePost:output_type -> posts.v1.UpdatePostResponse
-	17, // 23: posts.v1.PostService.DeletePost:output_type -> google.protobuf.Empty
+	13, // 23: posts.v1.PostService.DeletePost:output_type -> posts.v1.DeletePostResponse
 	11, // 24: posts.v1.PostService.RatePost:output_type -> posts.v1.RatePostResponse
-	14, // 25: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
+	15, // 25: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
 	20, // [20:26] is the sub-list for method output_type
 	14, // [14:20] is the sub-list for method input_type
 	14, // [14:14] is the sub-list for extension type_name
@@ -1085,7 +1121,7 @@ func file_post_v1_post_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_post_v1_post_proto_rawDesc), len(file_post_v1_post_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

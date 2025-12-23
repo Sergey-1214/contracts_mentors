@@ -4,7 +4,6 @@ package posts.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
-import "google/protobuf/empty.proto";
 
 
 option go_package = "github.com/Sergey-1214/contracts_mentors/post/v1;postsv1";
@@ -103,6 +102,9 @@ message DeletePostRequest {
   string id = 1;
 }
 
+message DeletePostResponse {
+}
+
 // Параметры листинга постов
 message ListPostsRequest {
   int32 page_size = 1;                   // количество записей на странице
@@ -130,7 +132,7 @@ service PostService {
   rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
   rpc GetPost(GetPostRequest) returns (GetPostResponse);
   rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse);
-  rpc DeletePost(DeletePostRequest) returns (google.protobuf.Empty);
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
   rpc RatePost(RatePostRequest) returns (RatePostResponse);
 
   // Listing
