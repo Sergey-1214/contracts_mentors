@@ -126,6 +126,130 @@ func (PaymentStatus) EnumDescriptor() ([]byte, []int) {
 	return file_session_proto_rawDescGZIP(), []int{1}
 }
 
+type Slot struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	SlotId          string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+	MentorId        string                 `protobuf:"bytes,2,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	Title           string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Description     string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	StartTime       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	DurationMinutes int32                  `protobuf:"varint,6,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
+	Price           int64                  `protobuf:"varint,7,opt,name=price,proto3" json:"price,omitempty"`
+	Currency        string                 `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`
+	Status          SlotStatus             `protobuf:"varint,9,opt,name=status,proto3,enum=SlotStatus" json:"status,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Slot) Reset() {
+	*x = Slot{}
+	mi := &file_session_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Slot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Slot) ProtoMessage() {}
+
+func (x *Slot) ProtoReflect() protoreflect.Message {
+	mi := &file_session_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Slot.ProtoReflect.Descriptor instead.
+func (*Slot) Descriptor() ([]byte, []int) {
+	return file_session_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Slot) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+func (x *Slot) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+func (x *Slot) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Slot) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Slot) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *Slot) GetDurationMinutes() int32 {
+	if x != nil {
+		return x.DurationMinutes
+	}
+	return 0
+}
+
+func (x *Slot) GetPrice() int64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *Slot) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *Slot) GetStatus() SlotStatus {
+	if x != nil {
+		return x.Status
+	}
+	return SlotStatus_SLOT_STATUS_AVAILABLE
+}
+
+func (x *Slot) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Slot) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type CreateSlotRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	MentorId        string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
@@ -142,7 +266,7 @@ type CreateSlotRequest struct {
 
 func (x *CreateSlotRequest) Reset() {
 	*x = CreateSlotRequest{}
-	mi := &file_session_proto_msgTypes[0]
+	mi := &file_session_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -154,7 +278,7 @@ func (x *CreateSlotRequest) String() string {
 func (*CreateSlotRequest) ProtoMessage() {}
 
 func (x *CreateSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[0]
+	mi := &file_session_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -167,7 +291,7 @@ func (x *CreateSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSlotRequest.ProtoReflect.Descriptor instead.
 func (*CreateSlotRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{0}
+	return file_session_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateSlotRequest) GetMentorId() string {
@@ -236,7 +360,7 @@ type CreateSlotResponse struct {
 
 func (x *CreateSlotResponse) Reset() {
 	*x = CreateSlotResponse{}
-	mi := &file_session_proto_msgTypes[1]
+	mi := &file_session_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +372,7 @@ func (x *CreateSlotResponse) String() string {
 func (*CreateSlotResponse) ProtoMessage() {}
 
 func (x *CreateSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[1]
+	mi := &file_session_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +385,7 @@ func (x *CreateSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSlotResponse.ProtoReflect.Descriptor instead.
 func (*CreateSlotResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{1}
+	return file_session_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateSlotResponse) GetSlotId() string {
@@ -287,7 +411,7 @@ type GetSlotRequest struct {
 
 func (x *GetSlotRequest) Reset() {
 	*x = GetSlotRequest{}
-	mi := &file_session_proto_msgTypes[2]
+	mi := &file_session_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -299,7 +423,7 @@ func (x *GetSlotRequest) String() string {
 func (*GetSlotRequest) ProtoMessage() {}
 
 func (x *GetSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[2]
+	mi := &file_session_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -312,7 +436,7 @@ func (x *GetSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSlotRequest.ProtoReflect.Descriptor instead.
 func (*GetSlotRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{2}
+	return file_session_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetSlotRequest) GetSlotId() string {
@@ -339,7 +463,7 @@ type GetSlotResponse struct {
 
 func (x *GetSlotResponse) Reset() {
 	*x = GetSlotResponse{}
-	mi := &file_session_proto_msgTypes[3]
+	mi := &file_session_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -351,7 +475,7 @@ func (x *GetSlotResponse) String() string {
 func (*GetSlotResponse) ProtoMessage() {}
 
 func (x *GetSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[3]
+	mi := &file_session_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -364,7 +488,7 @@ func (x *GetSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSlotResponse.ProtoReflect.Descriptor instead.
 func (*GetSlotResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{3}
+	return file_session_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetSlotResponse) GetSlotId() string {
@@ -446,7 +570,7 @@ type UpdateSlotRequest struct {
 
 func (x *UpdateSlotRequest) Reset() {
 	*x = UpdateSlotRequest{}
-	mi := &file_session_proto_msgTypes[4]
+	mi := &file_session_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -458,7 +582,7 @@ func (x *UpdateSlotRequest) String() string {
 func (*UpdateSlotRequest) ProtoMessage() {}
 
 func (x *UpdateSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[4]
+	mi := &file_session_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -471,7 +595,7 @@ func (x *UpdateSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSlotRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSlotRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{4}
+	return file_session_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateSlotRequest) GetSlotId() string {
@@ -539,7 +663,7 @@ type UpdateSlotResponse struct {
 
 func (x *UpdateSlotResponse) Reset() {
 	*x = UpdateSlotResponse{}
-	mi := &file_session_proto_msgTypes[5]
+	mi := &file_session_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -551,7 +675,7 @@ func (x *UpdateSlotResponse) String() string {
 func (*UpdateSlotResponse) ProtoMessage() {}
 
 func (x *UpdateSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[5]
+	mi := &file_session_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +688,7 @@ func (x *UpdateSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSlotResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSlotResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{5}
+	return file_session_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateSlotResponse) GetSuccess() bool {
@@ -583,7 +707,7 @@ type DeleteSlotRequest struct {
 
 func (x *DeleteSlotRequest) Reset() {
 	*x = DeleteSlotRequest{}
-	mi := &file_session_proto_msgTypes[6]
+	mi := &file_session_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -595,7 +719,7 @@ func (x *DeleteSlotRequest) String() string {
 func (*DeleteSlotRequest) ProtoMessage() {}
 
 func (x *DeleteSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[6]
+	mi := &file_session_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -608,7 +732,7 @@ func (x *DeleteSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSlotRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSlotRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{6}
+	return file_session_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteSlotRequest) GetSlotId() string {
@@ -627,7 +751,7 @@ type DeleteSlotResponse struct {
 
 func (x *DeleteSlotResponse) Reset() {
 	*x = DeleteSlotResponse{}
-	mi := &file_session_proto_msgTypes[7]
+	mi := &file_session_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -639,7 +763,7 @@ func (x *DeleteSlotResponse) String() string {
 func (*DeleteSlotResponse) ProtoMessage() {}
 
 func (x *DeleteSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[7]
+	mi := &file_session_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -652,7 +776,7 @@ func (x *DeleteSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSlotResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSlotResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{7}
+	return file_session_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteSlotResponse) GetSuccess() bool {
@@ -675,7 +799,7 @@ type CreateSessionRequest struct {
 
 func (x *CreateSessionRequest) Reset() {
 	*x = CreateSessionRequest{}
-	mi := &file_session_proto_msgTypes[8]
+	mi := &file_session_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -687,7 +811,7 @@ func (x *CreateSessionRequest) String() string {
 func (*CreateSessionRequest) ProtoMessage() {}
 
 func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[8]
+	mi := &file_session_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -700,7 +824,7 @@ func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{8}
+	return file_session_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateSessionRequest) GetSlotId() string {
@@ -747,7 +871,7 @@ type CreateSessionResponse struct {
 
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_session_proto_msgTypes[9]
+	mi := &file_session_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -759,7 +883,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[9]
+	mi := &file_session_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -772,7 +896,7 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{9}
+	return file_session_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateSessionResponse) GetSessionId() string {
@@ -791,7 +915,7 @@ type GetSessionRequest struct {
 
 func (x *GetSessionRequest) Reset() {
 	*x = GetSessionRequest{}
-	mi := &file_session_proto_msgTypes[10]
+	mi := &file_session_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -803,7 +927,7 @@ func (x *GetSessionRequest) String() string {
 func (*GetSessionRequest) ProtoMessage() {}
 
 func (x *GetSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[10]
+	mi := &file_session_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -816,7 +940,7 @@ func (x *GetSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSessionRequest.ProtoReflect.Descriptor instead.
 func (*GetSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{10}
+	return file_session_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetSessionRequest) GetSessionId() string {
@@ -842,7 +966,7 @@ type GetSessionResponse struct {
 
 func (x *GetSessionResponse) Reset() {
 	*x = GetSessionResponse{}
-	mi := &file_session_proto_msgTypes[11]
+	mi := &file_session_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -854,7 +978,7 @@ func (x *GetSessionResponse) String() string {
 func (*GetSessionResponse) ProtoMessage() {}
 
 func (x *GetSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[11]
+	mi := &file_session_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -867,7 +991,7 @@ func (x *GetSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSessionResponse.ProtoReflect.Descriptor instead.
 func (*GetSessionResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{11}
+	return file_session_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetSessionResponse) GetSessionId() string {
@@ -938,7 +1062,7 @@ type UpdateSessionRequest struct {
 
 func (x *UpdateSessionRequest) Reset() {
 	*x = UpdateSessionRequest{}
-	mi := &file_session_proto_msgTypes[12]
+	mi := &file_session_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -950,7 +1074,7 @@ func (x *UpdateSessionRequest) String() string {
 func (*UpdateSessionRequest) ProtoMessage() {}
 
 func (x *UpdateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[12]
+	mi := &file_session_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -963,7 +1087,7 @@ func (x *UpdateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSessionRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{12}
+	return file_session_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateSessionRequest) GetSessionId() string {
@@ -1003,7 +1127,7 @@ type UpdateSessionResponse struct {
 
 func (x *UpdateSessionResponse) Reset() {
 	*x = UpdateSessionResponse{}
-	mi := &file_session_proto_msgTypes[13]
+	mi := &file_session_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1015,7 +1139,7 @@ func (x *UpdateSessionResponse) String() string {
 func (*UpdateSessionResponse) ProtoMessage() {}
 
 func (x *UpdateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[13]
+	mi := &file_session_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1028,7 +1152,7 @@ func (x *UpdateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSessionResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{13}
+	return file_session_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateSessionResponse) GetSuccess() bool {
@@ -1047,7 +1171,7 @@ type DeleteSessionRequest struct {
 
 func (x *DeleteSessionRequest) Reset() {
 	*x = DeleteSessionRequest{}
-	mi := &file_session_proto_msgTypes[14]
+	mi := &file_session_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1059,7 +1183,7 @@ func (x *DeleteSessionRequest) String() string {
 func (*DeleteSessionRequest) ProtoMessage() {}
 
 func (x *DeleteSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[14]
+	mi := &file_session_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1072,7 +1196,7 @@ func (x *DeleteSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSessionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{14}
+	return file_session_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DeleteSessionRequest) GetSessionId() string {
@@ -1091,7 +1215,7 @@ type DeleteSessionResponse struct {
 
 func (x *DeleteSessionResponse) Reset() {
 	*x = DeleteSessionResponse{}
-	mi := &file_session_proto_msgTypes[15]
+	mi := &file_session_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1103,7 +1227,7 @@ func (x *DeleteSessionResponse) String() string {
 func (*DeleteSessionResponse) ProtoMessage() {}
 
 func (x *DeleteSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[15]
+	mi := &file_session_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1116,7 +1240,7 @@ func (x *DeleteSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSessionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSessionResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{15}
+	return file_session_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeleteSessionResponse) GetSuccess() bool {
@@ -1135,7 +1259,7 @@ type ListSessionsByMentorRequest struct {
 
 func (x *ListSessionsByMentorRequest) Reset() {
 	*x = ListSessionsByMentorRequest{}
-	mi := &file_session_proto_msgTypes[16]
+	mi := &file_session_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1147,7 +1271,7 @@ func (x *ListSessionsByMentorRequest) String() string {
 func (*ListSessionsByMentorRequest) ProtoMessage() {}
 
 func (x *ListSessionsByMentorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[16]
+	mi := &file_session_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1160,7 +1284,7 @@ func (x *ListSessionsByMentorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSessionsByMentorRequest.ProtoReflect.Descriptor instead.
 func (*ListSessionsByMentorRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{16}
+	return file_session_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListSessionsByMentorRequest) GetMentorId() string {
@@ -1179,7 +1303,7 @@ type ListSessionsResponse struct {
 
 func (x *ListSessionsResponse) Reset() {
 	*x = ListSessionsResponse{}
-	mi := &file_session_proto_msgTypes[17]
+	mi := &file_session_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1191,7 +1315,7 @@ func (x *ListSessionsResponse) String() string {
 func (*ListSessionsResponse) ProtoMessage() {}
 
 func (x *ListSessionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[17]
+	mi := &file_session_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1204,7 +1328,7 @@ func (x *ListSessionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSessionsResponse.ProtoReflect.Descriptor instead.
 func (*ListSessionsResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{17}
+	return file_session_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListSessionsResponse) GetSessions() []*Session {
@@ -1230,7 +1354,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_session_proto_msgTypes[18]
+	mi := &file_session_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1242,7 +1366,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[18]
+	mi := &file_session_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1255,7 +1379,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{18}
+	return file_session_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *Session) GetSessionId() string {
@@ -1323,7 +1447,7 @@ type ListSessionsByStudentRequest struct {
 
 func (x *ListSessionsByStudentRequest) Reset() {
 	*x = ListSessionsByStudentRequest{}
-	mi := &file_session_proto_msgTypes[19]
+	mi := &file_session_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1335,7 +1459,7 @@ func (x *ListSessionsByStudentRequest) String() string {
 func (*ListSessionsByStudentRequest) ProtoMessage() {}
 
 func (x *ListSessionsByStudentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[19]
+	mi := &file_session_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1348,7 +1472,7 @@ func (x *ListSessionsByStudentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSessionsByStudentRequest.ProtoReflect.Descriptor instead.
 func (*ListSessionsByStudentRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{19}
+	return file_session_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListSessionsByStudentRequest) GetStudentId() string {
@@ -1367,7 +1491,7 @@ type ListSessionsByStudentResponse struct {
 
 func (x *ListSessionsByStudentResponse) Reset() {
 	*x = ListSessionsByStudentResponse{}
-	mi := &file_session_proto_msgTypes[20]
+	mi := &file_session_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1379,7 +1503,7 @@ func (x *ListSessionsByStudentResponse) String() string {
 func (*ListSessionsByStudentResponse) ProtoMessage() {}
 
 func (x *ListSessionsByStudentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[20]
+	mi := &file_session_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1392,7 +1516,7 @@ func (x *ListSessionsByStudentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSessionsByStudentResponse.ProtoReflect.Descriptor instead.
 func (*ListSessionsByStudentResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{20}
+	return file_session_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListSessionsByStudentResponse) GetSessions() []*Session {
@@ -1412,7 +1536,7 @@ type UpdateSlotStatusRequest struct {
 
 func (x *UpdateSlotStatusRequest) Reset() {
 	*x = UpdateSlotStatusRequest{}
-	mi := &file_session_proto_msgTypes[21]
+	mi := &file_session_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1424,7 +1548,7 @@ func (x *UpdateSlotStatusRequest) String() string {
 func (*UpdateSlotStatusRequest) ProtoMessage() {}
 
 func (x *UpdateSlotStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[21]
+	mi := &file_session_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1437,7 +1561,7 @@ func (x *UpdateSlotStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSlotStatusRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSlotStatusRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{21}
+	return file_session_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateSlotStatusRequest) GetSessionId() string {
@@ -1463,7 +1587,7 @@ type UpdateSlotStatusResponse struct {
 
 func (x *UpdateSlotStatusResponse) Reset() {
 	*x = UpdateSlotStatusResponse{}
-	mi := &file_session_proto_msgTypes[22]
+	mi := &file_session_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1475,7 +1599,7 @@ func (x *UpdateSlotStatusResponse) String() string {
 func (*UpdateSlotStatusResponse) ProtoMessage() {}
 
 func (x *UpdateSlotStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[22]
+	mi := &file_session_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1488,7 +1612,7 @@ func (x *UpdateSlotStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSlotStatusResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSlotStatusResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{22}
+	return file_session_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *UpdateSlotStatusResponse) GetSuccess() bool {
@@ -1509,7 +1633,7 @@ type RateSessionRequest struct {
 
 func (x *RateSessionRequest) Reset() {
 	*x = RateSessionRequest{}
-	mi := &file_session_proto_msgTypes[23]
+	mi := &file_session_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1521,7 +1645,7 @@ func (x *RateSessionRequest) String() string {
 func (*RateSessionRequest) ProtoMessage() {}
 
 func (x *RateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[23]
+	mi := &file_session_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1534,7 +1658,7 @@ func (x *RateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RateSessionRequest.ProtoReflect.Descriptor instead.
 func (*RateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{23}
+	return file_session_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *RateSessionRequest) GetSessionId() string {
@@ -1567,7 +1691,7 @@ type RateSessionResponse struct {
 
 func (x *RateSessionResponse) Reset() {
 	*x = RateSessionResponse{}
-	mi := &file_session_proto_msgTypes[24]
+	mi := &file_session_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1579,7 +1703,7 @@ func (x *RateSessionResponse) String() string {
 func (*RateSessionResponse) ProtoMessage() {}
 
 func (x *RateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_session_proto_msgTypes[24]
+	mi := &file_session_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1592,7 +1716,7 @@ func (x *RateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RateSessionResponse.ProtoReflect.Descriptor instead.
 func (*RateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_session_proto_rawDescGZIP(), []int{24}
+	return file_session_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *RateSessionResponse) GetSuccess() bool {
@@ -1602,11 +1726,115 @@ func (x *RateSessionResponse) GetSuccess() bool {
 	return false
 }
 
+type GetSlotsByMentorRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MentorId      string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSlotsByMentorRequest) Reset() {
+	*x = GetSlotsByMentorRequest{}
+	mi := &file_session_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSlotsByMentorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSlotsByMentorRequest) ProtoMessage() {}
+
+func (x *GetSlotsByMentorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSlotsByMentorRequest.ProtoReflect.Descriptor instead.
+func (*GetSlotsByMentorRequest) Descriptor() ([]byte, []int) {
+	return file_session_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *GetSlotsByMentorRequest) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+type GetSlotsByMentorResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Slots         []*Slot                `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSlotsByMentorResponse) Reset() {
+	*x = GetSlotsByMentorResponse{}
+	mi := &file_session_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSlotsByMentorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSlotsByMentorResponse) ProtoMessage() {}
+
+func (x *GetSlotsByMentorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_session_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSlotsByMentorResponse.ProtoReflect.Descriptor instead.
+func (*GetSlotsByMentorResponse) Descriptor() ([]byte, []int) {
+	return file_session_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetSlotsByMentorResponse) GetSlots() []*Slot {
+	if x != nil {
+		return x.Slots
+	}
+	return nil
+}
+
 var File_session_proto protoreflect.FileDescriptor
 
 const file_session_proto_rawDesc = "" +
 	"\n" +
-	"\rsession.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa5\x02\n" +
+	"\rsession.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa7\x03\n" +
+	"\x04Slot\x12\x17\n" +
+	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x1b\n" +
+	"\tmentor_id\x18\x02 \x01(\tR\bmentorId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x129\n" +
+	"\n" +
+	"start_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x12)\n" +
+	"\x10duration_minutes\x18\x06 \x01(\x05R\x0fdurationMinutes\x12\x14\n" +
+	"\x05price\x18\a \x01(\x03R\x05price\x12\x1a\n" +
+	"\bcurrency\x18\b \x01(\tR\bcurrency\x12#\n" +
+	"\x06status\x18\t \x01(\x0e2\v.SlotStatusR\x06status\x129\n" +
+	"\n" +
+	"created_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xa5\x02\n" +
 	"\x11CreateSlotRequest\x12\x1b\n" +
 	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -1732,7 +1960,11 @@ const file_session_proto_rawDesc = "" +
 	"\x06rating\x18\x02 \x01(\x05R\x06rating\x12\x16\n" +
 	"\x06review\x18\x03 \x01(\tR\x06review\"/\n" +
 	"\x13RateSessionResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess*t\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"6\n" +
+	"\x17GetSlotsByMentorRequest\x12\x1b\n" +
+	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\"7\n" +
+	"\x18GetSlotsByMentorResponse\x12\x1b\n" +
+	"\x05slots\x18\x01 \x03(\v2\x05.SlotR\x05slots*t\n" +
 	"\n" +
 	"SlotStatus\x12\x19\n" +
 	"\x15SLOT_STATUS_AVAILABLE\x10\x00\x12\x16\n" +
@@ -1743,7 +1975,7 @@ const file_session_proto_rawDesc = "" +
 	"\x16PAYMENT_STATUS_PENDING\x10\x00\x12\x1c\n" +
 	"\x18PAYMENT_STATUS_COMPLETED\x10\x01\x12\x19\n" +
 	"\x15PAYMENT_STATUS_FAILED\x10\x02\x12\x1e\n" +
-	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x032\xfc\x05\n" +
+	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x032\xc5\x06\n" +
 	"\x11MentorshipService\x125\n" +
 	"\n" +
 	"CreateSlot\x12\x12.CreateSlotRequest\x1a\x13.CreateSlotResponse\x12,\n" +
@@ -1760,7 +1992,8 @@ const file_session_proto_rawDesc = "" +
 	"\x14ListSessionsByMentor\x12\x1c.ListSessionsByMentorRequest\x1a\x15.ListSessionsResponse\x12M\n" +
 	"\x15ListSessionsByStudent\x12\x1d.ListSessionsByStudentRequest\x1a\x15.ListSessionsResponse\x12G\n" +
 	"\x10UpdateSlotStatus\x12\x18.UpdateSlotStatusRequest\x1a\x19.UpdateSlotStatusResponse\x128\n" +
-	"\vRateSession\x12\x13.RateSessionRequest\x1a\x14.RateSessionResponseB?Z=github.com/Sergey-1214/contracts_mentors/session/v1;sessionv1b\x06proto3"
+	"\vRateSession\x12\x13.RateSessionRequest\x1a\x14.RateSessionResponse\x12G\n" +
+	"\x10GetSlotsByMentor\x12\x18.GetSlotsByMentorRequest\x1a\x19.GetSlotsByMentorResponseB?Z=github.com/Sergey-1214/contracts_mentors/session/v1;sessionv1b\x06proto3"
 
 var (
 	file_session_proto_rawDescOnce sync.Once
@@ -1775,84 +2008,94 @@ func file_session_proto_rawDescGZIP() []byte {
 }
 
 var file_session_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_session_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_session_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_session_proto_goTypes = []any{
 	(SlotStatus)(0),                       // 0: SlotStatus
 	(PaymentStatus)(0),                    // 1: PaymentStatus
-	(*CreateSlotRequest)(nil),             // 2: CreateSlotRequest
-	(*CreateSlotResponse)(nil),            // 3: CreateSlotResponse
-	(*GetSlotRequest)(nil),                // 4: GetSlotRequest
-	(*GetSlotResponse)(nil),               // 5: GetSlotResponse
-	(*UpdateSlotRequest)(nil),             // 6: UpdateSlotRequest
-	(*UpdateSlotResponse)(nil),            // 7: UpdateSlotResponse
-	(*DeleteSlotRequest)(nil),             // 8: DeleteSlotRequest
-	(*DeleteSlotResponse)(nil),            // 9: DeleteSlotResponse
-	(*CreateSessionRequest)(nil),          // 10: CreateSessionRequest
-	(*CreateSessionResponse)(nil),         // 11: CreateSessionResponse
-	(*GetSessionRequest)(nil),             // 12: GetSessionRequest
-	(*GetSessionResponse)(nil),            // 13: GetSessionResponse
-	(*UpdateSessionRequest)(nil),          // 14: UpdateSessionRequest
-	(*UpdateSessionResponse)(nil),         // 15: UpdateSessionResponse
-	(*DeleteSessionRequest)(nil),          // 16: DeleteSessionRequest
-	(*DeleteSessionResponse)(nil),         // 17: DeleteSessionResponse
-	(*ListSessionsByMentorRequest)(nil),   // 18: ListSessionsByMentorRequest
-	(*ListSessionsResponse)(nil),          // 19: ListSessionsResponse
-	(*Session)(nil),                       // 20: Session
-	(*ListSessionsByStudentRequest)(nil),  // 21: ListSessionsByStudentRequest
-	(*ListSessionsByStudentResponse)(nil), // 22: ListSessionsByStudentResponse
-	(*UpdateSlotStatusRequest)(nil),       // 23: UpdateSlotStatusRequest
-	(*UpdateSlotStatusResponse)(nil),      // 24: UpdateSlotStatusResponse
-	(*RateSessionRequest)(nil),            // 25: RateSessionRequest
-	(*RateSessionResponse)(nil),           // 26: RateSessionResponse
-	(*timestamppb.Timestamp)(nil),         // 27: google.protobuf.Timestamp
+	(*Slot)(nil),                          // 2: Slot
+	(*CreateSlotRequest)(nil),             // 3: CreateSlotRequest
+	(*CreateSlotResponse)(nil),            // 4: CreateSlotResponse
+	(*GetSlotRequest)(nil),                // 5: GetSlotRequest
+	(*GetSlotResponse)(nil),               // 6: GetSlotResponse
+	(*UpdateSlotRequest)(nil),             // 7: UpdateSlotRequest
+	(*UpdateSlotResponse)(nil),            // 8: UpdateSlotResponse
+	(*DeleteSlotRequest)(nil),             // 9: DeleteSlotRequest
+	(*DeleteSlotResponse)(nil),            // 10: DeleteSlotResponse
+	(*CreateSessionRequest)(nil),          // 11: CreateSessionRequest
+	(*CreateSessionResponse)(nil),         // 12: CreateSessionResponse
+	(*GetSessionRequest)(nil),             // 13: GetSessionRequest
+	(*GetSessionResponse)(nil),            // 14: GetSessionResponse
+	(*UpdateSessionRequest)(nil),          // 15: UpdateSessionRequest
+	(*UpdateSessionResponse)(nil),         // 16: UpdateSessionResponse
+	(*DeleteSessionRequest)(nil),          // 17: DeleteSessionRequest
+	(*DeleteSessionResponse)(nil),         // 18: DeleteSessionResponse
+	(*ListSessionsByMentorRequest)(nil),   // 19: ListSessionsByMentorRequest
+	(*ListSessionsResponse)(nil),          // 20: ListSessionsResponse
+	(*Session)(nil),                       // 21: Session
+	(*ListSessionsByStudentRequest)(nil),  // 22: ListSessionsByStudentRequest
+	(*ListSessionsByStudentResponse)(nil), // 23: ListSessionsByStudentResponse
+	(*UpdateSlotStatusRequest)(nil),       // 24: UpdateSlotStatusRequest
+	(*UpdateSlotStatusResponse)(nil),      // 25: UpdateSlotStatusResponse
+	(*RateSessionRequest)(nil),            // 26: RateSessionRequest
+	(*RateSessionResponse)(nil),           // 27: RateSessionResponse
+	(*GetSlotsByMentorRequest)(nil),       // 28: GetSlotsByMentorRequest
+	(*GetSlotsByMentorResponse)(nil),      // 29: GetSlotsByMentorResponse
+	(*timestamppb.Timestamp)(nil),         // 30: google.protobuf.Timestamp
 }
 var file_session_proto_depIdxs = []int32{
-	27, // 0: CreateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
-	0,  // 1: CreateSlotRequest.status:type_name -> SlotStatus
-	27, // 2: GetSlotResponse.start_time:type_name -> google.protobuf.Timestamp
-	0,  // 3: GetSlotResponse.status:type_name -> SlotStatus
-	27, // 4: UpdateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
-	0,  // 5: UpdateSlotRequest.status:type_name -> SlotStatus
-	1,  // 6: CreateSessionRequest.payment_status:type_name -> PaymentStatus
-	1,  // 7: GetSessionResponse.payment_status:type_name -> PaymentStatus
-	27, // 8: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
-	27, // 9: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 10: UpdateSessionRequest.payment_status:type_name -> PaymentStatus
-	20, // 11: ListSessionsResponse.sessions:type_name -> Session
-	1,  // 12: Session.payment_status:type_name -> PaymentStatus
-	27, // 13: Session.created_at:type_name -> google.protobuf.Timestamp
-	27, // 14: Session.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 15: ListSessionsByStudentResponse.sessions:type_name -> Session
-	0,  // 16: UpdateSlotStatusRequest.status:type_name -> SlotStatus
-	2,  // 17: MentorshipService.CreateSlot:input_type -> CreateSlotRequest
-	4,  // 18: MentorshipService.GetSlot:input_type -> GetSlotRequest
-	6,  // 19: MentorshipService.UpdateSlot:input_type -> UpdateSlotRequest
-	8,  // 20: MentorshipService.DeleteSlot:input_type -> DeleteSlotRequest
-	10, // 21: MentorshipService.CreateSession:input_type -> CreateSessionRequest
-	12, // 22: MentorshipService.GetSession:input_type -> GetSessionRequest
-	14, // 23: MentorshipService.UpdateSession:input_type -> UpdateSessionRequest
-	16, // 24: MentorshipService.DeleteSession:input_type -> DeleteSessionRequest
-	18, // 25: MentorshipService.ListSessionsByMentor:input_type -> ListSessionsByMentorRequest
-	21, // 26: MentorshipService.ListSessionsByStudent:input_type -> ListSessionsByStudentRequest
-	23, // 27: MentorshipService.UpdateSlotStatus:input_type -> UpdateSlotStatusRequest
-	25, // 28: MentorshipService.RateSession:input_type -> RateSessionRequest
-	3,  // 29: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
-	5,  // 30: MentorshipService.GetSlot:output_type -> GetSlotResponse
-	7,  // 31: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
-	9,  // 32: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
-	11, // 33: MentorshipService.CreateSession:output_type -> CreateSessionResponse
-	13, // 34: MentorshipService.GetSession:output_type -> GetSessionResponse
-	15, // 35: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
-	17, // 36: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
-	19, // 37: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
-	19, // 38: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
-	24, // 39: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
-	26, // 40: MentorshipService.RateSession:output_type -> RateSessionResponse
-	29, // [29:41] is the sub-list for method output_type
-	17, // [17:29] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	30, // 0: Slot.start_time:type_name -> google.protobuf.Timestamp
+	0,  // 1: Slot.status:type_name -> SlotStatus
+	30, // 2: Slot.created_at:type_name -> google.protobuf.Timestamp
+	30, // 3: Slot.updated_at:type_name -> google.protobuf.Timestamp
+	30, // 4: CreateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
+	0,  // 5: CreateSlotRequest.status:type_name -> SlotStatus
+	30, // 6: GetSlotResponse.start_time:type_name -> google.protobuf.Timestamp
+	0,  // 7: GetSlotResponse.status:type_name -> SlotStatus
+	30, // 8: UpdateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
+	0,  // 9: UpdateSlotRequest.status:type_name -> SlotStatus
+	1,  // 10: CreateSessionRequest.payment_status:type_name -> PaymentStatus
+	1,  // 11: GetSessionResponse.payment_status:type_name -> PaymentStatus
+	30, // 12: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
+	30, // 13: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 14: UpdateSessionRequest.payment_status:type_name -> PaymentStatus
+	21, // 15: ListSessionsResponse.sessions:type_name -> Session
+	1,  // 16: Session.payment_status:type_name -> PaymentStatus
+	30, // 17: Session.created_at:type_name -> google.protobuf.Timestamp
+	30, // 18: Session.updated_at:type_name -> google.protobuf.Timestamp
+	21, // 19: ListSessionsByStudentResponse.sessions:type_name -> Session
+	0,  // 20: UpdateSlotStatusRequest.status:type_name -> SlotStatus
+	2,  // 21: GetSlotsByMentorResponse.slots:type_name -> Slot
+	3,  // 22: MentorshipService.CreateSlot:input_type -> CreateSlotRequest
+	5,  // 23: MentorshipService.GetSlot:input_type -> GetSlotRequest
+	7,  // 24: MentorshipService.UpdateSlot:input_type -> UpdateSlotRequest
+	9,  // 25: MentorshipService.DeleteSlot:input_type -> DeleteSlotRequest
+	11, // 26: MentorshipService.CreateSession:input_type -> CreateSessionRequest
+	13, // 27: MentorshipService.GetSession:input_type -> GetSessionRequest
+	15, // 28: MentorshipService.UpdateSession:input_type -> UpdateSessionRequest
+	17, // 29: MentorshipService.DeleteSession:input_type -> DeleteSessionRequest
+	19, // 30: MentorshipService.ListSessionsByMentor:input_type -> ListSessionsByMentorRequest
+	22, // 31: MentorshipService.ListSessionsByStudent:input_type -> ListSessionsByStudentRequest
+	24, // 32: MentorshipService.UpdateSlotStatus:input_type -> UpdateSlotStatusRequest
+	26, // 33: MentorshipService.RateSession:input_type -> RateSessionRequest
+	28, // 34: MentorshipService.GetSlotsByMentor:input_type -> GetSlotsByMentorRequest
+	4,  // 35: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
+	6,  // 36: MentorshipService.GetSlot:output_type -> GetSlotResponse
+	8,  // 37: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
+	10, // 38: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
+	12, // 39: MentorshipService.CreateSession:output_type -> CreateSessionResponse
+	14, // 40: MentorshipService.GetSession:output_type -> GetSessionResponse
+	16, // 41: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
+	18, // 42: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
+	20, // 43: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
+	20, // 44: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
+	25, // 45: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
+	27, // 46: MentorshipService.RateSession:output_type -> RateSessionResponse
+	29, // 47: MentorshipService.GetSlotsByMentor:output_type -> GetSlotsByMentorResponse
+	35, // [35:48] is the sub-list for method output_type
+	22, // [22:35] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_session_proto_init() }
@@ -1860,15 +2103,15 @@ func file_session_proto_init() {
 	if File_session_proto != nil {
 		return
 	}
-	file_session_proto_msgTypes[4].OneofWrappers = []any{}
-	file_session_proto_msgTypes[12].OneofWrappers = []any{}
+	file_session_proto_msgTypes[5].OneofWrappers = []any{}
+	file_session_proto_msgTypes[13].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_session_proto_rawDesc), len(file_session_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   25,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

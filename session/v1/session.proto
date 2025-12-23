@@ -19,6 +19,7 @@ service MentorshipService {
     rpc ListSessionsByStudent(ListSessionsByStudentRequest) returns (ListSessionsResponse);
     rpc UpdateSlotStatus(UpdateSlotStatusRequest) returns (UpdateSlotStatusResponse);
     rpc RateSession(RateSessionRequest) returns (RateSessionResponse);
+    rpc GetSlotsByMentor(GetSlotsByMentorRequest) returns (GetSlotsByMentorResponse);
 }
 
 enum SlotStatus {
@@ -33,6 +34,20 @@ enum PaymentStatus {
     PAYMENT_STATUS_COMPLETED = 1;
     PAYMENT_STATUS_FAILED = 2;
     PAYMENT_STATUS_UNSPECIFIED = 3;
+}
+
+message Slot {
+    string slot_id = 1;
+    string mentor_id = 2;
+    string title = 3;
+    string description = 4;
+    google.protobuf.Timestamp start_time = 5;  
+    int32 duration_minutes = 6;
+    int64 price = 7; 
+    string currency = 8;
+    SlotStatus status = 9;
+    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp updated_at = 11;
 }
 
 message CreateSlotRequest {
@@ -180,4 +195,12 @@ message RateSessionRequest {
 
 message RateSessionResponse {
     bool success = 1;
+}
+
+message GetSlotsByMentorRequest {
+    string mentor_id = 1;
+}
+
+message GetSlotsByMentorResponse {
+    repeated Slot slots = 1;
 }
