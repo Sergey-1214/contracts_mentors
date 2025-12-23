@@ -123,6 +123,29 @@ message ListPostsResponse {
   int32 total_count = 3;                 // общее число (может быть 0, если не считаем)
 }
 
+message Rating {
+    string id = 1;
+    string post_id = 2;
+    string user_id = 3;
+    int32 rate = 4;
+    string comment = 5;
+    google.protobuf.Timestamp created_at = 6;
+}
+
+message GetPostRatingsRequest {
+    string post_id = 1;
+    int32 page_size = 2;
+    string page_token = 3; // для пагинации
+}
+
+message GetPostRatingsResponse {
+    repeated Rating ratings = 1;
+    string next_page_token = 2;
+    int32 total_count = 3;
+    float average_rating = 4;
+    int32 ratings_count = 5;
+}
+
 // -----------------------------------------------------------------------------
 // SERVICE
 // -----------------------------------------------------------------------------
@@ -137,4 +160,5 @@ service PostService {
 
   // Listing
   rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);
+  rpc GetPostRatings(GetPostRatingsRequest) returns (GetPostRatingsResponse);
 }
