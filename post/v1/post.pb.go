@@ -188,6 +188,7 @@ type Post struct {
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	AverageRating float64                `protobuf:"fixed64,9,opt,name=average_rating,json=averageRating,proto3" json:"average_rating,omitempty"` // Средняя оценка (0, если нет оценок)
 	RatingsCount  int32                  `protobuf:"varint,10,opt,name=ratings_count,json=ratingsCount,proto3" json:"ratings_count,omitempty"`    // Кол-во оценок
+	AvatarUrl     string                 `protobuf:"bytes,11,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -290,6 +291,13 @@ func (x *Post) GetRatingsCount() int32 {
 		return x.RatingsCount
 	}
 	return 0
+}
+
+func (x *Post) GetAvatarUrl() string {
+	if x != nil {
+		return x.AvatarUrl
+	}
+	return ""
 }
 
 type CreatePostRequest struct {
@@ -1176,7 +1184,7 @@ var File_post_proto protoreflect.FileDescriptor
 const file_post_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"post.proto\x12\bposts.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xe7\x02\n" +
+	"post.proto\x12\bposts.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x86\x03\n" +
 	"\x04Post\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tauthor_id\x18\x02 \x01(\tR\bauthorId\x12\x14\n" +
@@ -1190,7 +1198,9 @@ const file_post_proto_rawDesc = "" +
 	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12%\n" +
 	"\x0eaverage_rating\x18\t \x01(\x01R\raverageRating\x12#\n" +
 	"\rratings_count\x18\n" +
-	" \x01(\x05R\fratingsCount\"\xa2\x01\n" +
+	" \x01(\x05R\fratingsCount\x12\x1d\n" +
+	"\n" +
+	"avatar_url\x18\v \x01(\tR\tavatarUrl\"\xa2\x01\n" +
 	"\x11CreatePostRequest\x12\x1b\n" +
 	"\tauthor_id\x18\x01 \x01(\tR\bauthorId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
