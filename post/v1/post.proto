@@ -147,6 +147,23 @@ message GetPostRatingsResponse {
     int32 ratings_count = 5;
 }
 
+message UploadPostImageRequest {
+  string post_id = 1;
+  string image_url = 2;
+}
+
+message UploadPostImageResponse {
+  Post post = 1;
+}
+
+message DeletePostImageRequest {
+  string post_id = 1;
+}
+
+message DeletePostImageResponse {
+  Post post = 1;
+}
+
 // -----------------------------------------------------------------------------
 // SERVICE
 // -----------------------------------------------------------------------------
@@ -158,6 +175,8 @@ service PostService {
   rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse);
   rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
   rpc RatePost(RatePostRequest) returns (RatePostResponse);
+  rpc UploadPostImage(UploadPostImageRequest) returns (UploadPostImageResponse); 
+  rpc DeletePostImage(DeletePostImageRequest) returns (DeletePostImageResponse);
 
   // Listing
   rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);

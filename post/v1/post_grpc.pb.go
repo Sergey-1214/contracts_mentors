@@ -19,13 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PostService_CreatePost_FullMethodName     = "/posts.v1.PostService/CreatePost"
-	PostService_GetPost_FullMethodName        = "/posts.v1.PostService/GetPost"
-	PostService_UpdatePost_FullMethodName     = "/posts.v1.PostService/UpdatePost"
-	PostService_DeletePost_FullMethodName     = "/posts.v1.PostService/DeletePost"
-	PostService_RatePost_FullMethodName       = "/posts.v1.PostService/RatePost"
-	PostService_ListPosts_FullMethodName      = "/posts.v1.PostService/ListPosts"
-	PostService_GetPostRatings_FullMethodName = "/posts.v1.PostService/GetPostRatings"
+	PostService_CreatePost_FullMethodName      = "/posts.v1.PostService/CreatePost"
+	PostService_GetPost_FullMethodName         = "/posts.v1.PostService/GetPost"
+	PostService_UpdatePost_FullMethodName      = "/posts.v1.PostService/UpdatePost"
+	PostService_DeletePost_FullMethodName      = "/posts.v1.PostService/DeletePost"
+	PostService_RatePost_FullMethodName        = "/posts.v1.PostService/RatePost"
+	PostService_UploadPostImage_FullMethodName = "/posts.v1.PostService/UploadPostImage"
+	PostService_DeletePostImage_FullMethodName = "/posts.v1.PostService/DeletePostImage"
+	PostService_ListPosts_FullMethodName       = "/posts.v1.PostService/ListPosts"
+	PostService_GetPostRatings_FullMethodName  = "/posts.v1.PostService/GetPostRatings"
 )
 
 // PostServiceClient is the client API for PostService service.
@@ -38,6 +40,8 @@ type PostServiceClient interface {
 	UpdatePost(ctx context.Context, in *UpdatePostRequest, opts ...grpc.CallOption) (*UpdatePostResponse, error)
 	DeletePost(ctx context.Context, in *DeletePostRequest, opts ...grpc.CallOption) (*DeletePostResponse, error)
 	RatePost(ctx context.Context, in *RatePostRequest, opts ...grpc.CallOption) (*RatePostResponse, error)
+	UploadPostImage(ctx context.Context, in *UploadPostImageRequest, opts ...grpc.CallOption) (*UploadPostImageResponse, error)
+	DeletePostImage(ctx context.Context, in *DeletePostImageRequest, opts ...grpc.CallOption) (*DeletePostImageResponse, error)
 	// Listing
 	ListPosts(ctx context.Context, in *ListPostsRequest, opts ...grpc.CallOption) (*ListPostsResponse, error)
 	GetPostRatings(ctx context.Context, in *GetPostRatingsRequest, opts ...grpc.CallOption) (*GetPostRatingsResponse, error)
@@ -101,6 +105,26 @@ func (c *postServiceClient) RatePost(ctx context.Context, in *RatePostRequest, o
 	return out, nil
 }
 
+func (c *postServiceClient) UploadPostImage(ctx context.Context, in *UploadPostImageRequest, opts ...grpc.CallOption) (*UploadPostImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadPostImageResponse)
+	err := c.cc.Invoke(ctx, PostService_UploadPostImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) DeletePostImage(ctx context.Context, in *DeletePostImageRequest, opts ...grpc.CallOption) (*DeletePostImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeletePostImageResponse)
+	err := c.cc.Invoke(ctx, PostService_DeletePostImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postServiceClient) ListPosts(ctx context.Context, in *ListPostsRequest, opts ...grpc.CallOption) (*ListPostsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPostsResponse)
@@ -131,6 +155,8 @@ type PostServiceServer interface {
 	UpdatePost(context.Context, *UpdatePostRequest) (*UpdatePostResponse, error)
 	DeletePost(context.Context, *DeletePostRequest) (*DeletePostResponse, error)
 	RatePost(context.Context, *RatePostRequest) (*RatePostResponse, error)
+	UploadPostImage(context.Context, *UploadPostImageRequest) (*UploadPostImageResponse, error)
+	DeletePostImage(context.Context, *DeletePostImageRequest) (*DeletePostImageResponse, error)
 	// Listing
 	ListPosts(context.Context, *ListPostsRequest) (*ListPostsResponse, error)
 	GetPostRatings(context.Context, *GetPostRatingsRequest) (*GetPostRatingsResponse, error)
@@ -158,6 +184,12 @@ func (UnimplementedPostServiceServer) DeletePost(context.Context, *DeletePostReq
 }
 func (UnimplementedPostServiceServer) RatePost(context.Context, *RatePostRequest) (*RatePostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RatePost not implemented")
+}
+func (UnimplementedPostServiceServer) UploadPostImage(context.Context, *UploadPostImageRequest) (*UploadPostImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadPostImage not implemented")
+}
+func (UnimplementedPostServiceServer) DeletePostImage(context.Context, *DeletePostImageRequest) (*DeletePostImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePostImage not implemented")
 }
 func (UnimplementedPostServiceServer) ListPosts(context.Context, *ListPostsRequest) (*ListPostsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPosts not implemented")
@@ -276,6 +308,42 @@ func _PostService_RatePost_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_UploadPostImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadPostImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).UploadPostImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_UploadPostImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).UploadPostImage(ctx, req.(*UploadPostImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_DeletePostImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePostImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).DeletePostImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_DeletePostImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).DeletePostImage(ctx, req.(*DeletePostImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostService_ListPosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPostsRequest)
 	if err := dec(in); err != nil {
@@ -338,6 +406,14 @@ var PostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RatePost",
 			Handler:    _PostService_RatePost_Handler,
+		},
+		{
+			MethodName: "UploadPostImage",
+			Handler:    _PostService_UploadPostImage_Handler,
+		},
+		{
+			MethodName: "DeletePostImage",
+			Handler:    _PostService_DeletePostImage_Handler,
 		},
 		{
 			MethodName: "ListPosts",
