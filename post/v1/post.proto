@@ -164,6 +164,49 @@ message DeletePostImageResponse {
   Post post = 1;
 }
 
+message AddInterestingPostRequest {
+  string user_id = 1;  
+  string post_id = 2;   
+}
+
+message AddInterestingPostResponse {
+  bool success = 1;
+}
+message RemoveInterestingPostRequest {
+  string user_id = 1;   
+  string post_id = 2;   
+}
+
+message RemoveInterestingPostResponse {
+  bool success = 1;      
+}
+
+message GetInterestingUsersCountRequest {
+  string post_id = 1; 
+}
+
+message GetInterestingUsersCountResponse {
+  string post_id = 1;    
+  int32 users_count = 2; 
+}
+
+
+message GetUserInterestingPostsRequest {
+  string user_id = 1;                  
+  int32 page_size = 2;                  
+  string page_token = 3;                
+  SortField sort_field = 4;             
+  SortOrder sort_order = 5;           
+  google.protobuf.Timestamp added_from = 6; 
+  google.protobuf.Timestamp added_to = 7;
+}
+
+message GetUserInterestingPostsResponse {
+  repeated Post posts = 1;             
+  string next_page_token = 2;           
+  int32 total_count = 3;               
+}
+
 // -----------------------------------------------------------------------------
 // SERVICE
 // -----------------------------------------------------------------------------
@@ -177,7 +220,10 @@ service PostService {
   rpc RatePost(RatePostRequest) returns (RatePostResponse);
   rpc UploadPostImage(UploadPostImageRequest) returns (UploadPostImageResponse); 
   rpc DeletePostImage(DeletePostImageRequest) returns (DeletePostImageResponse);
-
+  rpc AddInterestingPost(AddInterestingPostRequest) returns (AddInterestingPostResponse);
+  rpc RemoveInterestingPost(RemoveInterestingPostRequest) returns (RemoveInterestingPostResponse);
+  rpc GetInterestingUsersCount(GetInterestingUsersCountRequest) returns (GetInterestingUsersCountResponse);
+  rpc GetUserInterestingPosts(GetUserInterestingPostsRequest) returns (GetUserInterestingPostsResponse);
   // Listing
   rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);
   rpc GetPostRatings(GetPostRatingsRequest) returns (GetPostRatingsResponse);

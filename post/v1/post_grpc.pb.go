@@ -19,15 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PostService_CreatePost_FullMethodName      = "/posts.v1.PostService/CreatePost"
-	PostService_GetPost_FullMethodName         = "/posts.v1.PostService/GetPost"
-	PostService_UpdatePost_FullMethodName      = "/posts.v1.PostService/UpdatePost"
-	PostService_DeletePost_FullMethodName      = "/posts.v1.PostService/DeletePost"
-	PostService_RatePost_FullMethodName        = "/posts.v1.PostService/RatePost"
-	PostService_UploadPostImage_FullMethodName = "/posts.v1.PostService/UploadPostImage"
-	PostService_DeletePostImage_FullMethodName = "/posts.v1.PostService/DeletePostImage"
-	PostService_ListPosts_FullMethodName       = "/posts.v1.PostService/ListPosts"
-	PostService_GetPostRatings_FullMethodName  = "/posts.v1.PostService/GetPostRatings"
+	PostService_CreatePost_FullMethodName               = "/posts.v1.PostService/CreatePost"
+	PostService_GetPost_FullMethodName                  = "/posts.v1.PostService/GetPost"
+	PostService_UpdatePost_FullMethodName               = "/posts.v1.PostService/UpdatePost"
+	PostService_DeletePost_FullMethodName               = "/posts.v1.PostService/DeletePost"
+	PostService_RatePost_FullMethodName                 = "/posts.v1.PostService/RatePost"
+	PostService_UploadPostImage_FullMethodName          = "/posts.v1.PostService/UploadPostImage"
+	PostService_DeletePostImage_FullMethodName          = "/posts.v1.PostService/DeletePostImage"
+	PostService_AddInterestingPost_FullMethodName       = "/posts.v1.PostService/AddInterestingPost"
+	PostService_RemoveInterestingPost_FullMethodName    = "/posts.v1.PostService/RemoveInterestingPost"
+	PostService_GetInterestingUsersCount_FullMethodName = "/posts.v1.PostService/GetInterestingUsersCount"
+	PostService_GetUserInterestingPosts_FullMethodName  = "/posts.v1.PostService/GetUserInterestingPosts"
+	PostService_ListPosts_FullMethodName                = "/posts.v1.PostService/ListPosts"
+	PostService_GetPostRatings_FullMethodName           = "/posts.v1.PostService/GetPostRatings"
 )
 
 // PostServiceClient is the client API for PostService service.
@@ -42,6 +46,10 @@ type PostServiceClient interface {
 	RatePost(ctx context.Context, in *RatePostRequest, opts ...grpc.CallOption) (*RatePostResponse, error)
 	UploadPostImage(ctx context.Context, in *UploadPostImageRequest, opts ...grpc.CallOption) (*UploadPostImageResponse, error)
 	DeletePostImage(ctx context.Context, in *DeletePostImageRequest, opts ...grpc.CallOption) (*DeletePostImageResponse, error)
+	AddInterestingPost(ctx context.Context, in *AddInterestingPostRequest, opts ...grpc.CallOption) (*AddInterestingPostResponse, error)
+	RemoveInterestingPost(ctx context.Context, in *RemoveInterestingPostRequest, opts ...grpc.CallOption) (*RemoveInterestingPostResponse, error)
+	GetInterestingUsersCount(ctx context.Context, in *GetInterestingUsersCountRequest, opts ...grpc.CallOption) (*GetInterestingUsersCountResponse, error)
+	GetUserInterestingPosts(ctx context.Context, in *GetUserInterestingPostsRequest, opts ...grpc.CallOption) (*GetUserInterestingPostsResponse, error)
 	// Listing
 	ListPosts(ctx context.Context, in *ListPostsRequest, opts ...grpc.CallOption) (*ListPostsResponse, error)
 	GetPostRatings(ctx context.Context, in *GetPostRatingsRequest, opts ...grpc.CallOption) (*GetPostRatingsResponse, error)
@@ -125,6 +133,46 @@ func (c *postServiceClient) DeletePostImage(ctx context.Context, in *DeletePostI
 	return out, nil
 }
 
+func (c *postServiceClient) AddInterestingPost(ctx context.Context, in *AddInterestingPostRequest, opts ...grpc.CallOption) (*AddInterestingPostResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddInterestingPostResponse)
+	err := c.cc.Invoke(ctx, PostService_AddInterestingPost_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) RemoveInterestingPost(ctx context.Context, in *RemoveInterestingPostRequest, opts ...grpc.CallOption) (*RemoveInterestingPostResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveInterestingPostResponse)
+	err := c.cc.Invoke(ctx, PostService_RemoveInterestingPost_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetInterestingUsersCount(ctx context.Context, in *GetInterestingUsersCountRequest, opts ...grpc.CallOption) (*GetInterestingUsersCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetInterestingUsersCountResponse)
+	err := c.cc.Invoke(ctx, PostService_GetInterestingUsersCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetUserInterestingPosts(ctx context.Context, in *GetUserInterestingPostsRequest, opts ...grpc.CallOption) (*GetUserInterestingPostsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserInterestingPostsResponse)
+	err := c.cc.Invoke(ctx, PostService_GetUserInterestingPosts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postServiceClient) ListPosts(ctx context.Context, in *ListPostsRequest, opts ...grpc.CallOption) (*ListPostsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPostsResponse)
@@ -157,6 +205,10 @@ type PostServiceServer interface {
 	RatePost(context.Context, *RatePostRequest) (*RatePostResponse, error)
 	UploadPostImage(context.Context, *UploadPostImageRequest) (*UploadPostImageResponse, error)
 	DeletePostImage(context.Context, *DeletePostImageRequest) (*DeletePostImageResponse, error)
+	AddInterestingPost(context.Context, *AddInterestingPostRequest) (*AddInterestingPostResponse, error)
+	RemoveInterestingPost(context.Context, *RemoveInterestingPostRequest) (*RemoveInterestingPostResponse, error)
+	GetInterestingUsersCount(context.Context, *GetInterestingUsersCountRequest) (*GetInterestingUsersCountResponse, error)
+	GetUserInterestingPosts(context.Context, *GetUserInterestingPostsRequest) (*GetUserInterestingPostsResponse, error)
 	// Listing
 	ListPosts(context.Context, *ListPostsRequest) (*ListPostsResponse, error)
 	GetPostRatings(context.Context, *GetPostRatingsRequest) (*GetPostRatingsResponse, error)
@@ -190,6 +242,18 @@ func (UnimplementedPostServiceServer) UploadPostImage(context.Context, *UploadPo
 }
 func (UnimplementedPostServiceServer) DeletePostImage(context.Context, *DeletePostImageRequest) (*DeletePostImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePostImage not implemented")
+}
+func (UnimplementedPostServiceServer) AddInterestingPost(context.Context, *AddInterestingPostRequest) (*AddInterestingPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddInterestingPost not implemented")
+}
+func (UnimplementedPostServiceServer) RemoveInterestingPost(context.Context, *RemoveInterestingPostRequest) (*RemoveInterestingPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveInterestingPost not implemented")
+}
+func (UnimplementedPostServiceServer) GetInterestingUsersCount(context.Context, *GetInterestingUsersCountRequest) (*GetInterestingUsersCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInterestingUsersCount not implemented")
+}
+func (UnimplementedPostServiceServer) GetUserInterestingPosts(context.Context, *GetUserInterestingPostsRequest) (*GetUserInterestingPostsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserInterestingPosts not implemented")
 }
 func (UnimplementedPostServiceServer) ListPosts(context.Context, *ListPostsRequest) (*ListPostsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPosts not implemented")
@@ -344,6 +408,78 @@ func _PostService_DeletePostImage_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_AddInterestingPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddInterestingPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).AddInterestingPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_AddInterestingPost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).AddInterestingPost(ctx, req.(*AddInterestingPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_RemoveInterestingPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveInterestingPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).RemoveInterestingPost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_RemoveInterestingPost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).RemoveInterestingPost(ctx, req.(*RemoveInterestingPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetInterestingUsersCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInterestingUsersCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetInterestingUsersCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_GetInterestingUsersCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetInterestingUsersCount(ctx, req.(*GetInterestingUsersCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetUserInterestingPosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserInterestingPostsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetUserInterestingPosts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_GetUserInterestingPosts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetUserInterestingPosts(ctx, req.(*GetUserInterestingPostsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostService_ListPosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPostsRequest)
 	if err := dec(in); err != nil {
@@ -414,6 +550,22 @@ var PostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePostImage",
 			Handler:    _PostService_DeletePostImage_Handler,
+		},
+		{
+			MethodName: "AddInterestingPost",
+			Handler:    _PostService_AddInterestingPost_Handler,
+		},
+		{
+			MethodName: "RemoveInterestingPost",
+			Handler:    _PostService_RemoveInterestingPost_Handler,
+		},
+		{
+			MethodName: "GetInterestingUsersCount",
+			Handler:    _PostService_GetInterestingUsersCount_Handler,
+		},
+		{
+			MethodName: "GetUserInterestingPosts",
+			Handler:    _PostService_GetUserInterestingPosts_Handler,
 		},
 		{
 			MethodName: "ListPosts",

@@ -1363,6 +1363,446 @@ func (x *DeletePostImageResponse) GetPost() *Post {
 	return nil
 }
 
+type AddInterestingPostRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddInterestingPostRequest) Reset() {
+	*x = AddInterestingPostRequest{}
+	mi := &file_post_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddInterestingPostRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddInterestingPostRequest) ProtoMessage() {}
+
+func (x *AddInterestingPostRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddInterestingPostRequest.ProtoReflect.Descriptor instead.
+func (*AddInterestingPostRequest) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *AddInterestingPostRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *AddInterestingPostRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+type AddInterestingPostResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddInterestingPostResponse) Reset() {
+	*x = AddInterestingPostResponse{}
+	mi := &file_post_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddInterestingPostResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddInterestingPostResponse) ProtoMessage() {}
+
+func (x *AddInterestingPostResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddInterestingPostResponse.ProtoReflect.Descriptor instead.
+func (*AddInterestingPostResponse) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *AddInterestingPostResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type RemoveInterestingPostRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RemoveInterestingPostRequest) Reset() {
+	*x = RemoveInterestingPostRequest{}
+	mi := &file_post_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveInterestingPostRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveInterestingPostRequest) ProtoMessage() {}
+
+func (x *RemoveInterestingPostRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveInterestingPostRequest.ProtoReflect.Descriptor instead.
+func (*RemoveInterestingPostRequest) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *RemoveInterestingPostRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *RemoveInterestingPostRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+type RemoveInterestingPostResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RemoveInterestingPostResponse) Reset() {
+	*x = RemoveInterestingPostResponse{}
+	mi := &file_post_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveInterestingPostResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveInterestingPostResponse) ProtoMessage() {}
+
+func (x *RemoveInterestingPostResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveInterestingPostResponse.ProtoReflect.Descriptor instead.
+func (*RemoveInterestingPostResponse) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *RemoveInterestingPostResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type GetInterestingUsersCountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PostId        string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInterestingUsersCountRequest) Reset() {
+	*x = GetInterestingUsersCountRequest{}
+	mi := &file_post_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInterestingUsersCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInterestingUsersCountRequest) ProtoMessage() {}
+
+func (x *GetInterestingUsersCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInterestingUsersCountRequest.ProtoReflect.Descriptor instead.
+func (*GetInterestingUsersCountRequest) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetInterestingUsersCountRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+type GetInterestingUsersCountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PostId        string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	UsersCount    int32                  `protobuf:"varint,2,opt,name=users_count,json=usersCount,proto3" json:"users_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInterestingUsersCountResponse) Reset() {
+	*x = GetInterestingUsersCountResponse{}
+	mi := &file_post_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInterestingUsersCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInterestingUsersCountResponse) ProtoMessage() {}
+
+func (x *GetInterestingUsersCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInterestingUsersCountResponse.ProtoReflect.Descriptor instead.
+func (*GetInterestingUsersCountResponse) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetInterestingUsersCountResponse) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *GetInterestingUsersCountResponse) GetUsersCount() int32 {
+	if x != nil {
+		return x.UsersCount
+	}
+	return 0
+}
+
+type GetUserInterestingPostsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	PageToken     string                 `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	SortField     SortField              `protobuf:"varint,4,opt,name=sort_field,json=sortField,proto3,enum=posts.v1.SortField" json:"sort_field,omitempty"`
+	SortOrder     SortOrder              `protobuf:"varint,5,opt,name=sort_order,json=sortOrder,proto3,enum=posts.v1.SortOrder" json:"sort_order,omitempty"`
+	AddedFrom     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=added_from,json=addedFrom,proto3" json:"added_from,omitempty"`
+	AddedTo       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=added_to,json=addedTo,proto3" json:"added_to,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInterestingPostsRequest) Reset() {
+	*x = GetUserInterestingPostsRequest{}
+	mi := &file_post_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInterestingPostsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInterestingPostsRequest) ProtoMessage() {}
+
+func (x *GetUserInterestingPostsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInterestingPostsRequest.ProtoReflect.Descriptor instead.
+func (*GetUserInterestingPostsRequest) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *GetUserInterestingPostsRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetUserInterestingPostsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetUserInterestingPostsRequest) GetPageToken() string {
+	if x != nil {
+		return x.PageToken
+	}
+	return ""
+}
+
+func (x *GetUserInterestingPostsRequest) GetSortField() SortField {
+	if x != nil {
+		return x.SortField
+	}
+	return SortField_SORT_FIELD_UNSPECIFIED
+}
+
+func (x *GetUserInterestingPostsRequest) GetSortOrder() SortOrder {
+	if x != nil {
+		return x.SortOrder
+	}
+	return SortOrder_SORT_ORDER_UNSPECIFIED
+}
+
+func (x *GetUserInterestingPostsRequest) GetAddedFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AddedFrom
+	}
+	return nil
+}
+
+func (x *GetUserInterestingPostsRequest) GetAddedTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AddedTo
+	}
+	return nil
+}
+
+type GetUserInterestingPostsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Posts         []*Post                `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
+	NextPageToken string                 `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,3,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInterestingPostsResponse) Reset() {
+	*x = GetUserInterestingPostsResponse{}
+	mi := &file_post_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInterestingPostsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInterestingPostsResponse) ProtoMessage() {}
+
+func (x *GetUserInterestingPostsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInterestingPostsResponse.ProtoReflect.Descriptor instead.
+func (*GetUserInterestingPostsResponse) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetUserInterestingPostsResponse) GetPosts() []*Post {
+	if x != nil {
+		return x.Posts
+	}
+	return nil
+}
+
+func (x *GetUserInterestingPostsResponse) GetNextPageToken() string {
+	if x != nil {
+		return x.NextPageToken
+	}
+	return ""
+}
+
+func (x *GetUserInterestingPostsResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
 var File_post_proto protoreflect.FileDescriptor
 
 const file_post_proto_rawDesc = "" +
@@ -1458,7 +1898,40 @@ const file_post_proto_rawDesc = "" +
 	"\x16DeletePostImageRequest\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\tR\x06postId\"=\n" +
 	"\x17DeletePostImageResponse\x12\"\n" +
-	"\x04post\x18\x01 \x01(\v2\x0e.posts.v1.PostR\x04post*4\n" +
+	"\x04post\x18\x01 \x01(\v2\x0e.posts.v1.PostR\x04post\"M\n" +
+	"\x19AddInterestingPostRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\apost_id\x18\x02 \x01(\tR\x06postId\"6\n" +
+	"\x1aAddInterestingPostResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"P\n" +
+	"\x1cRemoveInterestingPostRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\apost_id\x18\x02 \x01(\tR\x06postId\"9\n" +
+	"\x1dRemoveInterestingPostResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\":\n" +
+	"\x1fGetInterestingUsersCountRequest\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\tR\x06postId\"\\\n" +
+	" GetInterestingUsersCountResponse\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\tR\x06postId\x12\x1f\n" +
+	"\vusers_count\x18\x02 \x01(\x05R\n" +
+	"usersCount\"\xcf\x02\n" +
+	"\x1eGetUserInterestingPostsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x1d\n" +
+	"\n" +
+	"page_token\x18\x03 \x01(\tR\tpageToken\x122\n" +
+	"\n" +
+	"sort_field\x18\x04 \x01(\x0e2\x13.posts.v1.SortFieldR\tsortField\x122\n" +
+	"\n" +
+	"sort_order\x18\x05 \x01(\x0e2\x13.posts.v1.SortOrderR\tsortOrder\x129\n" +
+	"\n" +
+	"added_from\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\taddedFrom\x125\n" +
+	"\badded_to\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\aaddedTo\"\x90\x01\n" +
+	"\x1fGetUserInterestingPostsResponse\x12$\n" +
+	"\x05posts\x18\x01 \x03(\v2\x0e.posts.v1.PostR\x05posts\x12&\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1f\n" +
+	"\vtotal_count\x18\x03 \x01(\x05R\n" +
+	"totalCount*4\n" +
 	"\n" +
 	"PostStatus\x12\t\n" +
 	"\x05DRAFT\x10\x00\x12\r\n" +
@@ -1474,7 +1947,7 @@ const file_post_proto_rawDesc = "" +
 	"CREATED_AT\x10\x01\x12\x0e\n" +
 	"\n" +
 	"UPDATED_AT\x10\x02\x12\t\n" +
-	"\x05TITLE\x10\x032\xb6\x05\n" +
+	"\x05TITLE\x10\x032\xe4\b\n" +
 	"\vPostService\x12G\n" +
 	"\n" +
 	"CreatePost\x12\x1b.posts.v1.CreatePostRequest\x1a\x1c.posts.v1.CreatePostResponse\x12>\n" +
@@ -1485,7 +1958,11 @@ const file_post_proto_rawDesc = "" +
 	"DeletePost\x12\x1b.posts.v1.DeletePostRequest\x1a\x1c.posts.v1.DeletePostResponse\x12A\n" +
 	"\bRatePost\x12\x19.posts.v1.RatePostRequest\x1a\x1a.posts.v1.RatePostResponse\x12V\n" +
 	"\x0fUploadPostImage\x12 .posts.v1.UploadPostImageRequest\x1a!.posts.v1.UploadPostImageResponse\x12V\n" +
-	"\x0fDeletePostImage\x12 .posts.v1.DeletePostImageRequest\x1a!.posts.v1.DeletePostImageResponse\x12D\n" +
+	"\x0fDeletePostImage\x12 .posts.v1.DeletePostImageRequest\x1a!.posts.v1.DeletePostImageResponse\x12_\n" +
+	"\x12AddInterestingPost\x12#.posts.v1.AddInterestingPostRequest\x1a$.posts.v1.AddInterestingPostResponse\x12h\n" +
+	"\x15RemoveInterestingPost\x12&.posts.v1.RemoveInterestingPostRequest\x1a'.posts.v1.RemoveInterestingPostResponse\x12q\n" +
+	"\x18GetInterestingUsersCount\x12).posts.v1.GetInterestingUsersCountRequest\x1a*.posts.v1.GetInterestingUsersCountResponse\x12n\n" +
+	"\x17GetUserInterestingPosts\x12(.posts.v1.GetUserInterestingPostsRequest\x1a).posts.v1.GetUserInterestingPostsResponse\x12D\n" +
 	"\tListPosts\x12\x1a.posts.v1.ListPostsRequest\x1a\x1b.posts.v1.ListPostsResponse\x12S\n" +
 	"\x0eGetPostRatings\x12\x1f.posts.v1.GetPostRatingsRequest\x1a .posts.v1.GetPostRatingsResponseB:Z8github.com/Sergey-1214/contracts_mentors/post/v1;postsv1b\x06proto3"
 
@@ -1502,76 +1979,97 @@ func file_post_proto_rawDescGZIP() []byte {
 }
 
 var file_post_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_post_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_post_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_post_proto_goTypes = []any{
-	(PostStatus)(0),                 // 0: posts.v1.PostStatus
-	(SortOrder)(0),                  // 1: posts.v1.SortOrder
-	(SortField)(0),                  // 2: posts.v1.SortField
-	(*Post)(nil),                    // 3: posts.v1.Post
-	(*CreatePostRequest)(nil),       // 4: posts.v1.CreatePostRequest
-	(*CreatePostResponse)(nil),      // 5: posts.v1.CreatePostResponse
-	(*GetPostRequest)(nil),          // 6: posts.v1.GetPostRequest
-	(*GetPostResponse)(nil),         // 7: posts.v1.GetPostResponse
-	(*UpdatePostRequest)(nil),       // 8: posts.v1.UpdatePostRequest
-	(*UpdatePostResponse)(nil),      // 9: posts.v1.UpdatePostResponse
-	(*RatePostRequest)(nil),         // 10: posts.v1.RatePostRequest
-	(*RatePostResponse)(nil),        // 11: posts.v1.RatePostResponse
-	(*DeletePostRequest)(nil),       // 12: posts.v1.DeletePostRequest
-	(*DeletePostResponse)(nil),      // 13: posts.v1.DeletePostResponse
-	(*ListPostsRequest)(nil),        // 14: posts.v1.ListPostsRequest
-	(*ListPostsResponse)(nil),       // 15: posts.v1.ListPostsResponse
-	(*Rating)(nil),                  // 16: posts.v1.Rating
-	(*GetPostRatingsRequest)(nil),   // 17: posts.v1.GetPostRatingsRequest
-	(*GetPostRatingsResponse)(nil),  // 18: posts.v1.GetPostRatingsResponse
-	(*UploadPostImageRequest)(nil),  // 19: posts.v1.UploadPostImageRequest
-	(*UploadPostImageResponse)(nil), // 20: posts.v1.UploadPostImageResponse
-	(*DeletePostImageRequest)(nil),  // 21: posts.v1.DeletePostImageRequest
-	(*DeletePostImageResponse)(nil), // 22: posts.v1.DeletePostImageResponse
-	(*timestamppb.Timestamp)(nil),   // 23: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),   // 24: google.protobuf.FieldMask
+	(PostStatus)(0),                          // 0: posts.v1.PostStatus
+	(SortOrder)(0),                           // 1: posts.v1.SortOrder
+	(SortField)(0),                           // 2: posts.v1.SortField
+	(*Post)(nil),                             // 3: posts.v1.Post
+	(*CreatePostRequest)(nil),                // 4: posts.v1.CreatePostRequest
+	(*CreatePostResponse)(nil),               // 5: posts.v1.CreatePostResponse
+	(*GetPostRequest)(nil),                   // 6: posts.v1.GetPostRequest
+	(*GetPostResponse)(nil),                  // 7: posts.v1.GetPostResponse
+	(*UpdatePostRequest)(nil),                // 8: posts.v1.UpdatePostRequest
+	(*UpdatePostResponse)(nil),               // 9: posts.v1.UpdatePostResponse
+	(*RatePostRequest)(nil),                  // 10: posts.v1.RatePostRequest
+	(*RatePostResponse)(nil),                 // 11: posts.v1.RatePostResponse
+	(*DeletePostRequest)(nil),                // 12: posts.v1.DeletePostRequest
+	(*DeletePostResponse)(nil),               // 13: posts.v1.DeletePostResponse
+	(*ListPostsRequest)(nil),                 // 14: posts.v1.ListPostsRequest
+	(*ListPostsResponse)(nil),                // 15: posts.v1.ListPostsResponse
+	(*Rating)(nil),                           // 16: posts.v1.Rating
+	(*GetPostRatingsRequest)(nil),            // 17: posts.v1.GetPostRatingsRequest
+	(*GetPostRatingsResponse)(nil),           // 18: posts.v1.GetPostRatingsResponse
+	(*UploadPostImageRequest)(nil),           // 19: posts.v1.UploadPostImageRequest
+	(*UploadPostImageResponse)(nil),          // 20: posts.v1.UploadPostImageResponse
+	(*DeletePostImageRequest)(nil),           // 21: posts.v1.DeletePostImageRequest
+	(*DeletePostImageResponse)(nil),          // 22: posts.v1.DeletePostImageResponse
+	(*AddInterestingPostRequest)(nil),        // 23: posts.v1.AddInterestingPostRequest
+	(*AddInterestingPostResponse)(nil),       // 24: posts.v1.AddInterestingPostResponse
+	(*RemoveInterestingPostRequest)(nil),     // 25: posts.v1.RemoveInterestingPostRequest
+	(*RemoveInterestingPostResponse)(nil),    // 26: posts.v1.RemoveInterestingPostResponse
+	(*GetInterestingUsersCountRequest)(nil),  // 27: posts.v1.GetInterestingUsersCountRequest
+	(*GetInterestingUsersCountResponse)(nil), // 28: posts.v1.GetInterestingUsersCountResponse
+	(*GetUserInterestingPostsRequest)(nil),   // 29: posts.v1.GetUserInterestingPostsRequest
+	(*GetUserInterestingPostsResponse)(nil),  // 30: posts.v1.GetUserInterestingPostsResponse
+	(*timestamppb.Timestamp)(nil),            // 31: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),            // 32: google.protobuf.FieldMask
 }
 var file_post_proto_depIdxs = []int32{
 	0,  // 0: posts.v1.Post.status:type_name -> posts.v1.PostStatus
-	23, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
-	23, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
+	31, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	31, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: posts.v1.CreatePostRequest.status:type_name -> posts.v1.PostStatus
 	3,  // 4: posts.v1.CreatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 5: posts.v1.GetPostResponse.post:type_name -> posts.v1.Post
 	3,  // 6: posts.v1.UpdatePostRequest.post:type_name -> posts.v1.Post
-	24, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
+	32, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
 	3,  // 8: posts.v1.UpdatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 9: posts.v1.RatePostResponse.post:type_name -> posts.v1.Post
 	0,  // 10: posts.v1.ListPostsRequest.status:type_name -> posts.v1.PostStatus
 	2,  // 11: posts.v1.ListPostsRequest.sort_field:type_name -> posts.v1.SortField
 	1,  // 12: posts.v1.ListPostsRequest.sort_order:type_name -> posts.v1.SortOrder
 	3,  // 13: posts.v1.ListPostsResponse.posts:type_name -> posts.v1.Post
-	23, // 14: posts.v1.Rating.created_at:type_name -> google.protobuf.Timestamp
+	31, // 14: posts.v1.Rating.created_at:type_name -> google.protobuf.Timestamp
 	16, // 15: posts.v1.GetPostRatingsResponse.ratings:type_name -> posts.v1.Rating
 	3,  // 16: posts.v1.UploadPostImageResponse.post:type_name -> posts.v1.Post
 	3,  // 17: posts.v1.DeletePostImageResponse.post:type_name -> posts.v1.Post
-	4,  // 18: posts.v1.PostService.CreatePost:input_type -> posts.v1.CreatePostRequest
-	6,  // 19: posts.v1.PostService.GetPost:input_type -> posts.v1.GetPostRequest
-	8,  // 20: posts.v1.PostService.UpdatePost:input_type -> posts.v1.UpdatePostRequest
-	12, // 21: posts.v1.PostService.DeletePost:input_type -> posts.v1.DeletePostRequest
-	10, // 22: posts.v1.PostService.RatePost:input_type -> posts.v1.RatePostRequest
-	19, // 23: posts.v1.PostService.UploadPostImage:input_type -> posts.v1.UploadPostImageRequest
-	21, // 24: posts.v1.PostService.DeletePostImage:input_type -> posts.v1.DeletePostImageRequest
-	14, // 25: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
-	17, // 26: posts.v1.PostService.GetPostRatings:input_type -> posts.v1.GetPostRatingsRequest
-	5,  // 27: posts.v1.PostService.CreatePost:output_type -> posts.v1.CreatePostResponse
-	7,  // 28: posts.v1.PostService.GetPost:output_type -> posts.v1.GetPostResponse
-	9,  // 29: posts.v1.PostService.UpdatePost:output_type -> posts.v1.UpdatePostResponse
-	13, // 30: posts.v1.PostService.DeletePost:output_type -> posts.v1.DeletePostResponse
-	11, // 31: posts.v1.PostService.RatePost:output_type -> posts.v1.RatePostResponse
-	20, // 32: posts.v1.PostService.UploadPostImage:output_type -> posts.v1.UploadPostImageResponse
-	22, // 33: posts.v1.PostService.DeletePostImage:output_type -> posts.v1.DeletePostImageResponse
-	15, // 34: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
-	18, // 35: posts.v1.PostService.GetPostRatings:output_type -> posts.v1.GetPostRatingsResponse
-	27, // [27:36] is the sub-list for method output_type
-	18, // [18:27] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	2,  // 18: posts.v1.GetUserInterestingPostsRequest.sort_field:type_name -> posts.v1.SortField
+	1,  // 19: posts.v1.GetUserInterestingPostsRequest.sort_order:type_name -> posts.v1.SortOrder
+	31, // 20: posts.v1.GetUserInterestingPostsRequest.added_from:type_name -> google.protobuf.Timestamp
+	31, // 21: posts.v1.GetUserInterestingPostsRequest.added_to:type_name -> google.protobuf.Timestamp
+	3,  // 22: posts.v1.GetUserInterestingPostsResponse.posts:type_name -> posts.v1.Post
+	4,  // 23: posts.v1.PostService.CreatePost:input_type -> posts.v1.CreatePostRequest
+	6,  // 24: posts.v1.PostService.GetPost:input_type -> posts.v1.GetPostRequest
+	8,  // 25: posts.v1.PostService.UpdatePost:input_type -> posts.v1.UpdatePostRequest
+	12, // 26: posts.v1.PostService.DeletePost:input_type -> posts.v1.DeletePostRequest
+	10, // 27: posts.v1.PostService.RatePost:input_type -> posts.v1.RatePostRequest
+	19, // 28: posts.v1.PostService.UploadPostImage:input_type -> posts.v1.UploadPostImageRequest
+	21, // 29: posts.v1.PostService.DeletePostImage:input_type -> posts.v1.DeletePostImageRequest
+	23, // 30: posts.v1.PostService.AddInterestingPost:input_type -> posts.v1.AddInterestingPostRequest
+	25, // 31: posts.v1.PostService.RemoveInterestingPost:input_type -> posts.v1.RemoveInterestingPostRequest
+	27, // 32: posts.v1.PostService.GetInterestingUsersCount:input_type -> posts.v1.GetInterestingUsersCountRequest
+	29, // 33: posts.v1.PostService.GetUserInterestingPosts:input_type -> posts.v1.GetUserInterestingPostsRequest
+	14, // 34: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
+	17, // 35: posts.v1.PostService.GetPostRatings:input_type -> posts.v1.GetPostRatingsRequest
+	5,  // 36: posts.v1.PostService.CreatePost:output_type -> posts.v1.CreatePostResponse
+	7,  // 37: posts.v1.PostService.GetPost:output_type -> posts.v1.GetPostResponse
+	9,  // 38: posts.v1.PostService.UpdatePost:output_type -> posts.v1.UpdatePostResponse
+	13, // 39: posts.v1.PostService.DeletePost:output_type -> posts.v1.DeletePostResponse
+	11, // 40: posts.v1.PostService.RatePost:output_type -> posts.v1.RatePostResponse
+	20, // 41: posts.v1.PostService.UploadPostImage:output_type -> posts.v1.UploadPostImageResponse
+	22, // 42: posts.v1.PostService.DeletePostImage:output_type -> posts.v1.DeletePostImageResponse
+	24, // 43: posts.v1.PostService.AddInterestingPost:output_type -> posts.v1.AddInterestingPostResponse
+	26, // 44: posts.v1.PostService.RemoveInterestingPost:output_type -> posts.v1.RemoveInterestingPostResponse
+	28, // 45: posts.v1.PostService.GetInterestingUsersCount:output_type -> posts.v1.GetInterestingUsersCountResponse
+	30, // 46: posts.v1.PostService.GetUserInterestingPosts:output_type -> posts.v1.GetUserInterestingPostsResponse
+	15, // 47: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
+	18, // 48: posts.v1.PostService.GetPostRatings:output_type -> posts.v1.GetPostRatingsResponse
+	36, // [36:49] is the sub-list for method output_type
+	23, // [23:36] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_post_proto_init() }
@@ -1585,7 +2083,7 @@ func file_post_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_post_proto_rawDesc), len(file_post_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   20,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
