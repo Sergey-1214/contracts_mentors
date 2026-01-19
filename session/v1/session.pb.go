@@ -1814,6 +1814,102 @@ func (x *GetSlotsByMentorResponse) GetSlots() []*Slot {
 	return nil
 }
 
+type GetMentorPaymentAmountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MentorId      string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetMentorPaymentAmountRequest) Reset() {
+	*x = GetMentorPaymentAmountRequest{}
+	mi := &file_session_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMentorPaymentAmountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMentorPaymentAmountRequest) ProtoMessage() {}
+
+func (x *GetMentorPaymentAmountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMentorPaymentAmountRequest.ProtoReflect.Descriptor instead.
+func (*GetMentorPaymentAmountRequest) Descriptor() ([]byte, []int) {
+	return file_session_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *GetMentorPaymentAmountRequest) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+type GetMentorPaymentAmountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MentorId      string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	TotalAmount   int64                  `protobuf:"varint,2,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetMentorPaymentAmountResponse) Reset() {
+	*x = GetMentorPaymentAmountResponse{}
+	mi := &file_session_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMentorPaymentAmountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMentorPaymentAmountResponse) ProtoMessage() {}
+
+func (x *GetMentorPaymentAmountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_session_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMentorPaymentAmountResponse.ProtoReflect.Descriptor instead.
+func (*GetMentorPaymentAmountResponse) Descriptor() ([]byte, []int) {
+	return file_session_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetMentorPaymentAmountResponse) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+func (x *GetMentorPaymentAmountResponse) GetTotalAmount() int64 {
+	if x != nil {
+		return x.TotalAmount
+	}
+	return 0
+}
+
 var File_session_proto protoreflect.FileDescriptor
 
 const file_session_proto_rawDesc = "" +
@@ -1964,7 +2060,12 @@ const file_session_proto_rawDesc = "" +
 	"\x17GetSlotsByMentorRequest\x12\x1b\n" +
 	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\"7\n" +
 	"\x18GetSlotsByMentorResponse\x12\x1b\n" +
-	"\x05slots\x18\x01 \x03(\v2\x05.SlotR\x05slots*t\n" +
+	"\x05slots\x18\x01 \x03(\v2\x05.SlotR\x05slots\"<\n" +
+	"\x1dGetMentorPaymentAmountRequest\x12\x1b\n" +
+	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\"`\n" +
+	"\x1eGetMentorPaymentAmountResponse\x12\x1b\n" +
+	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\x12!\n" +
+	"\ftotal_amount\x18\x02 \x01(\x03R\vtotalAmount*t\n" +
 	"\n" +
 	"SlotStatus\x12\x19\n" +
 	"\x15SLOT_STATUS_AVAILABLE\x10\x00\x12\x16\n" +
@@ -1975,7 +2076,7 @@ const file_session_proto_rawDesc = "" +
 	"\x16PAYMENT_STATUS_PENDING\x10\x00\x12\x1c\n" +
 	"\x18PAYMENT_STATUS_COMPLETED\x10\x01\x12\x19\n" +
 	"\x15PAYMENT_STATUS_FAILED\x10\x02\x12\x1e\n" +
-	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x032\xc5\x06\n" +
+	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x032\xa0\a\n" +
 	"\x11MentorshipService\x125\n" +
 	"\n" +
 	"CreateSlot\x12\x12.CreateSlotRequest\x1a\x13.CreateSlotResponse\x12,\n" +
@@ -1993,7 +2094,8 @@ const file_session_proto_rawDesc = "" +
 	"\x15ListSessionsByStudent\x12\x1d.ListSessionsByStudentRequest\x1a\x15.ListSessionsResponse\x12G\n" +
 	"\x10UpdateSlotStatus\x12\x18.UpdateSlotStatusRequest\x1a\x19.UpdateSlotStatusResponse\x128\n" +
 	"\vRateSession\x12\x13.RateSessionRequest\x1a\x14.RateSessionResponse\x12G\n" +
-	"\x10GetSlotsByMentor\x12\x18.GetSlotsByMentorRequest\x1a\x19.GetSlotsByMentorResponseB?Z=github.com/Sergey-1214/contracts_mentors/session/v1;sessionv1b\x06proto3"
+	"\x10GetSlotsByMentor\x12\x18.GetSlotsByMentorRequest\x1a\x19.GetSlotsByMentorResponse\x12Y\n" +
+	"\x16GetMentorPaymentAmount\x12\x1e.GetMentorPaymentAmountRequest\x1a\x1f.GetMentorPaymentAmountResponseB?Z=github.com/Sergey-1214/contracts_mentors/session/v1;sessionv1b\x06proto3"
 
 var (
 	file_session_proto_rawDescOnce sync.Once
@@ -2008,60 +2110,62 @@ func file_session_proto_rawDescGZIP() []byte {
 }
 
 var file_session_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_session_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_session_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_session_proto_goTypes = []any{
-	(SlotStatus)(0),                       // 0: SlotStatus
-	(PaymentStatus)(0),                    // 1: PaymentStatus
-	(*Slot)(nil),                          // 2: Slot
-	(*CreateSlotRequest)(nil),             // 3: CreateSlotRequest
-	(*CreateSlotResponse)(nil),            // 4: CreateSlotResponse
-	(*GetSlotRequest)(nil),                // 5: GetSlotRequest
-	(*GetSlotResponse)(nil),               // 6: GetSlotResponse
-	(*UpdateSlotRequest)(nil),             // 7: UpdateSlotRequest
-	(*UpdateSlotResponse)(nil),            // 8: UpdateSlotResponse
-	(*DeleteSlotRequest)(nil),             // 9: DeleteSlotRequest
-	(*DeleteSlotResponse)(nil),            // 10: DeleteSlotResponse
-	(*CreateSessionRequest)(nil),          // 11: CreateSessionRequest
-	(*CreateSessionResponse)(nil),         // 12: CreateSessionResponse
-	(*GetSessionRequest)(nil),             // 13: GetSessionRequest
-	(*GetSessionResponse)(nil),            // 14: GetSessionResponse
-	(*UpdateSessionRequest)(nil),          // 15: UpdateSessionRequest
-	(*UpdateSessionResponse)(nil),         // 16: UpdateSessionResponse
-	(*DeleteSessionRequest)(nil),          // 17: DeleteSessionRequest
-	(*DeleteSessionResponse)(nil),         // 18: DeleteSessionResponse
-	(*ListSessionsByMentorRequest)(nil),   // 19: ListSessionsByMentorRequest
-	(*ListSessionsResponse)(nil),          // 20: ListSessionsResponse
-	(*Session)(nil),                       // 21: Session
-	(*ListSessionsByStudentRequest)(nil),  // 22: ListSessionsByStudentRequest
-	(*ListSessionsByStudentResponse)(nil), // 23: ListSessionsByStudentResponse
-	(*UpdateSlotStatusRequest)(nil),       // 24: UpdateSlotStatusRequest
-	(*UpdateSlotStatusResponse)(nil),      // 25: UpdateSlotStatusResponse
-	(*RateSessionRequest)(nil),            // 26: RateSessionRequest
-	(*RateSessionResponse)(nil),           // 27: RateSessionResponse
-	(*GetSlotsByMentorRequest)(nil),       // 28: GetSlotsByMentorRequest
-	(*GetSlotsByMentorResponse)(nil),      // 29: GetSlotsByMentorResponse
-	(*timestamppb.Timestamp)(nil),         // 30: google.protobuf.Timestamp
+	(SlotStatus)(0),                        // 0: SlotStatus
+	(PaymentStatus)(0),                     // 1: PaymentStatus
+	(*Slot)(nil),                           // 2: Slot
+	(*CreateSlotRequest)(nil),              // 3: CreateSlotRequest
+	(*CreateSlotResponse)(nil),             // 4: CreateSlotResponse
+	(*GetSlotRequest)(nil),                 // 5: GetSlotRequest
+	(*GetSlotResponse)(nil),                // 6: GetSlotResponse
+	(*UpdateSlotRequest)(nil),              // 7: UpdateSlotRequest
+	(*UpdateSlotResponse)(nil),             // 8: UpdateSlotResponse
+	(*DeleteSlotRequest)(nil),              // 9: DeleteSlotRequest
+	(*DeleteSlotResponse)(nil),             // 10: DeleteSlotResponse
+	(*CreateSessionRequest)(nil),           // 11: CreateSessionRequest
+	(*CreateSessionResponse)(nil),          // 12: CreateSessionResponse
+	(*GetSessionRequest)(nil),              // 13: GetSessionRequest
+	(*GetSessionResponse)(nil),             // 14: GetSessionResponse
+	(*UpdateSessionRequest)(nil),           // 15: UpdateSessionRequest
+	(*UpdateSessionResponse)(nil),          // 16: UpdateSessionResponse
+	(*DeleteSessionRequest)(nil),           // 17: DeleteSessionRequest
+	(*DeleteSessionResponse)(nil),          // 18: DeleteSessionResponse
+	(*ListSessionsByMentorRequest)(nil),    // 19: ListSessionsByMentorRequest
+	(*ListSessionsResponse)(nil),           // 20: ListSessionsResponse
+	(*Session)(nil),                        // 21: Session
+	(*ListSessionsByStudentRequest)(nil),   // 22: ListSessionsByStudentRequest
+	(*ListSessionsByStudentResponse)(nil),  // 23: ListSessionsByStudentResponse
+	(*UpdateSlotStatusRequest)(nil),        // 24: UpdateSlotStatusRequest
+	(*UpdateSlotStatusResponse)(nil),       // 25: UpdateSlotStatusResponse
+	(*RateSessionRequest)(nil),             // 26: RateSessionRequest
+	(*RateSessionResponse)(nil),            // 27: RateSessionResponse
+	(*GetSlotsByMentorRequest)(nil),        // 28: GetSlotsByMentorRequest
+	(*GetSlotsByMentorResponse)(nil),       // 29: GetSlotsByMentorResponse
+	(*GetMentorPaymentAmountRequest)(nil),  // 30: GetMentorPaymentAmountRequest
+	(*GetMentorPaymentAmountResponse)(nil), // 31: GetMentorPaymentAmountResponse
+	(*timestamppb.Timestamp)(nil),          // 32: google.protobuf.Timestamp
 }
 var file_session_proto_depIdxs = []int32{
-	30, // 0: Slot.start_time:type_name -> google.protobuf.Timestamp
+	32, // 0: Slot.start_time:type_name -> google.protobuf.Timestamp
 	0,  // 1: Slot.status:type_name -> SlotStatus
-	30, // 2: Slot.created_at:type_name -> google.protobuf.Timestamp
-	30, // 3: Slot.updated_at:type_name -> google.protobuf.Timestamp
-	30, // 4: CreateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
+	32, // 2: Slot.created_at:type_name -> google.protobuf.Timestamp
+	32, // 3: Slot.updated_at:type_name -> google.protobuf.Timestamp
+	32, // 4: CreateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
 	0,  // 5: CreateSlotRequest.status:type_name -> SlotStatus
-	30, // 6: GetSlotResponse.start_time:type_name -> google.protobuf.Timestamp
+	32, // 6: GetSlotResponse.start_time:type_name -> google.protobuf.Timestamp
 	0,  // 7: GetSlotResponse.status:type_name -> SlotStatus
-	30, // 8: UpdateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
+	32, // 8: UpdateSlotRequest.start_time:type_name -> google.protobuf.Timestamp
 	0,  // 9: UpdateSlotRequest.status:type_name -> SlotStatus
 	1,  // 10: CreateSessionRequest.payment_status:type_name -> PaymentStatus
 	1,  // 11: GetSessionResponse.payment_status:type_name -> PaymentStatus
-	30, // 12: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
-	30, // 13: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
+	32, // 12: GetSessionResponse.created_at:type_name -> google.protobuf.Timestamp
+	32, // 13: GetSessionResponse.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 14: UpdateSessionRequest.payment_status:type_name -> PaymentStatus
 	21, // 15: ListSessionsResponse.sessions:type_name -> Session
 	1,  // 16: Session.payment_status:type_name -> PaymentStatus
-	30, // 17: Session.created_at:type_name -> google.protobuf.Timestamp
-	30, // 18: Session.updated_at:type_name -> google.protobuf.Timestamp
+	32, // 17: Session.created_at:type_name -> google.protobuf.Timestamp
+	32, // 18: Session.updated_at:type_name -> google.protobuf.Timestamp
 	21, // 19: ListSessionsByStudentResponse.sessions:type_name -> Session
 	0,  // 20: UpdateSlotStatusRequest.status:type_name -> SlotStatus
 	2,  // 21: GetSlotsByMentorResponse.slots:type_name -> Slot
@@ -2078,21 +2182,23 @@ var file_session_proto_depIdxs = []int32{
 	24, // 32: MentorshipService.UpdateSlotStatus:input_type -> UpdateSlotStatusRequest
 	26, // 33: MentorshipService.RateSession:input_type -> RateSessionRequest
 	28, // 34: MentorshipService.GetSlotsByMentor:input_type -> GetSlotsByMentorRequest
-	4,  // 35: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
-	6,  // 36: MentorshipService.GetSlot:output_type -> GetSlotResponse
-	8,  // 37: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
-	10, // 38: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
-	12, // 39: MentorshipService.CreateSession:output_type -> CreateSessionResponse
-	14, // 40: MentorshipService.GetSession:output_type -> GetSessionResponse
-	16, // 41: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
-	18, // 42: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
-	20, // 43: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
-	20, // 44: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
-	25, // 45: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
-	27, // 46: MentorshipService.RateSession:output_type -> RateSessionResponse
-	29, // 47: MentorshipService.GetSlotsByMentor:output_type -> GetSlotsByMentorResponse
-	35, // [35:48] is the sub-list for method output_type
-	22, // [22:35] is the sub-list for method input_type
+	30, // 35: MentorshipService.GetMentorPaymentAmount:input_type -> GetMentorPaymentAmountRequest
+	4,  // 36: MentorshipService.CreateSlot:output_type -> CreateSlotResponse
+	6,  // 37: MentorshipService.GetSlot:output_type -> GetSlotResponse
+	8,  // 38: MentorshipService.UpdateSlot:output_type -> UpdateSlotResponse
+	10, // 39: MentorshipService.DeleteSlot:output_type -> DeleteSlotResponse
+	12, // 40: MentorshipService.CreateSession:output_type -> CreateSessionResponse
+	14, // 41: MentorshipService.GetSession:output_type -> GetSessionResponse
+	16, // 42: MentorshipService.UpdateSession:output_type -> UpdateSessionResponse
+	18, // 43: MentorshipService.DeleteSession:output_type -> DeleteSessionResponse
+	20, // 44: MentorshipService.ListSessionsByMentor:output_type -> ListSessionsResponse
+	20, // 45: MentorshipService.ListSessionsByStudent:output_type -> ListSessionsResponse
+	25, // 46: MentorshipService.UpdateSlotStatus:output_type -> UpdateSlotStatusResponse
+	27, // 47: MentorshipService.RateSession:output_type -> RateSessionResponse
+	29, // 48: MentorshipService.GetSlotsByMentor:output_type -> GetSlotsByMentorResponse
+	31, // 49: MentorshipService.GetMentorPaymentAmount:output_type -> GetMentorPaymentAmountResponse
+	36, // [36:50] is the sub-list for method output_type
+	22, // [22:36] is the sub-list for method input_type
 	22, // [22:22] is the sub-list for extension type_name
 	22, // [22:22] is the sub-list for extension extendee
 	0,  // [0:22] is the sub-list for field type_name
@@ -2111,7 +2217,7 @@ func file_session_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_session_proto_rawDesc), len(file_session_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

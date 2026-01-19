@@ -19,19 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MentorshipService_CreateSlot_FullMethodName            = "/MentorshipService/CreateSlot"
-	MentorshipService_GetSlot_FullMethodName               = "/MentorshipService/GetSlot"
-	MentorshipService_UpdateSlot_FullMethodName            = "/MentorshipService/UpdateSlot"
-	MentorshipService_DeleteSlot_FullMethodName            = "/MentorshipService/DeleteSlot"
-	MentorshipService_CreateSession_FullMethodName         = "/MentorshipService/CreateSession"
-	MentorshipService_GetSession_FullMethodName            = "/MentorshipService/GetSession"
-	MentorshipService_UpdateSession_FullMethodName         = "/MentorshipService/UpdateSession"
-	MentorshipService_DeleteSession_FullMethodName         = "/MentorshipService/DeleteSession"
-	MentorshipService_ListSessionsByMentor_FullMethodName  = "/MentorshipService/ListSessionsByMentor"
-	MentorshipService_ListSessionsByStudent_FullMethodName = "/MentorshipService/ListSessionsByStudent"
-	MentorshipService_UpdateSlotStatus_FullMethodName      = "/MentorshipService/UpdateSlotStatus"
-	MentorshipService_RateSession_FullMethodName           = "/MentorshipService/RateSession"
-	MentorshipService_GetSlotsByMentor_FullMethodName      = "/MentorshipService/GetSlotsByMentor"
+	MentorshipService_CreateSlot_FullMethodName             = "/MentorshipService/CreateSlot"
+	MentorshipService_GetSlot_FullMethodName                = "/MentorshipService/GetSlot"
+	MentorshipService_UpdateSlot_FullMethodName             = "/MentorshipService/UpdateSlot"
+	MentorshipService_DeleteSlot_FullMethodName             = "/MentorshipService/DeleteSlot"
+	MentorshipService_CreateSession_FullMethodName          = "/MentorshipService/CreateSession"
+	MentorshipService_GetSession_FullMethodName             = "/MentorshipService/GetSession"
+	MentorshipService_UpdateSession_FullMethodName          = "/MentorshipService/UpdateSession"
+	MentorshipService_DeleteSession_FullMethodName          = "/MentorshipService/DeleteSession"
+	MentorshipService_ListSessionsByMentor_FullMethodName   = "/MentorshipService/ListSessionsByMentor"
+	MentorshipService_ListSessionsByStudent_FullMethodName  = "/MentorshipService/ListSessionsByStudent"
+	MentorshipService_UpdateSlotStatus_FullMethodName       = "/MentorshipService/UpdateSlotStatus"
+	MentorshipService_RateSession_FullMethodName            = "/MentorshipService/RateSession"
+	MentorshipService_GetSlotsByMentor_FullMethodName       = "/MentorshipService/GetSlotsByMentor"
+	MentorshipService_GetMentorPaymentAmount_FullMethodName = "/MentorshipService/GetMentorPaymentAmount"
 )
 
 // MentorshipServiceClient is the client API for MentorshipService service.
@@ -51,6 +52,7 @@ type MentorshipServiceClient interface {
 	UpdateSlotStatus(ctx context.Context, in *UpdateSlotStatusRequest, opts ...grpc.CallOption) (*UpdateSlotStatusResponse, error)
 	RateSession(ctx context.Context, in *RateSessionRequest, opts ...grpc.CallOption) (*RateSessionResponse, error)
 	GetSlotsByMentor(ctx context.Context, in *GetSlotsByMentorRequest, opts ...grpc.CallOption) (*GetSlotsByMentorResponse, error)
+	GetMentorPaymentAmount(ctx context.Context, in *GetMentorPaymentAmountRequest, opts ...grpc.CallOption) (*GetMentorPaymentAmountResponse, error)
 }
 
 type mentorshipServiceClient struct {
@@ -191,6 +193,16 @@ func (c *mentorshipServiceClient) GetSlotsByMentor(ctx context.Context, in *GetS
 	return out, nil
 }
 
+func (c *mentorshipServiceClient) GetMentorPaymentAmount(ctx context.Context, in *GetMentorPaymentAmountRequest, opts ...grpc.CallOption) (*GetMentorPaymentAmountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMentorPaymentAmountResponse)
+	err := c.cc.Invoke(ctx, MentorshipService_GetMentorPaymentAmount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MentorshipServiceServer is the server API for MentorshipService service.
 // All implementations must embed UnimplementedMentorshipServiceServer
 // for forward compatibility.
@@ -208,6 +220,7 @@ type MentorshipServiceServer interface {
 	UpdateSlotStatus(context.Context, *UpdateSlotStatusRequest) (*UpdateSlotStatusResponse, error)
 	RateSession(context.Context, *RateSessionRequest) (*RateSessionResponse, error)
 	GetSlotsByMentor(context.Context, *GetSlotsByMentorRequest) (*GetSlotsByMentorResponse, error)
+	GetMentorPaymentAmount(context.Context, *GetMentorPaymentAmountRequest) (*GetMentorPaymentAmountResponse, error)
 	mustEmbedUnimplementedMentorshipServiceServer()
 }
 
@@ -256,6 +269,9 @@ func (UnimplementedMentorshipServiceServer) RateSession(context.Context, *RateSe
 }
 func (UnimplementedMentorshipServiceServer) GetSlotsByMentor(context.Context, *GetSlotsByMentorRequest) (*GetSlotsByMentorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSlotsByMentor not implemented")
+}
+func (UnimplementedMentorshipServiceServer) GetMentorPaymentAmount(context.Context, *GetMentorPaymentAmountRequest) (*GetMentorPaymentAmountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMentorPaymentAmount not implemented")
 }
 func (UnimplementedMentorshipServiceServer) mustEmbedUnimplementedMentorshipServiceServer() {}
 func (UnimplementedMentorshipServiceServer) testEmbeddedByValue()                           {}
@@ -512,6 +528,24 @@ func _MentorshipService_GetSlotsByMentor_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MentorshipService_GetMentorPaymentAmount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMentorPaymentAmountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MentorshipServiceServer).GetMentorPaymentAmount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MentorshipService_GetMentorPaymentAmount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MentorshipServiceServer).GetMentorPaymentAmount(ctx, req.(*GetMentorPaymentAmountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MentorshipService_ServiceDesc is the grpc.ServiceDesc for MentorshipService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +604,10 @@ var MentorshipService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSlotsByMentor",
 			Handler:    _MentorshipService_GetSlotsByMentor_Handler,
+		},
+		{
+			MethodName: "GetMentorPaymentAmount",
+			Handler:    _MentorshipService_GetMentorPaymentAmount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

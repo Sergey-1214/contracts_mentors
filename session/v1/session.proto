@@ -20,6 +20,7 @@ service MentorshipService {
     rpc UpdateSlotStatus(UpdateSlotStatusRequest) returns (UpdateSlotStatusResponse);
     rpc RateSession(RateSessionRequest) returns (RateSessionResponse);
     rpc GetSlotsByMentor(GetSlotsByMentorRequest) returns (GetSlotsByMentorResponse);
+    rpc GetMentorPaymentAmount(GetMentorPaymentAmountRequest) returns (GetMentorPaymentAmountResponse);
 }
 
 enum SlotStatus {
@@ -203,4 +204,13 @@ message GetSlotsByMentorRequest {
 
 message GetSlotsByMentorResponse {
     repeated Slot slots = 1;
+}
+
+message GetMentorPaymentAmountRequest {
+  string mentor_id = 1;
+}
+
+message GetMentorPaymentAmountResponse {
+  string mentor_id = 1;
+  int64 total_amount = 2;                
 }
