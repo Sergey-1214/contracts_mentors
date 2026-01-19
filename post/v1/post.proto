@@ -207,6 +207,16 @@ message GetUserInterestingPostsResponse {
   int32 total_count = 3;               
 }
 
+message GetUsersFavoritedMentorPostsRequest {
+  string mentor_id = 1; 
+}
+
+
+message GetUsersFavoritedMentorPostsResponse {
+  string mentor_id = 1;        
+  int64 users_count = 2;       
+}
+
 // -----------------------------------------------------------------------------
 // SERVICE
 // -----------------------------------------------------------------------------
@@ -224,6 +234,7 @@ service PostService {
   rpc RemoveInterestingPost(RemoveInterestingPostRequest) returns (RemoveInterestingPostResponse);
   rpc GetInterestingUsersCount(GetInterestingUsersCountRequest) returns (GetInterestingUsersCountResponse);
   rpc GetUserInterestingPosts(GetUserInterestingPostsRequest) returns (GetUserInterestingPostsResponse);
+  rpc GetUsersFavoritedMentorPosts(GetUsersFavoritedMentorPostsRequest) returns (GetUsersFavoritedMentorPostsResponse);
   // Listing
   rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);
   rpc GetPostRatings(GetPostRatingsRequest) returns (GetPostRatingsResponse);

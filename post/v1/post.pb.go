@@ -1803,6 +1803,102 @@ func (x *GetUserInterestingPostsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+type GetUsersFavoritedMentorPostsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MentorId      string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUsersFavoritedMentorPostsRequest) Reset() {
+	*x = GetUsersFavoritedMentorPostsRequest{}
+	mi := &file_post_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUsersFavoritedMentorPostsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUsersFavoritedMentorPostsRequest) ProtoMessage() {}
+
+func (x *GetUsersFavoritedMentorPostsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUsersFavoritedMentorPostsRequest.ProtoReflect.Descriptor instead.
+func (*GetUsersFavoritedMentorPostsRequest) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *GetUsersFavoritedMentorPostsRequest) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+type GetUsersFavoritedMentorPostsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MentorId      string                 `protobuf:"bytes,1,opt,name=mentor_id,json=mentorId,proto3" json:"mentor_id,omitempty"`
+	UsersCount    int64                  `protobuf:"varint,2,opt,name=users_count,json=usersCount,proto3" json:"users_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUsersFavoritedMentorPostsResponse) Reset() {
+	*x = GetUsersFavoritedMentorPostsResponse{}
+	mi := &file_post_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUsersFavoritedMentorPostsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUsersFavoritedMentorPostsResponse) ProtoMessage() {}
+
+func (x *GetUsersFavoritedMentorPostsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_post_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUsersFavoritedMentorPostsResponse.ProtoReflect.Descriptor instead.
+func (*GetUsersFavoritedMentorPostsResponse) Descriptor() ([]byte, []int) {
+	return file_post_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetUsersFavoritedMentorPostsResponse) GetMentorId() string {
+	if x != nil {
+		return x.MentorId
+	}
+	return ""
+}
+
+func (x *GetUsersFavoritedMentorPostsResponse) GetUsersCount() int64 {
+	if x != nil {
+		return x.UsersCount
+	}
+	return 0
+}
+
 var File_post_proto protoreflect.FileDescriptor
 
 const file_post_proto_rawDesc = "" +
@@ -1931,7 +2027,13 @@ const file_post_proto_rawDesc = "" +
 	"\x05posts\x18\x01 \x03(\v2\x0e.posts.v1.PostR\x05posts\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1f\n" +
 	"\vtotal_count\x18\x03 \x01(\x05R\n" +
-	"totalCount*4\n" +
+	"totalCount\"B\n" +
+	"#GetUsersFavoritedMentorPostsRequest\x12\x1b\n" +
+	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\"d\n" +
+	"$GetUsersFavoritedMentorPostsResponse\x12\x1b\n" +
+	"\tmentor_id\x18\x01 \x01(\tR\bmentorId\x12\x1f\n" +
+	"\vusers_count\x18\x02 \x01(\x03R\n" +
+	"usersCount*4\n" +
 	"\n" +
 	"PostStatus\x12\t\n" +
 	"\x05DRAFT\x10\x00\x12\r\n" +
@@ -1947,7 +2049,7 @@ const file_post_proto_rawDesc = "" +
 	"CREATED_AT\x10\x01\x12\x0e\n" +
 	"\n" +
 	"UPDATED_AT\x10\x02\x12\t\n" +
-	"\x05TITLE\x10\x032\xe4\b\n" +
+	"\x05TITLE\x10\x032\xe3\t\n" +
 	"\vPostService\x12G\n" +
 	"\n" +
 	"CreatePost\x12\x1b.posts.v1.CreatePostRequest\x1a\x1c.posts.v1.CreatePostResponse\x12>\n" +
@@ -1962,7 +2064,8 @@ const file_post_proto_rawDesc = "" +
 	"\x12AddInterestingPost\x12#.posts.v1.AddInterestingPostRequest\x1a$.posts.v1.AddInterestingPostResponse\x12h\n" +
 	"\x15RemoveInterestingPost\x12&.posts.v1.RemoveInterestingPostRequest\x1a'.posts.v1.RemoveInterestingPostResponse\x12q\n" +
 	"\x18GetInterestingUsersCount\x12).posts.v1.GetInterestingUsersCountRequest\x1a*.posts.v1.GetInterestingUsersCountResponse\x12n\n" +
-	"\x17GetUserInterestingPosts\x12(.posts.v1.GetUserInterestingPostsRequest\x1a).posts.v1.GetUserInterestingPostsResponse\x12D\n" +
+	"\x17GetUserInterestingPosts\x12(.posts.v1.GetUserInterestingPostsRequest\x1a).posts.v1.GetUserInterestingPostsResponse\x12}\n" +
+	"\x1cGetUsersFavoritedMentorPosts\x12-.posts.v1.GetUsersFavoritedMentorPostsRequest\x1a..posts.v1.GetUsersFavoritedMentorPostsResponse\x12D\n" +
 	"\tListPosts\x12\x1a.posts.v1.ListPostsRequest\x1a\x1b.posts.v1.ListPostsResponse\x12S\n" +
 	"\x0eGetPostRatings\x12\x1f.posts.v1.GetPostRatingsRequest\x1a .posts.v1.GetPostRatingsResponseB:Z8github.com/Sergey-1214/contracts_mentors/post/v1;postsv1b\x06proto3"
 
@@ -1979,65 +2082,67 @@ func file_post_proto_rawDescGZIP() []byte {
 }
 
 var file_post_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_post_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_post_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_post_proto_goTypes = []any{
-	(PostStatus)(0),                          // 0: posts.v1.PostStatus
-	(SortOrder)(0),                           // 1: posts.v1.SortOrder
-	(SortField)(0),                           // 2: posts.v1.SortField
-	(*Post)(nil),                             // 3: posts.v1.Post
-	(*CreatePostRequest)(nil),                // 4: posts.v1.CreatePostRequest
-	(*CreatePostResponse)(nil),               // 5: posts.v1.CreatePostResponse
-	(*GetPostRequest)(nil),                   // 6: posts.v1.GetPostRequest
-	(*GetPostResponse)(nil),                  // 7: posts.v1.GetPostResponse
-	(*UpdatePostRequest)(nil),                // 8: posts.v1.UpdatePostRequest
-	(*UpdatePostResponse)(nil),               // 9: posts.v1.UpdatePostResponse
-	(*RatePostRequest)(nil),                  // 10: posts.v1.RatePostRequest
-	(*RatePostResponse)(nil),                 // 11: posts.v1.RatePostResponse
-	(*DeletePostRequest)(nil),                // 12: posts.v1.DeletePostRequest
-	(*DeletePostResponse)(nil),               // 13: posts.v1.DeletePostResponse
-	(*ListPostsRequest)(nil),                 // 14: posts.v1.ListPostsRequest
-	(*ListPostsResponse)(nil),                // 15: posts.v1.ListPostsResponse
-	(*Rating)(nil),                           // 16: posts.v1.Rating
-	(*GetPostRatingsRequest)(nil),            // 17: posts.v1.GetPostRatingsRequest
-	(*GetPostRatingsResponse)(nil),           // 18: posts.v1.GetPostRatingsResponse
-	(*UploadPostImageRequest)(nil),           // 19: posts.v1.UploadPostImageRequest
-	(*UploadPostImageResponse)(nil),          // 20: posts.v1.UploadPostImageResponse
-	(*DeletePostImageRequest)(nil),           // 21: posts.v1.DeletePostImageRequest
-	(*DeletePostImageResponse)(nil),          // 22: posts.v1.DeletePostImageResponse
-	(*AddInterestingPostRequest)(nil),        // 23: posts.v1.AddInterestingPostRequest
-	(*AddInterestingPostResponse)(nil),       // 24: posts.v1.AddInterestingPostResponse
-	(*RemoveInterestingPostRequest)(nil),     // 25: posts.v1.RemoveInterestingPostRequest
-	(*RemoveInterestingPostResponse)(nil),    // 26: posts.v1.RemoveInterestingPostResponse
-	(*GetInterestingUsersCountRequest)(nil),  // 27: posts.v1.GetInterestingUsersCountRequest
-	(*GetInterestingUsersCountResponse)(nil), // 28: posts.v1.GetInterestingUsersCountResponse
-	(*GetUserInterestingPostsRequest)(nil),   // 29: posts.v1.GetUserInterestingPostsRequest
-	(*GetUserInterestingPostsResponse)(nil),  // 30: posts.v1.GetUserInterestingPostsResponse
-	(*timestamppb.Timestamp)(nil),            // 31: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),            // 32: google.protobuf.FieldMask
+	(PostStatus)(0),                              // 0: posts.v1.PostStatus
+	(SortOrder)(0),                               // 1: posts.v1.SortOrder
+	(SortField)(0),                               // 2: posts.v1.SortField
+	(*Post)(nil),                                 // 3: posts.v1.Post
+	(*CreatePostRequest)(nil),                    // 4: posts.v1.CreatePostRequest
+	(*CreatePostResponse)(nil),                   // 5: posts.v1.CreatePostResponse
+	(*GetPostRequest)(nil),                       // 6: posts.v1.GetPostRequest
+	(*GetPostResponse)(nil),                      // 7: posts.v1.GetPostResponse
+	(*UpdatePostRequest)(nil),                    // 8: posts.v1.UpdatePostRequest
+	(*UpdatePostResponse)(nil),                   // 9: posts.v1.UpdatePostResponse
+	(*RatePostRequest)(nil),                      // 10: posts.v1.RatePostRequest
+	(*RatePostResponse)(nil),                     // 11: posts.v1.RatePostResponse
+	(*DeletePostRequest)(nil),                    // 12: posts.v1.DeletePostRequest
+	(*DeletePostResponse)(nil),                   // 13: posts.v1.DeletePostResponse
+	(*ListPostsRequest)(nil),                     // 14: posts.v1.ListPostsRequest
+	(*ListPostsResponse)(nil),                    // 15: posts.v1.ListPostsResponse
+	(*Rating)(nil),                               // 16: posts.v1.Rating
+	(*GetPostRatingsRequest)(nil),                // 17: posts.v1.GetPostRatingsRequest
+	(*GetPostRatingsResponse)(nil),               // 18: posts.v1.GetPostRatingsResponse
+	(*UploadPostImageRequest)(nil),               // 19: posts.v1.UploadPostImageRequest
+	(*UploadPostImageResponse)(nil),              // 20: posts.v1.UploadPostImageResponse
+	(*DeletePostImageRequest)(nil),               // 21: posts.v1.DeletePostImageRequest
+	(*DeletePostImageResponse)(nil),              // 22: posts.v1.DeletePostImageResponse
+	(*AddInterestingPostRequest)(nil),            // 23: posts.v1.AddInterestingPostRequest
+	(*AddInterestingPostResponse)(nil),           // 24: posts.v1.AddInterestingPostResponse
+	(*RemoveInterestingPostRequest)(nil),         // 25: posts.v1.RemoveInterestingPostRequest
+	(*RemoveInterestingPostResponse)(nil),        // 26: posts.v1.RemoveInterestingPostResponse
+	(*GetInterestingUsersCountRequest)(nil),      // 27: posts.v1.GetInterestingUsersCountRequest
+	(*GetInterestingUsersCountResponse)(nil),     // 28: posts.v1.GetInterestingUsersCountResponse
+	(*GetUserInterestingPostsRequest)(nil),       // 29: posts.v1.GetUserInterestingPostsRequest
+	(*GetUserInterestingPostsResponse)(nil),      // 30: posts.v1.GetUserInterestingPostsResponse
+	(*GetUsersFavoritedMentorPostsRequest)(nil),  // 31: posts.v1.GetUsersFavoritedMentorPostsRequest
+	(*GetUsersFavoritedMentorPostsResponse)(nil), // 32: posts.v1.GetUsersFavoritedMentorPostsResponse
+	(*timestamppb.Timestamp)(nil),                // 33: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),                // 34: google.protobuf.FieldMask
 }
 var file_post_proto_depIdxs = []int32{
 	0,  // 0: posts.v1.Post.status:type_name -> posts.v1.PostStatus
-	31, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
-	31, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
+	33, // 1: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	33, // 2: posts.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: posts.v1.CreatePostRequest.status:type_name -> posts.v1.PostStatus
 	3,  // 4: posts.v1.CreatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 5: posts.v1.GetPostResponse.post:type_name -> posts.v1.Post
 	3,  // 6: posts.v1.UpdatePostRequest.post:type_name -> posts.v1.Post
-	32, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
+	34, // 7: posts.v1.UpdatePostRequest.update_mask:type_name -> google.protobuf.FieldMask
 	3,  // 8: posts.v1.UpdatePostResponse.post:type_name -> posts.v1.Post
 	3,  // 9: posts.v1.RatePostResponse.post:type_name -> posts.v1.Post
 	0,  // 10: posts.v1.ListPostsRequest.status:type_name -> posts.v1.PostStatus
 	2,  // 11: posts.v1.ListPostsRequest.sort_field:type_name -> posts.v1.SortField
 	1,  // 12: posts.v1.ListPostsRequest.sort_order:type_name -> posts.v1.SortOrder
 	3,  // 13: posts.v1.ListPostsResponse.posts:type_name -> posts.v1.Post
-	31, // 14: posts.v1.Rating.created_at:type_name -> google.protobuf.Timestamp
+	33, // 14: posts.v1.Rating.created_at:type_name -> google.protobuf.Timestamp
 	16, // 15: posts.v1.GetPostRatingsResponse.ratings:type_name -> posts.v1.Rating
 	3,  // 16: posts.v1.UploadPostImageResponse.post:type_name -> posts.v1.Post
 	3,  // 17: posts.v1.DeletePostImageResponse.post:type_name -> posts.v1.Post
 	2,  // 18: posts.v1.GetUserInterestingPostsRequest.sort_field:type_name -> posts.v1.SortField
 	1,  // 19: posts.v1.GetUserInterestingPostsRequest.sort_order:type_name -> posts.v1.SortOrder
-	31, // 20: posts.v1.GetUserInterestingPostsRequest.added_from:type_name -> google.protobuf.Timestamp
-	31, // 21: posts.v1.GetUserInterestingPostsRequest.added_to:type_name -> google.protobuf.Timestamp
+	33, // 20: posts.v1.GetUserInterestingPostsRequest.added_from:type_name -> google.protobuf.Timestamp
+	33, // 21: posts.v1.GetUserInterestingPostsRequest.added_to:type_name -> google.protobuf.Timestamp
 	3,  // 22: posts.v1.GetUserInterestingPostsResponse.posts:type_name -> posts.v1.Post
 	4,  // 23: posts.v1.PostService.CreatePost:input_type -> posts.v1.CreatePostRequest
 	6,  // 24: posts.v1.PostService.GetPost:input_type -> posts.v1.GetPostRequest
@@ -2050,23 +2155,25 @@ var file_post_proto_depIdxs = []int32{
 	25, // 31: posts.v1.PostService.RemoveInterestingPost:input_type -> posts.v1.RemoveInterestingPostRequest
 	27, // 32: posts.v1.PostService.GetInterestingUsersCount:input_type -> posts.v1.GetInterestingUsersCountRequest
 	29, // 33: posts.v1.PostService.GetUserInterestingPosts:input_type -> posts.v1.GetUserInterestingPostsRequest
-	14, // 34: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
-	17, // 35: posts.v1.PostService.GetPostRatings:input_type -> posts.v1.GetPostRatingsRequest
-	5,  // 36: posts.v1.PostService.CreatePost:output_type -> posts.v1.CreatePostResponse
-	7,  // 37: posts.v1.PostService.GetPost:output_type -> posts.v1.GetPostResponse
-	9,  // 38: posts.v1.PostService.UpdatePost:output_type -> posts.v1.UpdatePostResponse
-	13, // 39: posts.v1.PostService.DeletePost:output_type -> posts.v1.DeletePostResponse
-	11, // 40: posts.v1.PostService.RatePost:output_type -> posts.v1.RatePostResponse
-	20, // 41: posts.v1.PostService.UploadPostImage:output_type -> posts.v1.UploadPostImageResponse
-	22, // 42: posts.v1.PostService.DeletePostImage:output_type -> posts.v1.DeletePostImageResponse
-	24, // 43: posts.v1.PostService.AddInterestingPost:output_type -> posts.v1.AddInterestingPostResponse
-	26, // 44: posts.v1.PostService.RemoveInterestingPost:output_type -> posts.v1.RemoveInterestingPostResponse
-	28, // 45: posts.v1.PostService.GetInterestingUsersCount:output_type -> posts.v1.GetInterestingUsersCountResponse
-	30, // 46: posts.v1.PostService.GetUserInterestingPosts:output_type -> posts.v1.GetUserInterestingPostsResponse
-	15, // 47: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
-	18, // 48: posts.v1.PostService.GetPostRatings:output_type -> posts.v1.GetPostRatingsResponse
-	36, // [36:49] is the sub-list for method output_type
-	23, // [23:36] is the sub-list for method input_type
+	31, // 34: posts.v1.PostService.GetUsersFavoritedMentorPosts:input_type -> posts.v1.GetUsersFavoritedMentorPostsRequest
+	14, // 35: posts.v1.PostService.ListPosts:input_type -> posts.v1.ListPostsRequest
+	17, // 36: posts.v1.PostService.GetPostRatings:input_type -> posts.v1.GetPostRatingsRequest
+	5,  // 37: posts.v1.PostService.CreatePost:output_type -> posts.v1.CreatePostResponse
+	7,  // 38: posts.v1.PostService.GetPost:output_type -> posts.v1.GetPostResponse
+	9,  // 39: posts.v1.PostService.UpdatePost:output_type -> posts.v1.UpdatePostResponse
+	13, // 40: posts.v1.PostService.DeletePost:output_type -> posts.v1.DeletePostResponse
+	11, // 41: posts.v1.PostService.RatePost:output_type -> posts.v1.RatePostResponse
+	20, // 42: posts.v1.PostService.UploadPostImage:output_type -> posts.v1.UploadPostImageResponse
+	22, // 43: posts.v1.PostService.DeletePostImage:output_type -> posts.v1.DeletePostImageResponse
+	24, // 44: posts.v1.PostService.AddInterestingPost:output_type -> posts.v1.AddInterestingPostResponse
+	26, // 45: posts.v1.PostService.RemoveInterestingPost:output_type -> posts.v1.RemoveInterestingPostResponse
+	28, // 46: posts.v1.PostService.GetInterestingUsersCount:output_type -> posts.v1.GetInterestingUsersCountResponse
+	30, // 47: posts.v1.PostService.GetUserInterestingPosts:output_type -> posts.v1.GetUserInterestingPostsResponse
+	32, // 48: posts.v1.PostService.GetUsersFavoritedMentorPosts:output_type -> posts.v1.GetUsersFavoritedMentorPostsResponse
+	15, // 49: posts.v1.PostService.ListPosts:output_type -> posts.v1.ListPostsResponse
+	18, // 50: posts.v1.PostService.GetPostRatings:output_type -> posts.v1.GetPostRatingsResponse
+	37, // [37:51] is the sub-list for method output_type
+	23, // [23:37] is the sub-list for method input_type
 	23, // [23:23] is the sub-list for extension type_name
 	23, // [23:23] is the sub-list for extension extendee
 	0,  // [0:23] is the sub-list for field type_name
@@ -2083,7 +2190,7 @@ func file_post_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_post_proto_rawDesc), len(file_post_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
