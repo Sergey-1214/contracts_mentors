@@ -473,6 +473,7 @@ type GetSlotResponse struct {
 	Price           int64                  `protobuf:"varint,7,opt,name=price,proto3" json:"price,omitempty"`
 	Currency        string                 `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`
 	Status          SlotStatus             `protobuf:"varint,9,opt,name=status,proto3,enum=SlotStatus" json:"status,omitempty"`
+	PostId          string                 `protobuf:"bytes,10,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -568,6 +569,13 @@ func (x *GetSlotResponse) GetStatus() SlotStatus {
 		return x.Status
 	}
 	return SlotStatus_SLOT_STATUS_AVAILABLE
+}
+
+func (x *GetSlotResponse) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
 }
 
 type UpdateSlotRequest struct {
@@ -2147,7 +2155,7 @@ const file_session_proto_rawDesc = "" +
 	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\")\n" +
 	"\x0eGetSlotRequest\x12\x17\n" +
-	"\aslot_id\x18\x01 \x01(\tR\x06slotId\"\xbc\x02\n" +
+	"\aslot_id\x18\x01 \x01(\tR\x06slotId\"\xd5\x02\n" +
 	"\x0fGetSlotResponse\x12\x17\n" +
 	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x1b\n" +
 	"\tmentor_id\x18\x02 \x01(\tR\bmentorId\x12\x14\n" +
@@ -2158,7 +2166,9 @@ const file_session_proto_rawDesc = "" +
 	"\x10duration_minutes\x18\x06 \x01(\x05R\x0fdurationMinutes\x12\x14\n" +
 	"\x05price\x18\a \x01(\x03R\x05price\x12\x1a\n" +
 	"\bcurrency\x18\b \x01(\tR\bcurrency\x12#\n" +
-	"\x06status\x18\t \x01(\x0e2\v.SlotStatusR\x06status\"\xce\x03\n" +
+	"\x06status\x18\t \x01(\x0e2\v.SlotStatusR\x06status\x12\x17\n" +
+	"\apost_id\x18\n" +
+	" \x01(\tR\x06postId\"\xce\x03\n" +
 	"\x11UpdateSlotRequest\x12\x17\n" +
 	"\aslot_id\x18\x01 \x01(\tR\x06slotId\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12%\n" +

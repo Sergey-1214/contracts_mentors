@@ -85,6 +85,7 @@ message GetSlotResponse {
     int64 price = 7; 
     string currency = 8;
     SlotStatus status = 9;
+    string post_id = 10;
 }
 
 message UpdateSlotRequest {
